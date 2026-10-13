@@ -551,9 +551,22 @@ html,body,#stage{overscroll-behavior:none}
  .bracketPath{margin-top:7px}.bracketStop{padding:6px 4px}.hubBottom{display:none}
 }
 
+
+/* Immediate and persistent economy feedback. Always fit inside phone safe areas. */
+#walletDock{position:absolute;z-index:5;left:50%;top:87px;transform:translateX(-50%);display:flex;gap:10px;align-items:center;justify-content:center;background:#051914dc;border:1px solid #c6fa647f;border-radius:11px;padding:6px 13px;pointer-events:none;box-shadow:0 9px 23px #0008;white-space:nowrap}
+.walletCell{display:flex;align-items:center;gap:6px}.walletCell+.walletCell{border-left:1px solid #9ebd784f;padding-left:12px}.walletCell small{font-size:8px;font-weight:900;letter-spacing:.07em;color:#a7bfaa}.walletCell b{font-size:14px;font-weight:1000;color:#d8ff72;font-variant-numeric:tabular-nums}
+#cashToast{z-index:12;position:absolute;top:128px;left:50%;transform:translateX(-50%);min-width:200px;max-width:80vw;text-align:center;opacity:0;pointer-events:none;background:#102e20f1;border:1px solid #c9fa76c7;border-radius:13px;padding:8px 15px;filter:drop-shadow(0 12px 25px #000b);white-space:nowrap}
+#cashToast b{display:block;font-size:25px;line-height:1;color:#dcff6c}#cashToast span{display:block;font-size:10px;color:#e3f7d9;font-weight:900;margin-top:3px;letter-spacing:.04em}
+#cashToast.cashPop{animation:ascentCash 2.9s ease forwards}@keyframes ascentCash{0%{opacity:0;transform:translate(-50%,8px)}12%{opacity:1;transform:translate(-50%,0)}75%{opacity:1}100%{opacity:0;transform:translate(-50%,-14px)}}
+.modal>.solidBtn{position:sticky;bottom:0;z-index:2;box-shadow:0 0 14px #0b2027}.earningsReceipt{display:flex;gap:12px;align-items:center;margin:14px 0 7px;padding:12px;border:1px solid #a8df6e99;border-radius:11px;background:linear-gradient(100deg,#25412c,#0e292b)}.earningsReceipt>div:first-child{min-width:120px}.earningsReceipt small{display:block;color:#bee5b1;font-size:9px;font-weight:1000;letter-spacing:.11em}.earningsReceipt strong{display:block;color:#e1ff70;font-size:26px;line-height:1.2}.earnBreakdown{font-size:11px;color:#d7e6cf;line-height:1.5}.earnBreakdown b{display:block;color:#faffda;margin-top:4px}
+.hubEconomy{display:flex;flex-direction:column;gap:4px;border:1px solid #9ec66a80;border-radius:11px;background:#18352799;padding:11px 15px;margin:6px 0 15px}.hubEconomyLead{color:#d4fb7b;font-size:9px;font-weight:1000;letter-spacing:.13em}.hubEconomy b{font-size:12px;color:#fff;line-height:1.4}.hubEconomy small{color:#b4d5b1;font-weight:800;font-size:10px}
+.ledgerMoneyPlus{color:#dbff80!important}.ledgerMoneyMinus{color:#ffad9a!important}
+@media(max-width:780px){#walletDock{top:51px;gap:7px;padding:5px 10px;border-radius:8px}.walletCell{gap:5px}.walletCell small{font-size:8px}.walletCell b{font-size:12px}.walletCell+.walletCell{padding-left:7px}#cashToast{top:91px;padding:6px 12px}#cashToast b{font-size:22px}.earningsReceipt{padding:9px;gap:8px}.earningsReceipt strong{font-size:22px}}
+@media(max-height:480px) and (orientation:landscape){#walletDock{top:45px}.walletCell small{font-size:7px}#cashToast{top:77px}.hubEconomy{padding:6px 9px;margin:3px 0 6px}.hubEconomy b{font-size:10px}}
+@media(max-width:380px){.walletCell{flex-direction:column;gap:0}.walletCell small{font-size:7px}.walletCell b{font-size:11px}.walletCell+.walletCell{padding-left:8px}#walletDock{top:51px}}
 </style></head><body>
 <div id="app"><header id="header"><div class="brand"><div class="brandLogo">✕</div><div><div class="brandText">SPEEDBALL<span>:</span>ASCENT</div><div class="brandSub">PROFESSIONAL PAINTBALL SIMULATOR</div></div></div><div class="headDivider"></div><div class="headTag">TOUR STATUS<b id="headLeague">ROOKIE CIRCUIT</b></div><div class="headSpacer"></div><div class="statPill"><i>TEAM FUNDS</i><span id="headCash">$2,500</span></div><button class="headerBtn" id="headerHome">TEAM HQ</button><button class="headerBtn" id="headerTactics">TACTICS</button><button class="headerBtn" id="headerView">↗ FPS VIEW</button><button class="headerBtn" id="headerSwitch">⇄ PLAYER</button><button class="headerBtn" id="headerPause">Ⅱ</button></header>
-<div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="webglHost" aria-hidden="true"></div><div id="crosshair3d"></div><button id="gfxMode" title="Cycle rendering quality">GRAPHICS: AUTO</button><div id="gfxInfo"><span class="pip"></span><span id="fpsRead">WEBGL 3D</span></div><div id="fieldWatermark">AUTHENTIC FIELD SCALE &bull; LIVE BALLISTICS &bull; TEAM COMMAND</div><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel" id="opponentName">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls" aria-label="Mobile match controls">
+<div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="webglHost" aria-hidden="true"></div><div id="crosshair3d"></div><button id="gfxMode" title="Cycle rendering quality">GRAPHICS: AUTO</button><div id="gfxInfo"><span class="pip"></span><span id="fpsRead">WEBGL 3D</span></div><div id="fieldWatermark">AUTHENTIC FIELD SCALE &bull; LIVE BALLISTICS &bull; TEAM COMMAND</div><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="walletDock" aria-label="Live team finances"><div class="walletCell"><small>TEAM CASH</small><b id="walletBalance">$2,500</b></div><div class="walletCell"><small>EARNED THIS MATCH</small><b id="walletMatchEarned">+$0</b></div></div><div id="cashToast" role="status" aria-live="polite"></div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel" id="opponentName">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls" aria-label="Mobile match controls">
   <div id="touchMoveZone" aria-hidden="true"></div>
   <div id="mobileStatus" aria-live="off"><span class="mobilePlayer" id="mobilePlayer">AVERY</span><span class="mobileDivider"></span><span id="mobileAmmo">180 PAINT</span><span class="mobileDivider"></span><span id="mobileEnergy">100% STA</span></div>
   <div id="joy" class="joy controlUnit" data-move="joy" role="group" aria-label="Movement joystick">
@@ -591,7 +604,7 @@ html,body,#stage{overscroll-behavior:none}
 <div id="pauseOverlay"><div class="pauseCard"><h3>PLAY PAUSED</h3><p class="minorNote">Study the field, change your view, then get back in the fight.</p><button id="resumeBtn" class="solidBtn">RESUME POINT</button><button id="pauseMenuBtn" class="outlineBtn">RETURN TO TEAM HQ</button></div></div></section><aside id="side"><div class="sidePad"><div class="sideHeader"><div><div class="sideEyebrow" id="sideEyebrow">COACH'S TABLE</div><div class="sideTitle" id="sideTitle">Breakout plan</div></div><button class="exitSide" id="closeSide">✕ CLOSE</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="tactics">TACTICS</button><button class="tab" data-tab="roster">SQUAD</button><button class="tab" data-tab="career">CAREER</button><button class="tab" data-tab="armory">ARMORY</button></div><div id="sideContent"></div></div></aside><div id="overlay"><div class="modal" id="modal"></div></div></div><footer id="footer"><span>ASCENT 3D // WEBGL REAL-TIME ENGINE</span><span>FIELD 150 × 120 FT &nbsp;•&nbsp; .68 CAL &nbsp;•&nbsp; 300 FPS / 10.5 BPS</span><span>LOCAL CAREER SAVE</span></footer></div>
 <section id="hubScreen" class="open" aria-label="SPEEDBALL main menu">
  <nav class="exNav"><div class="exMark">SPEEDBALL<b>:</b>ASCENT<small>PRO TOUR CAREER</small></div><div class="exSpacer"></div><div class="exChip"><span id="hubLeague">ROOKIE</span> · <span id="hubCash">$2,500</span></div><button id="hubSettings" class="exSmallBtn">CONTROLS</button></nav>
- <main class="hubMain"><div class="hubHero"><div class="hubLabel">WELCOME TO THE CIRCUIT · SEASON 01</div><h1 class="hubTitle">OWN<br><em>THE POINT.</em></h1><p class="hubCopy">Five athletes. One field. Every angle matters. Draw the breakout, command your squad, and take control when the horn sounds.</p><div class="hubActions"><button id="hubCareerBtn" class="exPrimary">ENTER CAREER ↗</button><button id="hubScrimBtn" class="exSecondary">QUICK SCRIM →</button><button id="hubFacilityBtn" class="exSecondary hubFacilityBtn">TEAM FACILITY ↗</button></div><div class="hubProgress" id="hubLeagueProgress">0 / 1 TITLES TO PROMOTE</div><div class="hubTrophyCount" id="hubTitleCount">0 TROPHIES</div><div class="hubModes"><span class="exMicro">MATCH FORMAT</span><button id="hub3" class="hubModeBtn active" data-hub-mode="3">3 × 3</button><button id="hub5" class="hubModeBtn" data-hub-mode="5">5 × 5</button></div><div class="hubStats"><div class="hubStat"><b id="hubWins">0–0</b><span>CAREER RECORD</span></div><div class="hubStat"><b id="hubFans">120</b><span>FAN SUPPORT</span></div><div class="hubStat"><b id="hubRank">D9</b><span>TOUR DIVISION</span></div></div></div>
+ <main class="hubMain"><div class="hubHero"><div class="hubLabel">WELCOME TO THE CIRCUIT · SEASON 01</div><h1 class="hubTitle">OWN<br><em>THE POINT.</em></h1><p class="hubCopy">Five athletes. One field. Every angle matters. Draw the breakout, command your squad, and take control when the horn sounds.</p><div class="hubActions"><button id="hubCareerBtn" class="exPrimary">ENTER CAREER ↗</button><button id="hubScrimBtn" class="exSecondary">QUICK SCRIM →</button><button id="hubFacilityBtn" class="exSecondary hubFacilityBtn">TEAM FACILITY ↗</button></div><div class="hubEconomy" id="hubEconomy"><span class="hubEconomyLead">PLAY POINTS TO EARN CASH</span><b id="hubLastPaid">Point payouts · tournament prizes · sponsors</b><small id="hubTotalEarnings">TOTAL CAREER EARNINGS $0</small></div><div class="hubProgress" id="hubLeagueProgress">0 / 1 TITLES TO PROMOTE</div><div class="hubTrophyCount" id="hubTitleCount">0 TROPHIES</div><div class="hubModes"><span class="exMicro">MATCH FORMAT</span><button id="hub3" class="hubModeBtn active" data-hub-mode="3">3 × 3</button><button id="hub5" class="hubModeBtn" data-hub-mode="5">5 × 5</button></div><div class="hubStats"><div class="hubStat"><b id="hubWins">0–0</b><span>CAREER RECORD</span></div><div class="hubStat"><b id="hubFans">120</b><span>FAN SUPPORT</span></div><div class="hubStat"><b id="hubRank">D9</b><span>TOUR DIVISION</span></div></div></div>
  <aside class="hubDeck"><div class="hubDeckTop"><b>UPCOMING EVENT / FIELD 01</b><span id="hubArenaBadge">PRO CIRCUIT</span></div><div class="hubCanvasWrap"><canvas id="hubMiniMap" aria-label="Preview of speedball arena"></canvas></div><div class="hubDeckInfo"><h3 id="hubEventName">THE ASCENT OPEN</h3><p id="hubEventDesc">Win points, build sponsorship value, and climb through the divisions.</p><div class="hubDeckFoot"><div><span>FORMAT</span><b id="hubFormat">3v3</b></div><div><span>TOP PURSE</span><b id="hubPrize">$550</b></div><div><span>ENTRY</span><b id="hubEntry">FREE</b></div></div><section id="hubBracket" class="hubBracket" aria-label="Tournament bracket and career progress"></section></div></aside></main>
  <footer class="hubBottom"><span>01 // SQUAD & STRATEGY</span><span>02 // BREAKOUT & FIELD CONTROL</span><span>03 // WIN & BUILD THE TEAM</span></footer>
 </section>
@@ -635,7 +648,7 @@ function newEvent({league=0,mode=3,layout='classic',number=1,fee=0,prize=550}={}
  return {version:7,id:`ASCENT-${league}-${number}-${mode}`,number,league,mode,layout,seed,status:'active',currentRound:0,
   entryFee:Math.max(0,int(fee)),topPurse:Math.max(0,int(prize)),rounds:[{name:ROUNDS[0],matches:qf},{name:ROUNDS[1],matches:sf},{name:ROUNDS[2],matches:final}],
   match:{score:[0,0],point:1,ties:0,overtime:false,history:[]},
-  results:[],grossMatchAwards:0,sponsorAwards:0,enteredAt:Date.now()};
+  results:[],grossPointAwards:0,grossMatchAwards:0,sponsorAwards:0,enteredAt:Date.now()};
 }
 function currentOpponent(e){if(!e||e.status!=='active')return null;return e.rounds[e.currentRound].matches[0].away}
 function roundName(e){return !e?'EXHIBITION':(e.rounds[e.currentRound]?.name||'CHAMPIONSHIP')}
@@ -645,7 +658,7 @@ function updateMatch(e,{score,point,ties,overtime,history}){
  if(point!==undefined)m.point=Math.max(1,Math.min(50,int(point,1)));
  if(ties!==undefined)m.ties=Math.max(0,int(ties));
  if(overtime!==undefined)m.overtime=!!overtime;
- if(Array.isArray(history))m.history=history.slice(-40).map(h=>({winner:h.winner===0||h.winner===1?h.winner:null,reason:String(h.reason||'').slice(0,110),time:Math.max(0,int(h.time))}));
+ if(Array.isArray(history))m.history=history.slice(-40).map(h=>({winner:h.winner===0||h.winner===1?h.winner:null,reason:String(h.reason||'').slice(0,110),time:Math.max(0,int(h.time)),award:Math.max(0,int(h.award))}));
  return true;
 }
 function recordResult(e,won,score){
@@ -691,14 +704,65 @@ const LAYOUTS={
 let settings={layout:'classic',assist:true,difficulty:'rookie',sens:1};
 try{const x=JSON.parse(localStorage.getItem('ascent-settings-v2')||'null');if(x)settings={...settings,...x}}catch(e){}
 const saveSettings=()=>{try{localStorage.setItem('ascent-settings-v2',JSON.stringify({layout:st.layout,assist:st.assist,difficulty:st.difficulty,sensScale:st.sensScale}))}catch(e){}};
-let career={cash:2500,wins:0,losses:0,league:0,leagueWins:0,leagueTitles:0,fans:120,sponsors:[],gear:{marker:0,loader:0,pads:0,boots:0,coaching:0},eventsEntered:0,eventsWon:0,eventsLost:0,practiceWins:0,practiceLosses:0,totalEarnings:0,totalSpent:0,history:[],activeEvent:null,lastEvent:null};
-try{const saved=JSON.parse(localStorage.getItem('ascent-career-v1')||'null');if(saved&&Number.isFinite(saved.cash))career={...career,...saved,gear:{...career.gear,...saved.gear},sponsors:Array.isArray(saved.sponsors)?saved.sponsors:[],history:Array.isArray(saved.history)?saved.history.slice(0,12):[]}}catch(e){}
+let career={cash:2500,wins:0,losses:0,league:0,leagueWins:0,leagueTitles:0,fans:120,sponsors:[],gear:{marker:0,loader:0,pads:0,boots:0,coaching:0},eventsEntered:0,eventsWon:0,eventsLost:0,practiceWins:0,practiceLosses:0,totalEarnings:0,totalSpent:0,history:[],activeEvent:null,lastEvent:null,transactions:[],paidIds:[],practiceSessions:0};
+try{const saved=JSON.parse(localStorage.getItem('ascent-career-v1')||'null');if(saved&&Number.isFinite(saved.cash))career={...career,...saved,gear:{...career.gear,...saved.gear},sponsors:Array.isArray(saved.sponsors)?saved.sponsors:[],history:Array.isArray(saved.history)?saved.history.slice(0,12):[],transactions:Array.isArray(saved.transactions)?saved.transactions.slice(0,100):[],paidIds:Array.isArray(saved.paidIds)?saved.paidIds.slice(-1200):[],practiceSessions:Number.isFinite(saved.practiceSessions)?saved.practiceSessions:0}}catch(e){}
 if(!CAMPAIGN.validEvent(career.activeEvent))career.activeEvent=null;
 const persist=()=>{try{localStorage.setItem('ascent-career-v1',JSON.stringify(career))}catch(e){}};
 const routeLibrary=(()=>{try{return JSON.parse(localStorage.getItem('ascent-coach-v6')||'{}')||{}}catch{return {}}})();
 function routeKey(){return `${st.layout}|${st.mode}|${st.tactic}`}
 function saveRouteLibrary(){try{localStorage.setItem('ascent-coach-v6',JSON.stringify(routeLibrary))}catch(e){}}
-const st={matchActive:false,matchSettled:false,event:null,ties:0,overtime:false,pointHistory:[],clearClock:0,phase:'prep',view:'tactical',mode:3,sideTab:'tactics',side:true,tactic:'balanced',layout:settings.layout||'classic',assist:settings.assist!==false,sensScale:settings.sensScale||1,coach:false,countdown:0,liveAge:0,selected:0,people:[],bunkers:[],balls:[],splats:[],particles:[],feed:[],score:[0,0],point:1,time:180,timeScale:1,regulation:true,difficulty:settings.difficulty||'rookie',careerMode:true,paused:false,frame:0,now:0,last:0,w:0,h:0,dpr:1,map:null,project:0,mouse:{x:0,y:0,down:false},keys:{},move:{x:0,y:0},touch:{x:0,y:0,lookId:null,lastX:0,lastY:0,fireId:null},mobileEditing:false,mobileWasPaused:false,leanL:false,leanR:false,crouch:false,shoot:false,spent:0,earnings:0,shotTimes:[],audio:null,overlay:null,shake:0,hitFlash:0,flare:0,camera:{x:0,y:0,z:1.62,yaw:0,pitch:0},wind:{x:.65,y:-.45},sens:0.0025};
+const st={matchActive:false,matchSettled:false,event:null,ties:0,overtime:false,pointHistory:[],clearClock:0,phase:'prep',view:'tactical',mode:3,sideTab:'tactics',side:true,tactic:'balanced',layout:settings.layout||'classic',assist:settings.assist!==false,sensScale:settings.sensScale||1,coach:false,countdown:0,liveAge:0,selected:0,people:[],bunkers:[],balls:[],splats:[],particles:[],feed:[],score:[0,0],point:1,time:180,timeScale:1,regulation:true,difficulty:settings.difficulty||'rookie',careerMode:true,paused:false,frame:0,now:0,last:0,w:0,h:0,dpr:1,map:null,project:0,mouse:{x:0,y:0,down:false},keys:{},move:{x:0,y:0},touch:{x:0,y:0,lookId:null,lastX:0,lastY:0,fireId:null},mobileEditing:false,mobileWasPaused:false,leanL:false,leanR:false,crouch:false,shoot:false,spent:0,earnings:0,lastPointReward:null,practiceId:null,shotTimes:[],audio:null,overlay:null,shake:0,hitFlash:0,flare:0,camera:{x:0,y:0,z:1.62,yaw:0,pitch:0},wind:{x:.65,y:-.45},sens:0.0025};
+
+// One balance, with itemized positive and negative entries, is the source of truth.
+// A durable receipt key prevents replay/reload from crediting a point twice.
+function bookCash(amount,label,id,{quiet=false}={}){
+ amount=Math.trunc(Number(amount));
+ if(!Number.isFinite(amount)||amount===0)return 0;
+ if(id&&career.paidIds.includes(id))return 0;
+ if(career.cash+amount<0)return 0;
+ career.cash+=amount;
+ if(amount>0){career.totalEarnings+=amount;st.earnings+=amount}
+ else career.totalSpent+=-amount;
+ if(id)career.paidIds=[...career.paidIds,id].slice(-1200);
+ const record={id:id||'receipt-'+Date.now(),amount,label:String(label).slice(0,90),at:Date.now()};
+ career.transactions=[record,...career.transactions].slice(0,100);
+ persist();syncUI();
+ if(!quiet)showCashToast(amount,label);
+ return amount;
+}
+function showCashToast(amount,label){
+ const box=el('cashToast');if(!box)return;
+ box.innerHTML=`<b>${amount>0?'+':''}${money(amount)}</b><span>${label}</span>`;
+ box.classList.remove('cashPop');void box.offsetWidth;box.classList.add('cashPop');
+}
+function pointPayout(winner,reason){
+ const league=st.event?.league??career.league;
+ const won=winner===0, lost=winner===1;
+ const elims=Math.min(st.mode,st.people.filter(p=>p.team===0).reduce((n,p)=>n+(p.elims||0),0));
+ const buzzer=won&&/buzzer/i.test(reason);
+ const survivors=st.people.filter(p=>p.team===0&&p.alive).length;
+ const sweep=won&&survivors>=st.mode-1;
+ const multiplier=(1+.36*league)*(st.mode===5?1.15:1)*(st.careerMode?1:.70);
+ const base=won?120:lost?35:20;
+ const elimBonus=elims*25;
+ const buzzerBonus=buzzer?75:0;
+ const survivalBonus=sweep?30:0;
+ const amount=Math.max(10,Math.round((base+elimBonus+buzzerBonus+survivalBonus)*multiplier));
+ return {amount,base,elims,elimBonus,buzzerBonus,survivalBonus,won,lost,multiplier};
+}
+function awardPoint(winner,reason){
+ const payout=pointPayout(winner,reason);
+ const pointKey=st.event?`POINT:${st.event.id}:${st.event.currentRound}:${st.point}`:`PRACTICE:${st.practiceId}:${st.point}`;
+ const label=winner===0?'POINT WON':winner===1?'POINT PLAYED':'NO SCORE · APPEARANCE';
+ const credited=bookCash(payout.amount,label,pointKey);
+ st.lastPointReward={...payout,credited,label};
+ if(st.event&&credited){st.event.grossPointAwards=(st.event.grossPointAwards||0)+credited;}
+ return credited;
+}
+function earningsReceipt(){
+ const r=st.lastPointReward;if(!r)return '';
+ return `<div class="earningsReceipt"><div><small>POINT EARNINGS</small><strong>+${money(r.credited||0)}</strong></div><div class="earnBreakdown">${money(Math.round(r.base*r.multiplier))} ${r.won?'point win':r.lost?'appearance':'no-score point'}${r.elimBonus?' · '+r.elims+' eliminations +'+money(Math.round(r.elimBonus*r.multiplier)):''}${r.buzzerBonus?' · buzzer +'+money(Math.round(r.buzzerBonus*r.multiplier)):''}${r.survivalBonus?' · squad survival +'+money(Math.round(r.survivalBonus*r.multiplier)):''}<b>Team balance ${money(career.cash)}</b></div></div>`;
+}
 
 // Campaign state persists at every point and match boundary, not just when leaving the game.
 function eventSnapshot(){return CAMPAIGN.validEvent(career.activeEvent)?career.activeEvent:null}
@@ -707,7 +771,7 @@ function prepareCareerEvent(){
  const existing=eventSnapshot();
  if(existing){st.event=existing;st.careerMode=true;st.mode=existing.mode;st.layout=existing.layout;buildField();
   st.score=existing.match.score.slice();st.point=existing.match.point;st.ties=existing.match.ties||0;
-  st.overtime=!!existing.match.overtime;st.pointHistory=(existing.match.history||[]).slice();st.matchActive=true;st.matchSettled=false;
+  st.overtime=!!existing.match.overtime;st.pointHistory=(existing.match.history||[]).slice();st.earnings=st.pointHistory.reduce((n,h)=>n+Math.max(0,Number(h.award)||0),0);st.matchActive=true;st.matchSettled=false;
   resetPoint();return {resumed:true,opponent:nextOpponent()};}
  st.event=null;st.matchActive=false;st.matchSettled=false;st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];
  return {resumed:false};
@@ -717,7 +781,8 @@ function createCareerEvent(){
  const fee=FEES[career.league];
  if(career.cash<fee){modal('ENTRY FUNDS REQUIRED',`Your next event costs ${money(fee)}. Play a quick scrim for appearance money or sign an available sponsor contract.`,'BACK TO HQ','hq');return false}
  const event=CAMPAIGN.newEvent({league:career.league,mode:st.mode,layout:st.layout,number:career.eventsEntered+1,fee,prize:PRIZES[career.league]});
- career.eventsEntered++;career.cash-=fee;career.totalSpent+=fee;career.activeEvent=event;st.event=event;
+ career.eventsEntered++;career.activeEvent=event;st.event=event;
+ if(fee)bookCash(-fee,'Tournament entry fee',`ENTRY:${event.id}`,{quiet:true});
  st.spent=fee;st.matchActive=true;st.matchSettled=false;st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];
  persist();return true;
 }
@@ -729,7 +794,7 @@ function saveActiveMatch(nextPointNumber=st.point){
 function archiveEvent(e){
  const history={id:e.id,number:e.number,league:e.league,mode:e.mode,layout:e.layout,status:e.status,
   stage:e.results.at(-1)?.round??0,wins:e.results.filter(x=>x.won).length,results:e.results.map(x=>({...x})),
-  winnings:e.grossMatchAwards+e.sponsorAwards+(e.championBonus||0),enteredAt:e.enteredAt,finishedAt:Date.now()};
+  winnings:(e.grossPointAwards||0)+e.grossMatchAwards+e.sponsorAwards+(e.championBonus||0),enteredAt:e.enteredAt,finishedAt:Date.now()};
  career.lastEvent=history;career.history=[history,...career.history.filter(x=>x.id!==history.id)].slice(0,12);
  career.activeEvent=null;
 }
@@ -741,7 +806,7 @@ function withdrawEvent(){
 function beginNextTournamentMatch(){
  const event=eventSnapshot();if(!event)return false;
  st.careerMode=true;st.event=event;st.mode=event.mode;st.layout=event.layout;
- st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];st.matchActive=true;st.matchSettled=false;
+ st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];st.earnings=0;st.lastPointReward=null;st.matchActive=true;st.matchSettled=false;
  buildField();resetPoint();
  hideModal();window.SpeedballExperience?.openPlanner('between');return true;
 }
@@ -841,12 +906,12 @@ function spawnPlayers(){let m=st.mode;const xstarts=m===3?[-1.45,0,1.45]:[-2.12,
  }}applyTactic();st.selected=Math.min(st.selected,m-1);
 }
 function resetPoint(){st.mobileEditing=false;el('touchControls')?.classList.remove('editing');spawnPlayers();if(st.overtime){st.people.forEach(p=>{p.alive=p.index===0});st.selected=0;}st.clearClock=0;st.balls=[];st.splats=[];st.particles=[];st.shotTimes=[];st.time=st.overtime?120:(st.mode===3?180:300);st.phase='prep';st.coach=false;st.countdown=0;st.liveAge=0;st.paused=false;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.touch.x=st.touch.y=0;st.view='tactical';showSide(true);syncUI();renderSide();}
-function fullMatchReset(){st.coach=false;st.matchActive=false;st.matchSettled=false;st.event=null;st.ties=0;st.overtime=false;st.pointHistory=[];st.clearClock=0;st.score=[0,0];st.point=1;st.earnings=0;st.spent=0;buildField();resetPoint()}
+function fullMatchReset(){st.lastPointReward=null;st.earnings=0;st.practiceId=null;st.coach=false;st.matchActive=false;st.matchSettled=false;st.event=null;st.ties=0;st.overtime=false;st.pointHistory=[];st.clearClock=0;st.score=[0,0];st.point=1;st.earnings=0;st.spent=0;buildField();resetPoint()}
 function showSide(show){st.side=show;el('side').classList.toggle('hidden',!show);resize();refreshStageActions();placeTouchControls();}
 function setView(view){st.view=view;el('headerView').textContent=view==='fps'?'▧ MAP VIEW':'↗ FPS VIEW';el('viewChip').innerHTML='<span class="liveCircle"></span>'+(view==='fps'?'FIRST PERSON / '+roster[st.selected]:'TACTICAL / FIELD OVERVIEW');if(view==='fps'&&(st.phase==='live'||st.phase==='countdown')&&!touchDevice){el('controlTip').textContent='CLICK FIELD TO LOOK • WASD MOVE • FIRE • SHIFT SLIDE • F DIVE • C CROUCH • Q/E LEAN • TAB PLAYER • V VIEW'}else if(view==='fps'&&touchDevice){el('controlTip').textContent='DRAG OPEN FIELD TO LOOK • HOLD FIRE • DOUBLE-TAP SLIDE FOR DIVE • LEAN'}else if(view==='tactical'&&st.phase==='live'){el('controlTip').textContent='WASD MOVE • AIM & FIRE WITH MOUSE • SHIFT SLIDE • TAB PLAYER • V FIRST PERSON'}else{el('controlTip').textContent='SELECT PLAYER → CLICK DESTINATION • CHOOSE A BREAKOUT • START POINT'}resize();el('touchControls')?.classList.toggle('touch-fps',view==='fps');placeTouchControls();}
 function selectPlayer(i){let n=(i+st.mode)%st.mode;if(st.phase==='live'&&!st.people.some(p=>p.team===0&&p.index===n&&p.alive)){let available=st.people.find(p=>p.team===0&&p.alive);if(available)n=available.index;}st.selected=n;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.mouse.down=false;setView(st.view);renderSide();syncUI()}
 function feed(s,team=0){st.feed.unshift({text:s,team,t:performance.now()});st.feed.length=Math.min(st.feed.length,5);el('feed').innerHTML=st.feed.map(f=>'<div class="feedLine '+(f.team?'enemy':'')+'"><span>◆</span> '+f.text+'</div>').join('')}
-function syncUI(){el('headLeague').textContent=LEAGUES[career.league];el('headCash').textContent=money(career.cash);el('myScore').textContent=st.score[0];el('oppScore').textContent=st.score[1];el('timeLeft').textContent=fmtTime(st.time);el('scoreMode').textContent=st.overtime?'SUDDEN DEATH • 1v1':st.mode+'v'+st.mode+' • '+(st.event?CAMPAIGN.roundName(st.event)+' · ':'')+'POINT '+st.point;el('opponentName').textContent=st.event&&st.careerMode?nextOpponent():'OPPOSITION';el('friendsAlive').textContent=st.people.filter(p=>p.team===0&&p.alive).length+' ACTIVE';el('enemiesAlive').textContent=st.people.filter(p=>p.team===1&&p.alive).length+' ACTIVE';setViewLabelOnly();}
+function syncUI(){el('headLeague').textContent=LEAGUES[career.league];el('headCash').textContent=money(career.cash);el('walletBalance').textContent=money(career.cash);el('walletMatchEarned').textContent='+'+money(st.earnings);el('myScore').textContent=st.score[0];el('oppScore').textContent=st.score[1];el('timeLeft').textContent=fmtTime(st.time);el('scoreMode').textContent=st.overtime?'SUDDEN DEATH • 1v1':st.mode+'v'+st.mode+' • '+(st.event?CAMPAIGN.roundName(st.event)+' · ':'')+'POINT '+st.point;el('opponentName').textContent=st.event&&st.careerMode?nextOpponent():'OPPOSITION';el('friendsAlive').textContent=st.people.filter(p=>p.team===0&&p.alive).length+' ACTIVE';el('enemiesAlive').textContent=st.people.filter(p=>p.team===1&&p.alive).length+' ACTIVE';setViewLabelOnly();}
 function setViewLabelOnly(){el('viewChip').innerHTML='<span class="liveCircle"></span>'+(st.view==='fps'?'FIRST PERSON / '+roster[st.selected]:'TACTICAL / FIELD OVERVIEW')}
 const fmtTime=t=>Math.floor(Math.max(0,t)/60)+':'+String(Math.floor(Math.max(0,t)%60)).padStart(2,'0');
 function renderSide(){for(const b of el('tabs').querySelectorAll('button'))b.classList.toggle('active',b.dataset.tab===st.sideTab);
@@ -879,8 +944,8 @@ if(b.dataset.action==='touchConfigure'){editor(true);return}
 if(b.dataset.action==='start'){if(st.phase==='live'){showSide(false)}else if(st.phase==='pointend'){nextPoint()}else{startMatch()}return}
 if(b.dataset.action==='goArmory'||b.dataset.action==='goTactics'){st.sideTab=b.dataset.action==='goArmory'?'armory':'tactics';renderSide();return}
 }
-function buyGear(id){if(st.phase==='live'||st.phase==='countdown')return;const g=GEAR.find(g=>g.id===id);if(!g)return;let l=career.gear[id],cost=Math.round(g.base*Math.pow(1.65,l));if(l>=g.max||cost>career.cash)return;career.cash-=cost;career.totalSpent+=cost;career.gear[id]++;persist();feed(g.name.toUpperCase()+' UPGRADED');syncUI();renderSide()}
-function signSponsor(id){const s=SPONSORS.find(x=>x.id===id);if(!s||career.wins<s.need||career.sponsors.includes(id))return;career.sponsors.push(id);career.cash+=s.bonus;persist();feed('SPONSOR SIGNED: '+s.name);syncUI();renderSide()}
+function buyGear(id){if(st.phase==='live'||st.phase==='countdown')return;const g=GEAR.find(g=>g.id===id);if(!g)return;let l=career.gear[id],cost=Math.round(g.base*Math.pow(1.65,l));if(l>=g.max||cost>career.cash)return false;career.gear[id]++;bookCash(-cost,'Equipment: '+g.name,`GEAR:${id}:${l+1}`,{quiet:true});persist();feed(g.name.toUpperCase()+' UPGRADED');syncUI();renderSide();return true}
+function signSponsor(id){const s=SPONSORS.find(x=>x.id===id);if(!s||career.wins<s.need||career.sponsors.includes(id))return false;career.sponsors.push(id);bookCash(s.bonus,'Signing bonus: '+s.name,`SIGN:${id}`);persist();feed('SPONSOR SIGNED: '+s.name);syncUI();renderSide();return true}
 function setTab(tab){if(st.phase==='countdown')return;st.sideTab=tab;if(st.phase==='live'){st.coach=true;st.paused=true;setView('tactical')}renderSide();showSide(true);updatePause()}
 function startMatch(){
  if(st.phase==='live'||st.phase==='countdown'||st.phase==='matchend'||st.phase==='pointend')return false;
@@ -889,7 +954,7 @@ function startMatch(){
  if(st.careerMode){
   if(!createCareerEvent())return false;
  }else{
-  st.event=null;st.matchActive=true;st.matchSettled=false;st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];st.spent=0;
+  st.event=null;st.matchActive=true;st.matchSettled=false;st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];st.spent=0;career.practiceSessions++;st.practiceId=career.practiceSessions;persist();
  }
  st.earnings=0;st.wind={x:(Math.random()-.5)*2.4,y:(Math.random()-.5)*1.4};
  st.people.forEach(p=>{p.alive=true;p.atGoal=0;setNav(p)});
@@ -923,7 +988,8 @@ function finishPoint(winner,reason){
  st.phase='pointend';st.coach=false;st.shoot=false;st.mouse.down=false;
  document.exitPointerLock?.();if(decided)st.score[winner]++;
  else st.ties++;
- st.pointHistory.push({winner:decided?winner:null,reason,time:Math.max(0,Math.round(st.time))});
+ const pointAward=awardPoint(winner,reason);
+ st.pointHistory.push({winner:decided?winner:null,reason,time:Math.max(0,Math.round(st.time)),award:pointAward});
  syncUI();sound(winner===0?'win':winner===1?'loss':'pop');refreshStageActions();
  // Best two out of three. Drawn points trigger a 1v1 overtime if scores remain level.
  const matchWon=decided&&(st.overtime||st.score[winner]>=2);
@@ -934,8 +1000,8 @@ function finishPoint(winner,reason){
  if(regulationFinished&&st.score[0]===st.score[1])st.overtime=true;
  saveActiveMatch(st.point+1);
  const label=st.overtime?'SUDDEN DEATH AHEAD':!decided?'NO POINT AWARDED':winner===0?'POINT WON':'POINT LOST';
- const msg=st.overtime?'The match is level after regulation. One player per team enters a 2-minute tiebreaker.':reason+' · Score '+st.score[0]+'–'+st.score[1]+'. Draw another breakout for the next point.';
- modal(label,msg,st.overtime?'PLAN OVERTIME':'PLAN NEXT POINT','next',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Match score</span></div><div class="modalStat"><b>${st.point}</b><span>Point completed</span></div><div class="modalStat"><b>${st.overtime?'1v1':st.mode+'v'+st.mode}</b><span>Next format</span></div></div>`);
+ const msg=(st.overtime?'The match is level after regulation. One player per team enters a 2-minute tiebreaker.':reason+' · Score '+st.score[0]+'–'+st.score[1]+'. Draw another breakout for the next point.')+` Earned ${money(pointAward)} this point.`;
+ modal(label,msg,st.overtime?'PLAN OVERTIME':'PLAN NEXT POINT','next',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Match score</span></div><div class="modalStat"><b>+${money(pointAward)}</b><span>Cash earned now</span></div><div class="modalStat"><b>${st.overtime?'1v1':st.mode+'v'+st.mode}</b><span>Next format</span></div></div>${earningsReceipt()}`);
  return true;
 }
 function nextPoint(){
@@ -961,28 +1027,30 @@ function finishMatch(){
   }else if(result.finished)career.eventsLost++;
   career.wins+=win?1:0;career.losses+=win?0:1;
   career.fans+=win?Math.round(115+event.league*35+stage*65):Math.round(25+stage*17);
-  career.cash+=matchAward+sponsorCash+championBonus;
-  career.totalEarnings+=matchAward+sponsorCash+championBonus;
+  const matchKey=`MATCH:${event.id}:${stage}`;
+  bookCash(matchAward,CAMPAIGN.ROUNDS[stage]+' match payment',matchKey+':pay');
+  if(sponsorCash)bookCash(sponsorCash,'Sponsor match bonuses',matchKey+':sponsor');
+  if(championBonus)bookCash(championBonus,'CHAMPIONSHIP PURSE',matchKey+':championship');
   event.grossMatchAwards+=matchAward;event.sponsorAwards+=sponsorCash;
   if(result.finished)archiveEvent(event);else career.activeEvent=event;
   persist();
   if(!result.finished){
-   modal('ROUND WON · '+CAMPAIGN.ROUNDS[stage],`You beat ${event.results.at(-1).opponent} ${st.score[0]}–${st.score[1]}. ${money(matchAward+sponsorCash)} earned. Up next: ${CAMPAIGN.currentOpponent(event)}.`,
-   'PLAN NEXT MATCH','nextMatch',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final match</span></div><div class="modalStat"><b>${stage+1}/3</b><span>Rounds won</span></div><div class="modalStat"><b>${money(career.cash)}</b><span>Team funds</span></div></div><button class="outlineBtn" data-modal="hq">SAVE & RETURN TO HQ</button>`);
+   modal('ROUND WON · '+CAMPAIGN.ROUNDS[stage],`You beat ${event.results.at(-1).opponent} ${st.score[0]}–${st.score[1]}. Point reward ${money(st.lastPointReward?.credited||0)} plus ${money(matchAward+sponsorCash)} match payout. Up next: ${CAMPAIGN.currentOpponent(event)}.`,
+   'PLAN NEXT MATCH','nextMatch',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final match</span></div><div class="modalStat"><b>${stage+1}/3</b><span>Rounds won</span></div><div class="modalStat"><b>${money(career.cash)}</b><span>Team funds</span></div></div>${earningsReceipt()}<button class="outlineBtn" data-modal="hq">SAVE & RETURN TO HQ</button>`);
   }else{
    const title=result.title?'TOURNAMENT CHAMPIONS':'TOURNAMENT ELIMINATED';
    const msg=result.title?`Three rounds conquered. Championship purse ${money(championBonus)}.${promotion||' Your division standing improved.'}`:`You lost to ${event.results.at(-1).opponent} in the ${CAMPAIGN.ROUNDS[stage].toLowerCase()}. Upgrade your squad and enter another tournament.`;
-   modal(title,msg,'RETURN TO TEAM HQ','hq',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final match</span></div><div class="modalStat"><b>${money(event.grossMatchAwards+event.sponsorAwards+championBonus)}</b><span>Event income</span></div><div class="modalStat"><b>${career.eventsWon}</b><span>Career trophies</span></div></div>`);
+   modal(title,msg,'RETURN TO TEAM HQ','hq',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final match</span></div><div class="modalStat"><b>${money((event.grossPointAwards||0)+event.grossMatchAwards+event.sponsorAwards+championBonus)}</b><span>Total event earnings</span></div><div class="modalStat"><b>${money(career.cash)}</b><span>Wallet balance</span></div></div>${earningsReceipt()}`);
   }
  }else{
-  const practicePay=win?150:60;career.cash+=practicePay;career.totalEarnings+=practicePay;
+  const practicePay=win?150:60;bookCash(practicePay,'Scrimmage match payment',`PRACTICE:${st.practiceId}:MATCH`);
   career.practiceWins+=win?1:0;career.practiceLosses+=win?0:1;persist();
   modal(win?'SCRIMMAGE VICTORY':'SCRIMMAGE COMPLETE',`Practice pays ${money(practicePay)} in local appearance credits. No career record or bracket placement changed.`,
-   'RETURN TO TEAM HQ','hq',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final score</span></div><div class="modalStat"><b>${money(practicePay)}</b><span>Practice income</span></div></div><button class="outlineBtn" data-modal="rematch">PLAY ANOTHER SCRIM →</button>`);
+   'RETURN TO TEAM HQ','hq',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final score</span></div><div class="modalStat"><b>${money(practicePay)}</b><span>Match bonus</span></div></div>${earningsReceipt()}<button class="outlineBtn" data-modal="rematch">PLAY ANOTHER SCRIM →</button>`);
  }
  syncUI();renderSide();window.SpeedballExperience?.refreshHub?.();return true;
 }
-function modal(title,description,primary,action,extra=''){st.overlay={title,action};el('modal').innerHTML=`<div class="modalEyebrow">SPEEDBALL : ASCENT</div><h2 class="modalTitle">${title}</h2><p class="modalDesc">${description}</p>${extra}<button class="solidBtn" data-modal="${action}">${primary}</button>`;el('overlay').classList.add('show')}
+function modal(title,description,primary,action,extra=''){st.overlay={title,action};el('cashToast')?.classList.remove('cashPop');el('modal').innerHTML=`<div class="modalEyebrow">SPEEDBALL : ASCENT</div><h2 class="modalTitle">${title}</h2><p class="modalDesc">${description}</p>${extra}<button class="solidBtn" data-modal="${action}">${primary}</button>`;el('overlay').classList.add('show')}
 function hideModal(){el('overlay').classList.remove('show');st.overlay=null}
 function modalAction(action){if(action==='next')nextPoint();else if(action==='nextMatch')beginNextTournamentMatch();else if(action==='hq'){hideModal();fullMatchReset();st.sideTab='career';renderSide();window.SpeedballExperience?.openHub(true)}else if(action==='rematch'){hideModal();fullMatchReset();st.careerMode=false;st.sideTab='tactics';renderSide();window.SpeedballExperience?.openPlanner('hub')}else if(action==='close')hideModal()}
 function updatePause(){el('pauseOverlay').style.display=st.paused&&!st.coach&&!st.mobileEditing?'flex':'none';if(st.paused)document.exitPointerLock?.();refreshStageActions()}
@@ -1659,7 +1727,7 @@ function run(t){
  requestAnimationFrame(run);
 }
 // WebGL renderer observes the existing authoritative physics, AI, and career state.
-window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,tactics:tacDefs,leagues:LEAGUES,fees:FEES,prizes:PRIZES,roster,selectPlayer,setView,feed,resetPoint,fullMatchReset,showSide,setTab,renderSide,startMatch,beginPoint,updatePause,applyTactic,saveSettings,setPlayerPlan,issueOrder,safeGoal,blockedBody,rayClear,routeKey,gearCatalog:GEAR,sponsorCatalog:SPONSORS,buyGear,signSponsor,
+window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,tactics:tacDefs,leagues:LEAGUES,fees:FEES,prizes:PRIZES,roster,selectPlayer,setView,feed,resetPoint,fullMatchReset,showSide,setTab,renderSide,startMatch,beginPoint,updatePause,applyTactic,saveSettings,setPlayerPlan,issueOrder,safeGoal,blockedBody,rayClear,routeKey,gearCatalog:GEAR,sponsorCatalog:SPONSORS,buyGear,signSponsor,bookCash,
  prepareCareerEvent,withdrawEvent,beginNextTournamentMatch,eventSnapshot,gameVersion:'0.7'};
 if(window.__speedballEnableTests)window.SpeedballTest={step,finishPoint,finishMatch,nextPoint,modalAction,createCareerEvent,saveActiveMatch,prepareCareerEvent,beginNextTournamentMatch};
 // Initial ready room.
@@ -1735,6 +1803,7 @@ $('hubCareerBtn').textContent=active?'CONTINUE TOURNAMENT ↗':'ENTER CAREER ↗
 $('hubScrimBtn').textContent=active?'PRACTICE · EVENT SAVED':'QUICK SCRIM →';
 $('hubLeagueProgress').textContent=c.league===8?'PRO TOUR • '+c.eventsWon+' TITLES':`${c.leagueTitles} / ${window.SpeedballCampaign.promoTarget(c.league)} TITLES TO PROMOTE`;
 $('hubWins').textContent=c.wins+'–'+c.losses;$('hubTitleCount').textContent=c.eventsWon+' TROPHIES';
+const recent=c.transactions?.find(t=>t.amount>0);$('hubLastPaid').textContent=recent?`LAST PAYMENT +${cash(recent.amount)} · ${recent.label}`:'WIN POINTS, EARN ELIMINATION BONUSES & EVENT PRIZES';$('hubTotalEarnings').textContent=`TOTAL EARNED ${cash(c.totalEarnings)} · SPENT ${cash(c.totalSpent)}`;
 const b=$('hubBracket');
 if(active){b.innerHTML=`<div class="bracketTitle"><span>LIVE BRACKET · ${active.rounds.length} MATCHES TO TITLE</span><strong>EVENT #${String(active.number).padStart(2,'0')}</strong></div>
 <div class="bracketPath">${active.rounds.map((round,i)=>{const m=round.matches[0],done=m.complete,current=active.currentRound===i;return `<div class="bracketStop ${done?'won':current?'playing':'locked'}"><span class="bracketOrdinal">0${i+1}</span><div><strong>${i===0?'QUARTERFINAL':i===1?'SEMIFINAL':'FINAL'}</strong><small>${m.away} ${done?'· '+m.score:current?'· UP NEXT':''}</small></div><b>${done?'✓':current?'▶':'·'}</b></div>`}).join('')}</div>
@@ -1753,6 +1822,9 @@ function refreshFacility(){
  <h2 class="facSecTitle">SPONSORSHIP OFFICE<span>Unlock endorsement deals through event victories.</span></h2><div class="facGrid">${core.sponsorCatalog.map(s=>`<article class="facCard"><div class="facIcon">✦</div><small>SPONSOR CONTRACT</small><strong>${s.name}</strong><p>${s.sub}. ${cash(s.bounty)} per match, plus a ${cash(s.bonus)} signing bonus.</p><div class="facProgress"><i style="width:${Math.min(100,c.wins/s.need*100)}%"></i></div><button class="facBuy" data-fac-sponsor="${s.id}" ${c.sponsors.includes(s.id)||c.wins<s.need?'disabled':''}>${c.sponsors.includes(s.id)?'CONTRACT SIGNED':c.wins<s.need?c.wins+' / '+s.need+' WINS REQUIRED':'SIGN · '+cash(s.bonus)+' BONUS'}</button></article>`).join('')}</div><section class="careerLedger"><h2>SEASON JOURNAL <span>${core.leagues[c.league]} · ${c.leagueTitles}/${window.SpeedballCampaign.promoTarget(c.league)} TITLES TO PROMOTION</span></h2>
 <div class="ledgerStats"><div><strong>${c.eventsWon}</strong><small>TOURNAMENT WINS</small></div><div><strong>${c.eventsEntered}</strong><small>EVENTS ENTERED</small></div><div><strong>${c.wins}–${c.losses}</strong><small>OFFICIAL MATCHES</small></div><div><strong>${cash(c.totalEarnings)}</strong><small>CAREER EARNINGS</small></div></div>
 <div class="ledgerRows">${c.history.length?c.history.slice(0,6).map(h=>`<div class="ledgerRow"><span>EVENT #${String(h.number).padStart(2,'0')} · ${core.leagues[h.league]}</span><strong>${h.status==='champion'?'🏆 CHAMPION':h.status==='withdrawn'?'WITHDRAWN':'ROUND '+(h.stage+1)+' EXIT'}</strong><span>${h.wins}/3 WON · ${cash(h.winnings)}</span></div>`).join(''):'<p class="facNote">No tournaments completed yet. Your first quarterfinal awaits.</p>'}</div>
+<h2>TEAM CASHFLOW <span>ITEMIZED EARNINGS, FEES & UPGRADES</span></h2>
+<div class="ledgerStats"><div><strong>${cash(c.cash)}</strong><small>CURRENT BALANCE</small></div><div><strong>${cash(c.totalEarnings)}</strong><small>TOTAL EARNED</small></div><div><strong>${cash(c.totalSpent)}</strong><small>TOTAL SPENT</small></div><div><strong>${cash(c.totalEarnings-c.totalSpent)}</strong><small>EARNED MINUS SPENT</small></div></div>
+<p class="facNote">Starting team bankroll: $2,500. Older save transactions may not appear below, but your existing balance is retained.</p><div class="ledgerRows" id="transactionHistory">${(c.transactions||[]).length?c.transactions.slice(0,12).map(tx=>`<div class="ledgerRow"><span>${new Date(tx.at).toLocaleDateString()} · ${tx.label}</span><strong class="${tx.amount>=0?'ledgerMoneyPlus':'ledgerMoneyMinus'}">${tx.amount>=0?'+'+cash(tx.amount):'-'+cash(-tx.amount)}</strong></div>`).join(''):'<p class="facNote">No transactions yet. Win a point or complete a match to earn cash.</p>'}</div>
 <button class="facProceed" id="facCareer">${c.activeEvent?'RESUME SAVED TOURNAMENT →':'ENTER NEXT TOURNAMENT →'}</button></section>
 <p class="facNote">Sponsors, equipment brands, prize balances, and gameplay benefits are simulated. Progress is stored on this device.</p></main>`;
 }
