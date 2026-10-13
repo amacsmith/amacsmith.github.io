@@ -505,9 +505,55 @@ html,body,#stage{overscroll-behavior:none}
 @media(max-width:405px){.facGrid{grid-template-columns:1fr}.facCard{min-height:0}.facHero h1{font-size:46px}.facHead strong{font-size:17px}.facMoney{padding:15px}}
 @media(max-height:490px) and (orientation:landscape){.hubActions{gap:6px}.hubActions button{padding:8px 7px!important;min-height:42px;font-size:10px!important}.hubMain{align-items:start}.hubTitle{margin:6px 0 8px}.hubCopy{margin-bottom:7px}}
 
+
+/* V7 tournament bracket and career status — compact enough for portrait phones. */
+.hubProgress{font-size:11px;font-weight:950;letter-spacing:.08em;color:#b8e9c1;margin-top:-12px;margin-bottom:10px}
+.hubTrophyCount{display:inline-block;padding:6px 10px;background:#d9ff6619;border:1px solid #d9ff6670;border-radius:30px;font-size:10px;font-weight:950;letter-spacing:.08em;color:#d6ff81;margin-bottom:8px}
+.hubBracket{margin-top:17px;border-top:1px solid #88b9a45b;padding-top:12px}
+.bracketTitle{display:flex;justify-content:space-between;gap:12px;align-items:center;color:#cfeccc;font-size:9px;font-weight:950;letter-spacing:.07em}
+.bracketTitle strong{color:#e5ff93;white-space:nowrap}
+.bracketPath{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:12px}
+.bracketStop{min-width:0;display:flex;align-items:center;gap:5px;border:1px solid #4b756c;background:#12272c;border-radius:10px;padding:10px 8px;opacity:.75}
+.bracketStop.playing{border-color:#d5ff67;background:#273d2f;box-shadow:0 0 12px #c9ff2122;opacity:1}
+.bracketStop.won{border-color:#71c79a;background:#18392b;opacity:1}
+.bracketOrdinal{font-size:17px;letter-spacing:-.03em;color:#c2ff81;font-weight:1000}
+.bracketStop div{flex:1;min-width:0}.bracketStop strong{display:block;font-size:9px;letter-spacing:.04em}.bracketStop small{display:block;font-size:8px;color:#b8d1c9;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bracketStop>b{color:#d5ff6c;font-size:12px}
+.bracketBottom{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:10px;color:#cae2db;font-size:9px;font-weight:800}
+.bracketBottom b{color:#efffb3}
+#abandonEventBtn{font-size:9px;font-weight:950;color:#ffc2ba;background:#552725;border:1px solid #b6615a;border-radius:8px;padding:7px 9px;min-height:38px!important}
+@media (max-width:900px){.hubBracket{margin-top:12px}.bracketStop{padding:7px 5px}.bracketOrdinal{font-size:14px}.bracketStop strong{font-size:8px}.bracketStop small{font-size:8px}.hubDeckInfo{padding:15px}}
+@media (max-width:480px){.bracketPath{gap:4px}.bracketStop{gap:3px;padding:7px 4px}.bracketStop strong{font-size:7px}.bracketOrdinal{font-size:13px}.bracketBottom{font-size:8px;flex-wrap:wrap}}
+
+.careerNotice{width:100%;margin-top:10px!important;min-height:44px!important;border:1px solid #d7ff80;background:#2e402b;color:#eaffb1;font-size:10px;font-weight:950;border-radius:10px;padding:10px;text-align:left}
+.careerLedger{margin:25px 0;border:1px solid #608374;background:linear-gradient(140deg,#122b2d,#0b1e22);border-radius:18px;padding:20px}
+.careerLedger h2{font-size:22px;letter-spacing:-.04em;font-weight:1000;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.careerLedger h2 span{color:#d5ff77;font-size:10px;letter-spacing:.08em}
+.ledgerStats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:18px}
+.ledgerStats>div{background:#203836;border:1px solid #41635e;border-radius:10px;padding:12px}
+.ledgerStats strong{font-size:23px;font-weight:1000;display:block;color:#ebffce}
+.ledgerStats small{font-size:9px;letter-spacing:.07em;color:#a3c6bb;font-weight:900}
+.ledgerRows{margin-top:15px;display:grid;gap:7px}
+.ledgerRow{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:12px;background:#0b1c21;border:1px solid #395753;border-radius:8px;font-size:10px;color:#bcd9d2;font-weight:750}
+.ledgerRow strong{color:#d9ff80}.facProceed{margin-top:15px;width:100%;min-height:50px;border-radius:10px;border:1px solid #d6ff6c;background:#d5ff69;color:#0c2019;font-weight:1000}
+@media(max-width:630px){.ledgerStats{grid-template-columns:repeat(2,1fr)}.ledgerRow{grid-template-columns:1fr auto}.ledgerRow span:last-child{grid-column:1/-1}.careerLedger{padding:14px}}
+@media(max-height:520px) and (min-width:650px){
+ .hubMain{padding-top:10px;padding-bottom:14px;gap:16px;align-items:start}
+ .hubTitle{font-size:clamp(48px,7vw,75px);margin:11px 0 10px}
+ .hubCopy{font-size:12px;line-height:1.3;margin-bottom:12px}
+ .hubActions{margin-bottom:9px;gap:6px}.hubActions button{font-size:11px;min-height:42px;padding:9px 12px}
+ .hubModes{margin-top:4px;gap:6px}.hubModeBtn{min-width:65px;padding:5px 8px;min-height:38px!important}
+ .hubStats{margin-top:8px}.hubStat{padding-top:5px}.hubStat b{font-size:20px}
+ .hubProgress{margin:4px 0 3px}.hubTrophyCount{margin-bottom:2px;padding:3px 8px}
+ .hubCanvasWrap{height:145px}.hubDeckTop{padding:8px 12px}.hubDeckInfo{padding:10px}
+ .hubDeckInfo h3{font-size:21px}.hubDeckInfo p{margin:3px 0 7px;font-size:10px}
+ .hubDeckFoot{padding-top:7px}.hubDeckFoot b{font-size:13px}.hubBracket{margin-top:9px;padding-top:8px}
+ .bracketPath{margin-top:7px}.bracketStop{padding:6px 4px}.hubBottom{display:none}
+}
+
 </style></head><body>
 <div id="app"><header id="header"><div class="brand"><div class="brandLogo">✕</div><div><div class="brandText">SPEEDBALL<span>:</span>ASCENT</div><div class="brandSub">PROFESSIONAL PAINTBALL SIMULATOR</div></div></div><div class="headDivider"></div><div class="headTag">TOUR STATUS<b id="headLeague">ROOKIE CIRCUIT</b></div><div class="headSpacer"></div><div class="statPill"><i>TEAM FUNDS</i><span id="headCash">$2,500</span></div><button class="headerBtn" id="headerHome">TEAM HQ</button><button class="headerBtn" id="headerTactics">TACTICS</button><button class="headerBtn" id="headerView">↗ FPS VIEW</button><button class="headerBtn" id="headerSwitch">⇄ PLAYER</button><button class="headerBtn" id="headerPause">Ⅱ</button></header>
-<div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="webglHost" aria-hidden="true"></div><div id="crosshair3d"></div><button id="gfxMode" title="Cycle rendering quality">GRAPHICS: AUTO</button><div id="gfxInfo"><span class="pip"></span><span id="fpsRead">WEBGL 3D</span></div><div id="fieldWatermark">AUTHENTIC FIELD SCALE &bull; LIVE BALLISTICS &bull; TEAM COMMAND</div><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls" aria-label="Mobile match controls">
+<div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="webglHost" aria-hidden="true"></div><div id="crosshair3d"></div><button id="gfxMode" title="Cycle rendering quality">GRAPHICS: AUTO</button><div id="gfxInfo"><span class="pip"></span><span id="fpsRead">WEBGL 3D</span></div><div id="fieldWatermark">AUTHENTIC FIELD SCALE &bull; LIVE BALLISTICS &bull; TEAM COMMAND</div><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel" id="opponentName">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls" aria-label="Mobile match controls">
   <div id="touchMoveZone" aria-hidden="true"></div>
   <div id="mobileStatus" aria-live="off"><span class="mobilePlayer" id="mobilePlayer">AVERY</span><span class="mobileDivider"></span><span id="mobileAmmo">180 PAINT</span><span class="mobileDivider"></span><span id="mobileEnergy">100% STA</span></div>
   <div id="joy" class="joy controlUnit" data-move="joy" role="group" aria-label="Movement joystick">
@@ -545,8 +591,8 @@ html,body,#stage{overscroll-behavior:none}
 <div id="pauseOverlay"><div class="pauseCard"><h3>PLAY PAUSED</h3><p class="minorNote">Study the field, change your view, then get back in the fight.</p><button id="resumeBtn" class="solidBtn">RESUME POINT</button><button id="pauseMenuBtn" class="outlineBtn">RETURN TO TEAM HQ</button></div></div></section><aside id="side"><div class="sidePad"><div class="sideHeader"><div><div class="sideEyebrow" id="sideEyebrow">COACH'S TABLE</div><div class="sideTitle" id="sideTitle">Breakout plan</div></div><button class="exitSide" id="closeSide">✕ CLOSE</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="tactics">TACTICS</button><button class="tab" data-tab="roster">SQUAD</button><button class="tab" data-tab="career">CAREER</button><button class="tab" data-tab="armory">ARMORY</button></div><div id="sideContent"></div></div></aside><div id="overlay"><div class="modal" id="modal"></div></div></div><footer id="footer"><span>ASCENT 3D // WEBGL REAL-TIME ENGINE</span><span>FIELD 150 × 120 FT &nbsp;•&nbsp; .68 CAL &nbsp;•&nbsp; 300 FPS / 10.5 BPS</span><span>LOCAL CAREER SAVE</span></footer></div>
 <section id="hubScreen" class="open" aria-label="SPEEDBALL main menu">
  <nav class="exNav"><div class="exMark">SPEEDBALL<b>:</b>ASCENT<small>PRO TOUR CAREER</small></div><div class="exSpacer"></div><div class="exChip"><span id="hubLeague">ROOKIE</span> · <span id="hubCash">$2,500</span></div><button id="hubSettings" class="exSmallBtn">CONTROLS</button></nav>
- <main class="hubMain"><div class="hubHero"><div class="hubLabel">WELCOME TO THE CIRCUIT · SEASON 01</div><h1 class="hubTitle">OWN<br><em>THE POINT.</em></h1><p class="hubCopy">Five athletes. One field. Every angle matters. Draw the breakout, command your squad, and take control when the horn sounds.</p><div class="hubActions"><button id="hubCareerBtn" class="exPrimary">ENTER CAREER ↗</button><button id="hubScrimBtn" class="exSecondary">QUICK SCRIM →</button><button id="hubFacilityBtn" class="exSecondary hubFacilityBtn">TEAM FACILITY ↗</button></div><div class="hubModes"><span class="exMicro">MATCH FORMAT</span><button id="hub3" class="hubModeBtn active" data-hub-mode="3">3 × 3</button><button id="hub5" class="hubModeBtn" data-hub-mode="5">5 × 5</button></div><div class="hubStats"><div class="hubStat"><b id="hubWins">0–0</b><span>CAREER RECORD</span></div><div class="hubStat"><b id="hubFans">120</b><span>FAN SUPPORT</span></div><div class="hubStat"><b id="hubRank">D9</b><span>TOUR DIVISION</span></div></div></div>
- <aside class="hubDeck"><div class="hubDeckTop"><b>UPCOMING EVENT / FIELD 01</b><span id="hubArenaBadge">PRO CIRCUIT</span></div><div class="hubCanvasWrap"><canvas id="hubMiniMap" aria-label="Preview of speedball arena"></canvas></div><div class="hubDeckInfo"><h3 id="hubEventName">THE ASCENT OPEN</h3><p id="hubEventDesc">Win points, build sponsorship value, and climb through the divisions.</p><div class="hubDeckFoot"><div><span>FORMAT</span><b id="hubFormat">3v3</b></div><div><span>TOP PURSE</span><b id="hubPrize">$550</b></div><div><span>ENTRY</span><b id="hubEntry">FREE</b></div></div></div></aside></main>
+ <main class="hubMain"><div class="hubHero"><div class="hubLabel">WELCOME TO THE CIRCUIT · SEASON 01</div><h1 class="hubTitle">OWN<br><em>THE POINT.</em></h1><p class="hubCopy">Five athletes. One field. Every angle matters. Draw the breakout, command your squad, and take control when the horn sounds.</p><div class="hubActions"><button id="hubCareerBtn" class="exPrimary">ENTER CAREER ↗</button><button id="hubScrimBtn" class="exSecondary">QUICK SCRIM →</button><button id="hubFacilityBtn" class="exSecondary hubFacilityBtn">TEAM FACILITY ↗</button></div><div class="hubProgress" id="hubLeagueProgress">0 / 1 TITLES TO PROMOTE</div><div class="hubTrophyCount" id="hubTitleCount">0 TROPHIES</div><div class="hubModes"><span class="exMicro">MATCH FORMAT</span><button id="hub3" class="hubModeBtn active" data-hub-mode="3">3 × 3</button><button id="hub5" class="hubModeBtn" data-hub-mode="5">5 × 5</button></div><div class="hubStats"><div class="hubStat"><b id="hubWins">0–0</b><span>CAREER RECORD</span></div><div class="hubStat"><b id="hubFans">120</b><span>FAN SUPPORT</span></div><div class="hubStat"><b id="hubRank">D9</b><span>TOUR DIVISION</span></div></div></div>
+ <aside class="hubDeck"><div class="hubDeckTop"><b>UPCOMING EVENT / FIELD 01</b><span id="hubArenaBadge">PRO CIRCUIT</span></div><div class="hubCanvasWrap"><canvas id="hubMiniMap" aria-label="Preview of speedball arena"></canvas></div><div class="hubDeckInfo"><h3 id="hubEventName">THE ASCENT OPEN</h3><p id="hubEventDesc">Win points, build sponsorship value, and climb through the divisions.</p><div class="hubDeckFoot"><div><span>FORMAT</span><b id="hubFormat">3v3</b></div><div><span>TOP PURSE</span><b id="hubPrize">$550</b></div><div><span>ENTRY</span><b id="hubEntry">FREE</b></div></div><section id="hubBracket" class="hubBracket" aria-label="Tournament bracket and career progress"></section></div></aside></main>
  <footer class="hubBottom"><span>01 // SQUAD & STRATEGY</span><span>02 // BREAKOUT & FIELD CONTROL</span><span>03 // WIN & BUILD THE TEAM</span></footer>
 </section>
 <section id="plannerScreen" aria-label="Tactical breakout planning board">
@@ -556,6 +602,73 @@ html,body,#stage{overscroll-behavior:none}
  <footer class="planBottom"><div class="planBottomInfo"><b id="planMission">READY TO BREAK OUT</b><span id="planMeta">3 players · best of 3 · one-hit eliminations</span></div><div class="planToolbar"><button id="planBack" class="exSecondary">← TEAM HQ</button><button id="planDeploy" class="exPrimary">START MATCH →</button></div></footer>
 </section>
 
+<script>
+/* SPEEDBALL: ASCENT v0.7 — deterministic tournament and campaign state.
+   Simulation entities and rewards are fictional; this module has no network dependencies. */
+(function(global){'use strict';
+const YOU='ASCENT';
+const NAMES=[
+ ['DUST DEVILS','BUNKER UNION','EASTSIDE GHOSTS','HARDLINE','RED SHIFT','TRIGGER HAPPY','SIDEWINDERS'],
+ ['MIDWEST HAVOC','AFTERSHOCK JR','UPSTATE RUSH','BLACKOUT','THE CUT','JACKRABBITS','WESTERN ARMS'],
+ ['IRON CROWN','BREAKOUT CLUB','NORTHWIND','FAR SIDE','RIVAL THEORY','NIGHTFALL','DRAKE CITY'],
+ ['STORM DIVISION','BORDERLINE','CROSSFIRE','FALSE FLAG','GOLD STANDARD','REDLINE','ODD ANGLES'],
+ ['MAVERICK FIVE','VELOCITY NINE','RAPID DEPLOY','FURY','OUTRIDERS','VECTOR SPORT','THIRD RAIL'],
+ ['NOVA ELITE','TITAN SIX','PRECISE','ONYX','ZERO HOUR','SILENT ENTRY','ARMADA'],
+ ['FUSION PRO','NORTHSTAR','SABERLINE','DEAD CENTER','PHANTOM FIVE','COBRA UNIT','CARBON V'],
+ ['APEX UNITED','FIVE ALARM','PARALLAX','THE METHOD','STORMFORCE','CIRCUIT KINGS','RECON'],
+ ['PANTHEON','ELEVATE','ASCENDANCY','DYNASTY PRIME','MAXIMUM','THE LEGACY','SHADOW ELITE']
+];
+const ROUNDS=['QUARTERFINAL','SEMIFINAL','CHAMPIONSHIP'];
+function int(n,d=0){const x=Number(n);return Number.isFinite(x)?Math.round(x):d}
+function hash(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function match(home,away){return {home,away,score:null,winner:null,complete:false}}
+function decide(m,seed){const h=hash(seed+'|'+m.home+'|'+m.away),home=(h%2)===0;m.winner=home?m.home:m.away;m.score=home?(h%4===0?'2–0':'2–1'):(h%3===0?'0–2':'1–2');m.complete=true;return m.winner}
+function newEvent({league=0,mode=3,layout='classic',number=1,fee=0,prize=550}={}){
+ league=Math.max(0,Math.min(8,int(league)));mode=mode===5?5:3;number=Math.max(1,int(number,1));
+ const seed=`${league}-${number}-${mode}-${layout}`;
+ const names=NAMES[league];const turn=(number-1)%names.length;
+ const rivals=Array.from({length:7},(_,i)=>names[(i+turn)%7]);
+ const qf=[match(YOU,rivals[0]),match(rivals[1],rivals[2]),match(rivals[3],rivals[4]),match(rivals[5],rivals[6])];
+ for(let i=1;i<4;i++)decide(qf[i],seed+':qf:'+i);
+ const sf=[match(YOU,qf[1].winner),match(qf[2].winner,qf[3].winner)];decide(sf[1],seed+':sf:1');
+ const final=[match(YOU,sf[1].winner)];
+ return {version:7,id:`ASCENT-${league}-${number}-${mode}`,number,league,mode,layout,seed,status:'active',currentRound:0,
+  entryFee:Math.max(0,int(fee)),topPurse:Math.max(0,int(prize)),rounds:[{name:ROUNDS[0],matches:qf},{name:ROUNDS[1],matches:sf},{name:ROUNDS[2],matches:final}],
+  match:{score:[0,0],point:1,ties:0,overtime:false,history:[]},
+  results:[],grossMatchAwards:0,sponsorAwards:0,enteredAt:Date.now()};
+}
+function currentOpponent(e){if(!e||e.status!=='active')return null;return e.rounds[e.currentRound].matches[0].away}
+function roundName(e){return !e?'EXHIBITION':(e.rounds[e.currentRound]?.name||'CHAMPIONSHIP')}
+function updateMatch(e,{score,point,ties,overtime,history}){
+ if(!e||e.status!=='active')return false;
+ const m=e.match;if(Array.isArray(score)&&score.length===2)m.score=score.map(x=>Math.max(0,Math.min(2,int(x))));
+ if(point!==undefined)m.point=Math.max(1,Math.min(50,int(point,1)));
+ if(ties!==undefined)m.ties=Math.max(0,int(ties));
+ if(overtime!==undefined)m.overtime=!!overtime;
+ if(Array.isArray(history))m.history=history.slice(-40).map(h=>({winner:h.winner===0||h.winner===1?h.winner:null,reason:String(h.reason||'').slice(0,110),time:Math.max(0,int(h.time))}));
+ return true;
+}
+function recordResult(e,won,score){
+ if(!e||e.status!=='active')return {recorded:false,why:'inactive'};
+ const r=e.rounds[e.currentRound];const current=r.matches[0];if(current.complete)return {recorded:false,why:'already recorded'};
+ const completedRound=e.currentRound;
+ current.complete=true;current.score=`${Math.max(0,int(score[0]))}–${Math.max(0,int(score[1]))}`;current.winner=won?YOU:current.away;
+ e.results.push({round:completedRound,opponent:current.away,score:current.score,won:!!won});
+ if(!won){e.status='eliminated';return {recorded:true,won:false,round:completedRound,finished:true,title:false}}
+ if(completedRound===2){e.status='champion';return {recorded:true,won:true,round:completedRound,finished:true,title:true}}
+ e.currentRound++;
+ const next=e.rounds[e.currentRound].matches[0];next.home=YOU;
+ e.match={score:[0,0],point:1,ties:0,overtime:false,history:[]};
+ return {recorded:true,won:true,round:completedRound,finished:false,title:false,opponent:currentOpponent(e)};
+}
+function promoTarget(league){return league===0?1:league>=6?3:2}
+function validEvent(e){return !!(e&&e.version===7&&e.status==='active'&&Array.isArray(e.rounds)&&e.rounds.length===3&&
+ Number.isInteger(e.currentRound)&&e.currentRound>=0&&e.currentRound<3&&e.rounds[e.currentRound]?.matches?.[0]?.away&&e.match&&Array.isArray(e.match.score))}
+const api=Object.freeze({YOU,NAMES,ROUNDS,newEvent,currentOpponent,roundName,updateMatch,recordResult,promoTarget,validEvent});
+(global.window||global).SpeedballCampaign=api;
+})(typeof window==='undefined'?globalThis:window);
+
+</script>
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s), el=(id)=>document.getElementById(id), cv=el('game'), ctx=cv.getContext('2d',{alpha:false});
@@ -569,6 +682,7 @@ const PRIZES=[550,950,1450,2150,3400,5100,7600,11500,22000];
 const GEAR=[{id:'marker',name:'Precision marker',sub:'Regulator, bolt & barrel tuning',effect:'Tighter grouping + reduced kick',base:710,max:3},{id:'loader',name:'High-feed loader',sub:'Reliable 10.5 BPS feed',effect:'More paint carried per load',base:460,max:3},{id:'pads',name:'Slide protection kit',sub:'Knee pads, elbow pads, jersey',effect:'Longer slides + faster recovery',base:350,max:3},{id:'boots',name:'Tournament cleats',sub:'Lightweight directional grip',effect:'Acceleration + stamina',base:390,max:3},{id:'coaching',name:'Team training camp',sub:'Communication & lane discipline',effect:'AI reaction and accuracy',base:580,max:3}];
 const SPONSORS=[{id:'s1',name:'VECTOR // CARBON',sub:'Carbon fiber components partner',need:2,bounty:160,bonus:450},{id:'s2',name:'SIGHTLINE ATHLETICS',sub:'Apparel and travel support',need:5,bounty:340,bonus:1000},{id:'s3',name:'RAPIDFEED SYSTEMS',sub:'Elite marker support deal',need:10,bounty:700,bonus:2400}];
 const roster=['AVERY','MILES','NOVA','JAX','RILEY'];
+const CAMPAIGN=window.SpeedballCampaign;
 const LAYOUTS={
  classic:{name:'PRO CIRCUIT',sub:'Rotationally symmetric · snake / dorito / 50',tone:'Balanced lanes and aggressive mid-field options'},
  fortress:{name:'CROSSFIRE OPEN',sub:'Back-center cover · double wedges · broad lanes',tone:'Measured, cover-to-cover points'},
@@ -577,13 +691,61 @@ const LAYOUTS={
 let settings={layout:'classic',assist:true,difficulty:'rookie',sens:1};
 try{const x=JSON.parse(localStorage.getItem('ascent-settings-v2')||'null');if(x)settings={...settings,...x}}catch(e){}
 const saveSettings=()=>{try{localStorage.setItem('ascent-settings-v2',JSON.stringify({layout:st.layout,assist:st.assist,difficulty:st.difficulty,sensScale:st.sensScale}))}catch(e){}};
-let career={cash:2500,wins:0,losses:0,league:0,leagueWins:0,fans:120,sponsors:[],gear:{marker:0,loader:0,pads:0,boots:0,coaching:0}};
-try{const saved=JSON.parse(localStorage.getItem('ascent-career-v1')||'null');if(saved&&typeof saved.cash==='number')career={...career,...saved,gear:{...career.gear,...saved.gear},sponsors:saved.sponsors||[]}}catch(e){}
+let career={cash:2500,wins:0,losses:0,league:0,leagueWins:0,leagueTitles:0,fans:120,sponsors:[],gear:{marker:0,loader:0,pads:0,boots:0,coaching:0},eventsEntered:0,eventsWon:0,eventsLost:0,practiceWins:0,practiceLosses:0,totalEarnings:0,totalSpent:0,history:[],activeEvent:null,lastEvent:null};
+try{const saved=JSON.parse(localStorage.getItem('ascent-career-v1')||'null');if(saved&&Number.isFinite(saved.cash))career={...career,...saved,gear:{...career.gear,...saved.gear},sponsors:Array.isArray(saved.sponsors)?saved.sponsors:[],history:Array.isArray(saved.history)?saved.history.slice(0,12):[]}}catch(e){}
+if(!CAMPAIGN.validEvent(career.activeEvent))career.activeEvent=null;
 const persist=()=>{try{localStorage.setItem('ascent-career-v1',JSON.stringify(career))}catch(e){}};
 const routeLibrary=(()=>{try{return JSON.parse(localStorage.getItem('ascent-coach-v6')||'{}')||{}}catch{return {}}})();
 function routeKey(){return `${st.layout}|${st.mode}|${st.tactic}`}
 function saveRouteLibrary(){try{localStorage.setItem('ascent-coach-v6',JSON.stringify(routeLibrary))}catch(e){}}
-const st={phase:'prep',view:'tactical',mode:3,sideTab:'tactics',side:true,tactic:'balanced',layout:settings.layout||'classic',assist:settings.assist!==false,sensScale:settings.sensScale||1,coach:false,countdown:0,liveAge:0,selected:0,people:[],bunkers:[],balls:[],splats:[],particles:[],feed:[],score:[0,0],point:1,time:180,timeScale:1,regulation:true,difficulty:settings.difficulty||'rookie',careerMode:true,paused:false,frame:0,now:0,last:0,w:0,h:0,dpr:1,map:null,project:0,mouse:{x:0,y:0,down:false},keys:{},move:{x:0,y:0},touch:{x:0,y:0,lookId:null,lastX:0,lastY:0,fireId:null},mobileEditing:false,mobileWasPaused:false,leanL:false,leanR:false,crouch:false,shoot:false,spent:0,earnings:0,shotTimes:[],audio:null,overlay:null,shake:0,hitFlash:0,flare:0,camera:{x:0,y:0,z:1.62,yaw:0,pitch:0},wind:{x:.65,y:-.45},sens:0.0025};
+const st={matchActive:false,matchSettled:false,event:null,ties:0,overtime:false,pointHistory:[],clearClock:0,phase:'prep',view:'tactical',mode:3,sideTab:'tactics',side:true,tactic:'balanced',layout:settings.layout||'classic',assist:settings.assist!==false,sensScale:settings.sensScale||1,coach:false,countdown:0,liveAge:0,selected:0,people:[],bunkers:[],balls:[],splats:[],particles:[],feed:[],score:[0,0],point:1,time:180,timeScale:1,regulation:true,difficulty:settings.difficulty||'rookie',careerMode:true,paused:false,frame:0,now:0,last:0,w:0,h:0,dpr:1,map:null,project:0,mouse:{x:0,y:0,down:false},keys:{},move:{x:0,y:0},touch:{x:0,y:0,lookId:null,lastX:0,lastY:0,fireId:null},mobileEditing:false,mobileWasPaused:false,leanL:false,leanR:false,crouch:false,shoot:false,spent:0,earnings:0,shotTimes:[],audio:null,overlay:null,shake:0,hitFlash:0,flare:0,camera:{x:0,y:0,z:1.62,yaw:0,pitch:0},wind:{x:.65,y:-.45},sens:0.0025};
+
+// Campaign state persists at every point and match boundary, not just when leaving the game.
+function eventSnapshot(){return CAMPAIGN.validEvent(career.activeEvent)?career.activeEvent:null}
+function nextOpponent(){return st.careerMode&&st.event?CAMPAIGN.currentOpponent(st.event):'SCRIMMAGE SQUAD'}
+function prepareCareerEvent(){
+ const existing=eventSnapshot();
+ if(existing){st.event=existing;st.careerMode=true;st.mode=existing.mode;st.layout=existing.layout;buildField();
+  st.score=existing.match.score.slice();st.point=existing.match.point;st.ties=existing.match.ties||0;
+  st.overtime=!!existing.match.overtime;st.pointHistory=(existing.match.history||[]).slice();st.matchActive=true;st.matchSettled=false;
+  resetPoint();return {resumed:true,opponent:nextOpponent()};}
+ st.event=null;st.matchActive=false;st.matchSettled=false;st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];
+ return {resumed:false};
+}
+function createCareerEvent(){
+ if(eventSnapshot())return prepareCareerEvent().resumed;
+ const fee=FEES[career.league];
+ if(career.cash<fee){modal('ENTRY FUNDS REQUIRED',`Your next event costs ${money(fee)}. Play a quick scrim for appearance money or sign an available sponsor contract.`,'BACK TO HQ','hq');return false}
+ const event=CAMPAIGN.newEvent({league:career.league,mode:st.mode,layout:st.layout,number:career.eventsEntered+1,fee,prize:PRIZES[career.league]});
+ career.eventsEntered++;career.cash-=fee;career.totalSpent+=fee;career.activeEvent=event;st.event=event;
+ st.spent=fee;st.matchActive=true;st.matchSettled=false;st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];
+ persist();return true;
+}
+function saveActiveMatch(nextPointNumber=st.point){
+ if(!st.careerMode||!st.event||st.event.status!=='active')return;
+ CAMPAIGN.updateMatch(st.event,{score:st.score,point:nextPointNumber,ties:st.ties,overtime:st.overtime,history:st.pointHistory});
+ career.activeEvent=st.event;persist();
+}
+function archiveEvent(e){
+ const history={id:e.id,number:e.number,league:e.league,mode:e.mode,layout:e.layout,status:e.status,
+  stage:e.results.at(-1)?.round??0,wins:e.results.filter(x=>x.won).length,results:e.results.map(x=>({...x})),
+  winnings:e.grossMatchAwards+e.sponsorAwards+(e.championBonus||0),enteredAt:e.enteredAt,finishedAt:Date.now()};
+ career.lastEvent=history;career.history=[history,...career.history.filter(x=>x.id!==history.id)].slice(0,12);
+ career.activeEvent=null;
+}
+function withdrawEvent(){
+ const event=eventSnapshot();if(!event)return false;
+ event.status='withdrawn';career.eventsLost++;archiveEvent(event);persist();
+ fullMatchReset();return true;
+}
+function beginNextTournamentMatch(){
+ const event=eventSnapshot();if(!event)return false;
+ st.careerMode=true;st.event=event;st.mode=event.mode;st.layout=event.layout;
+ st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];st.matchActive=true;st.matchSettled=false;
+ buildField();resetPoint();
+ hideModal();window.SpeedballExperience?.openPlanner('between');return true;
+}
+
 let W=1000,H=620,canvasRatio=1;
 function resize(){const r=cv.getBoundingClientRect();W=Math.max(2,r.width);H=Math.max(2,r.height);canvasRatio=Math.min(devicePixelRatio||1,touchDevice?1.22:1.55);cv.width=Math.round(W*canvasRatio);cv.height=Math.round(H*canvasRatio);ctx.setTransform(canvasRatio,0,0,canvasRatio,0,0);st.w=W;st.h=H}
 window.addEventListener('resize',resize);
@@ -678,84 +840,151 @@ function spawnPlayers(){let m=st.mode;const xstarts=m===3?[-1.45,0,1.45]:[-2.12,
  st.people.push({id:team*m+i,team,index:i,name:team===0?roster[i]:['GHOST','STRYKER','FLINT','VEX','TALON'][i],role:(m===3?['SNAKE','CENTER','DORITO']:['SNAKE','MID','FRONT','DORITO','BACK'])[i],x,y,vx:0,vy:0,yaw:team===0?0:Math.PI,pitch:0,lean:0,leanTarget:0,crouch:false,slide:0,slideVX:0,slideVY:0,stamina:100,alive:true,ammo:180+career.gear.loader*40,pods:3,reload:0,shotAt:0,shotCount:0,fireHold:0,lastTrigger:0,accuracy:0,goal:{x,y},think:0,backGoal:false,recoil:0,lastFPS:290,elims:0,suppression:0,age:0,dirty:0,cover:0,atGoal:0,spottedUntil:0,lastSeen:null,aiSight:0,targetId:null,burst:0,burstRest:0,laneTimer:1.2+Math.random()*1.0,laneShots:0,laneYaw:null,autoBreakout:true,manualOverride:false,callout:0,plan:[],planIndex:0,order:'balanced',stanceBlend:0,gaitPhase:0,slideDuration:0,slideElapsed:0,exitSlide:0,strafe:0,forwardSpeed:0,plant:0,wallDistance:10})
  }}applyTactic();st.selected=Math.min(st.selected,m-1);
 }
-function resetPoint(){st.mobileEditing=false;el('touchControls')?.classList.remove('editing');spawnPlayers();st.balls=[];st.splats=[];st.particles=[];st.shotTimes=[];st.time=st.mode===3?180:300;st.phase='prep';st.coach=false;st.countdown=0;st.liveAge=0;st.paused=false;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.touch.x=st.touch.y=0;st.view='tactical';showSide(true);syncUI();renderSide();}
-function fullMatchReset(){st.coach=false;st.score=[0,0];st.point=1;st.earnings=0;st.spent=0;buildField();resetPoint()}
+function resetPoint(){st.mobileEditing=false;el('touchControls')?.classList.remove('editing');spawnPlayers();if(st.overtime){st.people.forEach(p=>{p.alive=p.index===0});st.selected=0;}st.clearClock=0;st.balls=[];st.splats=[];st.particles=[];st.shotTimes=[];st.time=st.overtime?120:(st.mode===3?180:300);st.phase='prep';st.coach=false;st.countdown=0;st.liveAge=0;st.paused=false;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.touch.x=st.touch.y=0;st.view='tactical';showSide(true);syncUI();renderSide();}
+function fullMatchReset(){st.coach=false;st.matchActive=false;st.matchSettled=false;st.event=null;st.ties=0;st.overtime=false;st.pointHistory=[];st.clearClock=0;st.score=[0,0];st.point=1;st.earnings=0;st.spent=0;buildField();resetPoint()}
 function showSide(show){st.side=show;el('side').classList.toggle('hidden',!show);resize();refreshStageActions();placeTouchControls();}
 function setView(view){st.view=view;el('headerView').textContent=view==='fps'?'▧ MAP VIEW':'↗ FPS VIEW';el('viewChip').innerHTML='<span class="liveCircle"></span>'+(view==='fps'?'FIRST PERSON / '+roster[st.selected]:'TACTICAL / FIELD OVERVIEW');if(view==='fps'&&(st.phase==='live'||st.phase==='countdown')&&!touchDevice){el('controlTip').textContent='CLICK FIELD TO LOOK • WASD MOVE • FIRE • SHIFT SLIDE • F DIVE • C CROUCH • Q/E LEAN • TAB PLAYER • V VIEW'}else if(view==='fps'&&touchDevice){el('controlTip').textContent='DRAG OPEN FIELD TO LOOK • HOLD FIRE • DOUBLE-TAP SLIDE FOR DIVE • LEAN'}else if(view==='tactical'&&st.phase==='live'){el('controlTip').textContent='WASD MOVE • AIM & FIRE WITH MOUSE • SHIFT SLIDE • TAB PLAYER • V FIRST PERSON'}else{el('controlTip').textContent='SELECT PLAYER → CLICK DESTINATION • CHOOSE A BREAKOUT • START POINT'}resize();el('touchControls')?.classList.toggle('touch-fps',view==='fps');placeTouchControls();}
 function selectPlayer(i){let n=(i+st.mode)%st.mode;if(st.phase==='live'&&!st.people.some(p=>p.team===0&&p.index===n&&p.alive)){let available=st.people.find(p=>p.team===0&&p.alive);if(available)n=available.index;}st.selected=n;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.mouse.down=false;setView(st.view);renderSide();syncUI()}
 function feed(s,team=0){st.feed.unshift({text:s,team,t:performance.now()});st.feed.length=Math.min(st.feed.length,5);el('feed').innerHTML=st.feed.map(f=>'<div class="feedLine '+(f.team?'enemy':'')+'"><span>◆</span> '+f.text+'</div>').join('')}
-function syncUI(){el('headLeague').textContent=LEAGUES[career.league];el('headCash').textContent=money(career.cash);el('myScore').textContent=st.score[0];el('oppScore').textContent=st.score[1];el('timeLeft').textContent=fmtTime(st.time);el('scoreMode').textContent=st.mode+'v'+st.mode+' • POINT '+st.point;el('friendsAlive').textContent=st.people.filter(p=>p.team===0&&p.alive).length+' ACTIVE';el('enemiesAlive').textContent=st.people.filter(p=>p.team===1&&p.alive).length+' ACTIVE';setViewLabelOnly();}
+function syncUI(){el('headLeague').textContent=LEAGUES[career.league];el('headCash').textContent=money(career.cash);el('myScore').textContent=st.score[0];el('oppScore').textContent=st.score[1];el('timeLeft').textContent=fmtTime(st.time);el('scoreMode').textContent=st.overtime?'SUDDEN DEATH • 1v1':st.mode+'v'+st.mode+' • '+(st.event?CAMPAIGN.roundName(st.event)+' · ':'')+'POINT '+st.point;el('opponentName').textContent=st.event&&st.careerMode?nextOpponent():'OPPOSITION';el('friendsAlive').textContent=st.people.filter(p=>p.team===0&&p.alive).length+' ACTIVE';el('enemiesAlive').textContent=st.people.filter(p=>p.team===1&&p.alive).length+' ACTIVE';setViewLabelOnly();}
 function setViewLabelOnly(){el('viewChip').innerHTML='<span class="liveCircle"></span>'+(st.view==='fps'?'FIRST PERSON / '+roster[st.selected]:'TACTICAL / FIELD OVERVIEW')}
 const fmtTime=t=>Math.floor(Math.max(0,t)/60)+':'+String(Math.floor(Math.max(0,t)%60)).padStart(2,'0');
 function renderSide(){for(const b of el('tabs').querySelectorAll('button'))b.classList.toggle('active',b.dataset.tab===st.sideTab);
 let title={tactics:['COACH’S TABLE','Breakout plan'],roster:['TEAM COMMS','Your roster'],career:['ROAD TO PRO','Career HQ'],armory:['GEAR & TRAINING','Team armory']}[st.sideTab];el('sideEyebrow').textContent=title[0];el('sideTitle').textContent=title[1];
 const panel=el('sideContent');
 if(st.sideTab==='tactics'){
- panel.innerHTML=`<div class="sectionLabel">Match format</div><div class="modeCards"><button class="modeCard ${st.mode===3?'selected':''}" data-mode="3"><div class="modeBig">3v3</div><div class="modeDesc">3-minute points<br>Best of 3</div></button><button class="modeCard ${st.mode===5?'selected':''}" data-mode="5"><div class="modeBig">5v5</div><div class="modeDesc">5-minute points<br>Best of 3</div></button></div><button class="solidBtn" data-action="start" style="margin-top:10px">▶ ${st.phase==='live'?'RETURN TO MATCH':'PLAY '+st.mode+'v'+st.mode+' MATCH'} ${st.careerMode?' · '+money(FEES[career.league])+' ENTRY':''}</button><div class="sectionLabel">Event field layout</div><div class="layoutSelect">${Object.entries(LAYOUTS).map(([id,v])=>`<button data-layout="${id}" class="layoutBtn ${st.layout===id?'selected':''}"><b>${v.name}</b><small>${v.sub}</small></button>`).join('')}</div><div class="sectionLabel">Tactical playbook / ${st.mode}-player formation</div>${Object.entries(tacDefs).map(([id,t])=>`<button class="tacticBtn ${st.tactic===id?'selected':''}" data-tactic="${id}"><span class="tacticIcon">${t.symbol}</span><span><div class="tacticName">${t.name}</div><div class="tacticDesc">${t.desc}</div></span>${st.tactic===id?'<span class="tacticCheck">✓</span>':''}</button>`).join('')}<div class="notice"><b>COACH THE BREAKOUT</b><br>Tap a player, then tap ground beside a bunker to place their route. Every point begins with a visible horn countdown. Your controlled player can sprint automatically to the selected cover until you touch movement.</div><button class="outlineBtn" data-action="fieldPlan">⌖ EXPAND FIELD / PLACE ROUTES</button>${touchDevice?'<button class="outlineBtn" data-action="touchConfigure" style="margin-top:10px">CUSTOMIZE MOBILE CONTROLS</button>':''}<div class="sectionLabel">Control assists</div><div class="modeCards"><button class="modeCard ${st.assist?'selected':''}" data-assist="on"><div class="tacticName">BREAKOUT ASSIST</div><div class="modeDesc">${st.assist?'ON':'OFF'} · route autopilot</div></button><button class="modeCard ${!st.assist?'selected':''}" data-assist="off"><div class="tacticName">MANUAL BREAKOUT</div><div class="modeDesc">Full control from horn</div></button></div><div class="sectionLabel">Touch look speed</div><div class="tagGrid">${[['0.65','LOW'],['1','NORMAL'],['1.45','FAST']].map(([v,t])=>`<button class="difficultyBtn ${Math.abs(st.sensScale-Number(v))<.01?'selected':''}" data-sens="${v}">${t}</button>`).join('')}</div><div class="sectionLabel">Opponent skill</div><div class="tagGrid">${['rookie','contender','elite'].map(d=>`<button class="difficultyBtn ${st.difficulty===d?'selected':''}" data-difficulty="${d}">${d.toUpperCase()}</button>`).join('')}</div><div class="sectionLabel">Point setup</div><div class="tagGrid"><span class="tag">${st.regulation?'REGULATION':'2× QUICK MATCH'} CLOCK</span><span class="tag">${st.difficulty.toUpperCase()} AI</span><span class="tag">${st.careerMode?'CAREER EVENT':'EXHIBITION'}</span></div><div class="modeCards" style="margin-top:9px"><button class="modeCard ${st.regulation?'selected':''}" data-clock="reg"><div class="tacticName">REGULATION</div><div class="modeDesc">Real-time clock</div></button><button class="modeCard ${!st.regulation?'selected':''}" data-clock="quick"><div class="tacticName">QUICK</div><div class="modeDesc">2× accelerated</div></button></div><div class="modeCards" style="margin-top:8px"><button class="modeCard ${st.careerMode?'selected':''}" data-kind="career"><div class="tacticName">CAREER</div><div class="modeDesc">Prize & ranking</div></button><button class="modeCard ${!st.careerMode?'selected':''}" data-kind="exhibition"><div class="tacticName">PRACTICE</div><div class="modeDesc">No entry fee</div></button></div><button class="solidBtn" data-action="start">${st.phase==='prep'&&st.point>1?'▶ PLAY NEXT POINT':'▶ '+(st.phase==='live'?'RETURN TO MATCH':'START MATCH')} ${st.careerMode?' · '+money(FEES[career.league])+' ENTRY':''}</button><div class="minorNote">Point clocks use 3:00 (3v3) or 5:00 (5v5) game time. Quick mode runs the clock at 2×. Rules are inspired by competitive NXL formats; some referee and tournament details are simplified.</div>`;
+ panel.innerHTML=`<div class="sectionLabel">Match format</div><div class="modeCards"><button class="modeCard ${st.mode===3?'selected':''}" data-mode="3"><div class="modeBig">3v3</div><div class="modeDesc">3-minute points<br>Best of 3</div></button><button class="modeCard ${st.mode===5?'selected':''}" data-mode="5"><div class="modeBig">5v5</div><div class="modeDesc">5-minute points<br>Best of 3</div></button></div><button class="solidBtn" data-action="start" style="margin-top:10px">▶ ${st.phase==='live'?'RETURN TO MATCH':st.matchActive?'CONTINUE MATCH':'PLAY '+st.mode+'v'+st.mode+' MATCH'} ${st.careerMode?' · '+(st.matchActive?'ENTRY PAID':money(FEES[career.league])+' ENTRY'):''}</button><div class="sectionLabel">Event field layout</div><div class="layoutSelect">${Object.entries(LAYOUTS).map(([id,v])=>`<button data-layout="${id}" class="layoutBtn ${st.layout===id?'selected':''}"><b>${v.name}</b><small>${v.sub}</small></button>`).join('')}</div><div class="sectionLabel">Tactical playbook / ${st.mode}-player formation</div>${Object.entries(tacDefs).map(([id,t])=>`<button class="tacticBtn ${st.tactic===id?'selected':''}" data-tactic="${id}"><span class="tacticIcon">${t.symbol}</span><span><div class="tacticName">${t.name}</div><div class="tacticDesc">${t.desc}</div></span>${st.tactic===id?'<span class="tacticCheck">✓</span>':''}</button>`).join('')}<div class="notice"><b>COACH THE BREAKOUT</b><br>Tap a player, then tap ground beside a bunker to place their route. Every point begins with a visible horn countdown. Your controlled player can sprint automatically to the selected cover until you touch movement.</div><button class="outlineBtn" data-action="fieldPlan">⌖ EXPAND FIELD / PLACE ROUTES</button>${touchDevice?'<button class="outlineBtn" data-action="touchConfigure" style="margin-top:10px">CUSTOMIZE MOBILE CONTROLS</button>':''}<div class="sectionLabel">Control assists</div><div class="modeCards"><button class="modeCard ${st.assist?'selected':''}" data-assist="on"><div class="tacticName">BREAKOUT ASSIST</div><div class="modeDesc">${st.assist?'ON':'OFF'} · route autopilot</div></button><button class="modeCard ${!st.assist?'selected':''}" data-assist="off"><div class="tacticName">MANUAL BREAKOUT</div><div class="modeDesc">Full control from horn</div></button></div><div class="sectionLabel">Touch look speed</div><div class="tagGrid">${[['0.65','LOW'],['1','NORMAL'],['1.45','FAST']].map(([v,t])=>`<button class="difficultyBtn ${Math.abs(st.sensScale-Number(v))<.01?'selected':''}" data-sens="${v}">${t}</button>`).join('')}</div><div class="sectionLabel">Opponent skill</div><div class="tagGrid">${['rookie','contender','elite'].map(d=>`<button class="difficultyBtn ${st.difficulty===d?'selected':''}" data-difficulty="${d}">${d.toUpperCase()}</button>`).join('')}</div><div class="sectionLabel">Point setup</div><div class="tagGrid"><span class="tag">${st.regulation?'REGULATION':'2× QUICK MATCH'} CLOCK</span><span class="tag">${st.difficulty.toUpperCase()} AI</span><span class="tag">${st.careerMode?'CAREER EVENT':'EXHIBITION'}</span></div><div class="modeCards" style="margin-top:9px"><button class="modeCard ${st.regulation?'selected':''}" data-clock="reg"><div class="tacticName">REGULATION</div><div class="modeDesc">Real-time clock</div></button><button class="modeCard ${!st.regulation?'selected':''}" data-clock="quick"><div class="tacticName">QUICK</div><div class="modeDesc">2× accelerated</div></button></div><div class="modeCards" style="margin-top:8px"><button class="modeCard ${st.careerMode?'selected':''}" data-kind="career"><div class="tacticName">CAREER</div><div class="modeDesc">Prize & ranking</div></button><button class="modeCard ${!st.careerMode?'selected':''}" data-kind="exhibition"><div class="tacticName">PRACTICE</div><div class="modeDesc">No entry fee</div></button></div><button class="solidBtn" data-action="start">${st.phase==='prep'&&st.point>1?'▶ PLAY NEXT POINT':'▶ '+(st.phase==='live'?'RETURN TO MATCH':'START MATCH')} ${st.careerMode?' · '+(st.matchActive?'ENTRY PAID':money(FEES[career.league])+' ENTRY'):''}</button><div class="minorNote">Point clocks use 3:00 (3v3) or 5:00 (5v5) game time. Quick mode runs the clock at 2×. Rules are inspired by competitive NXL formats; some referee and tournament details are simplified.</div>`;
 }else if(st.sideTab==='roster'){
  panel.innerHTML=`<div class="notice">Pick any athlete as your playable character. Uncontrolled players execute the pre-game route, communicate, and engage automatically.</div><div class="sectionLabel">Starting lineup</div>${st.people.filter(p=>p.team===0).map(p=>`<div class="playerRow ${st.selected===p.index?'selected':''}" data-player="${p.index}"><div class="avatar">${String(p.index+1).padStart(2,'0')}</div><div><h4>${p.name}</h4><p>${p.role} · ${p.alive?'READY / ACTIVE':'ELIMINATED'}</p></div><div class="rosterNum">${st.selected===p.index?'CONTROL':'SELECT →'}</div></div>`).join('')}<div class="sectionLabel">Squad progression</div><div class="cardBlock"><div class="cardHead"><div><b>Team cohesion</b><div class="cardSmall">Reaction, fire discipline and breakout success improve with training.</div></div><span class="smallTag">LVL ${career.gear.coaching+1}</span></div><div class="progress"><span style="width:${25+career.gear.coaching*25}%"></span></div></div><button class="outlineBtn" data-action="goArmory">UPGRADE SQUAD SKILLS →</button>`;
 }else if(st.sideTab==='career'){
- let next=Math.min(3,career.leagueWins),pct=career.league===8?100:next/3*100;
- panel.innerHTML=`<div class="cardBlock" style="border-color:#577547;background:linear-gradient(120deg,#213424,#122323)"><div class="sideEyebrow">CURRENT DIVISION</div><div class="cardBig" style="margin-top:8px">${LEAGUES[career.league]}</div><div class="cardSmall" style="margin-top:6px">Win events to move through the divisional ladder and earn elite contracts.</div><div class="progress"><span style="width:${pct}%"></span></div><div class="cardSmall">${career.league===8?'PRO STATUS ACHIEVED':career.leagueWins+' / 3 wins toward promotion'}</div></div><div class="modeCards"><div class="cardBlock"><div class="sideEyebrow">WIN–LOSS</div><div class="cardBig">${career.wins}–${career.losses}</div></div><div class="cardBlock"><div class="sideEyebrow">FOLLOWING</div><div class="cardBig">${career.fans.toLocaleString()}</div></div></div><div class="sectionLabel">Next event contract</div><div class="cardBlock"><div class="cardHead"><div><b>${career.league===8?'WORLD CHAMPIONSHIP':'ASCENT OPEN '+(career.league+1)}</b><div class="cardSmall">${st.mode}v${st.mode} · 2 of 3 points</div></div><div class="smallTag">${LEAGUES[career.league]}</div></div><div class="tagGrid"><span class="tag">WIN ${money(PRIZES[career.league])}</span><span class="tag">ENTRY ${money(FEES[career.league])}</span></div></div><div class="sectionLabel">Sponsorship office</div>${SPONSORS.map(s=>`<div class="cardBlock"><div class="cardHead"><div><b>${s.name}</b><div class="cardSmall">${s.sub}</div><div class="cardSmall" style="margin-top:4px">${money(s.bounty)} / match · ${career.wins}/${s.need} wins needed</div></div><button class="shopBuy" data-sponsor="${s.id}" ${career.sponsors.includes(s.id)||career.wins<s.need?'disabled':''}>${career.sponsors.includes(s.id)?'SIGNED':career.wins<s.need?'LOCKED':'SIGN'}</button></div></div>`).join('')}<div class="minorNote">Prize money, entry fees, endorsement payments and equipment purchases are simulated. Career data saves locally in this browser.</div><button class="outlineBtn" data-action="goTactics">◀ RETURN TO THE FIELD</button>`;
+ let target=CAMPAIGN.promoTarget(career.league),next=Math.min(target,career.leagueTitles),pct=career.league===8?100:next/target*100;
+ panel.innerHTML=`<div class="cardBlock" style="border-color:#577547;background:linear-gradient(120deg,#213424,#122323)"><div class="sideEyebrow">CURRENT DIVISION</div><div class="cardBig" style="margin-top:8px">${LEAGUES[career.league]}</div><div class="cardSmall" style="margin-top:6px">Win events to move through the divisional ladder and earn elite contracts.</div><div class="progress"><span style="width:${pct}%"></span></div><div class="cardSmall">${career.league===8?'PRO STATUS ACHIEVED':career.leagueTitles+' / '+target+' tournament titles toward promotion'}</div></div><div class="modeCards"><div class="cardBlock"><div class="sideEyebrow">WIN–LOSS</div><div class="cardBig">${career.wins}–${career.losses}</div></div><div class="cardBlock"><div class="sideEyebrow">FOLLOWING</div><div class="cardBig">${career.fans.toLocaleString()}</div></div></div><div class="sectionLabel">Next event contract</div><div class="cardBlock"><div class="cardHead"><div><b>${career.league===8?'WORLD CHAMPIONSHIP':'ASCENT OPEN '+(career.league+1)}</b><div class="cardSmall">${st.mode}v${st.mode} · 2 of 3 points</div></div><div class="smallTag">${LEAGUES[career.league]}</div></div><div class="tagGrid"><span class="tag">WIN ${money(PRIZES[career.league])}</span><span class="tag">ENTRY ${money(FEES[career.league])}</span></div></div><div class="sectionLabel">Sponsorship office</div>${SPONSORS.map(s=>`<div class="cardBlock"><div class="cardHead"><div><b>${s.name}</b><div class="cardSmall">${s.sub}</div><div class="cardSmall" style="margin-top:4px">${money(s.bounty)} / match · ${career.wins}/${s.need} wins needed</div></div><button class="shopBuy" data-sponsor="${s.id}" ${career.sponsors.includes(s.id)||career.wins<s.need?'disabled':''}>${career.sponsors.includes(s.id)?'SIGNED':career.wins<s.need?'LOCKED':'SIGN'}</button></div></div>`).join('')}<div class="minorNote">Prize money, entry fees, endorsement payments and equipment purchases are simulated. Career data saves locally in this browser.</div><button class="outlineBtn" data-action="goTactics">◀ RETURN TO THE FIELD</button>`;
 }else if(st.sideTab==='armory'){
  panel.innerHTML=`<div class="notice"><b>TEAM FUNDS: ${money(career.cash)}</b><br>Equipment changes practical gameplay: marker grouping, loader ammunition, movement control and teammate intelligence.</div><div class="sectionLabel">Performance upgrades</div>${GEAR.map(g=>{let l=career.gear[g.id]||0,cost=Math.round(g.base*Math.pow(1.65,l));return `<div class="cardBlock"><div class="cardHead"><div><b>${g.name}</b><div class="cardSmall">${g.sub}</div></div><span class="smallTag">${l}/3</span></div><div class="progress"><span style="width:${l/3*100}%"></span></div><div class="cardHead" style="align-items:center"><div class="cardSmall">${g.effect}</div><button class="shopBuy" data-buy="${g.id}" ${l>=g.max||career.cash<cost?'disabled':''}>${l>=3?'MAXED':money(cost)}</button></div></div>`}).join('')}<div class="minorNote">All equipment names and sponsors are fictional. Costs are balanced for the prototype, not real retail prices.</div>`;
 }}
 function clickPanel(e){let b=e.target.closest('button,[data-player]');if(!b)return;
-if(b.dataset.mode){if(st.phase!=='live'){st.mode=+b.dataset.mode;st.point=1;st.score=[0,0];resetPoint()}else feed('FORMAT LOCKED DURING POINT',1);return}
-if(b.dataset.layout){if(st.phase==='live'||st.phase==='countdown')return;st.layout=b.dataset.layout;buildField();spawnPlayers();saveSettings();renderSide();feed('EVENT FIELD: '+LAYOUTS[st.layout].name);return}
+if(b.dataset.mode){if(st.matchActive){feed('MATCH FORMAT LOCKED',1);return}if(st.phase!=='live'){st.mode=+b.dataset.mode;st.point=1;st.score=[0,0];resetPoint()}else feed('FORMAT LOCKED DURING POINT',1);return}
+if(b.dataset.layout){if(st.matchActive||st.phase==='live'||st.phase==='countdown')return;st.layout=b.dataset.layout;buildField();spawnPlayers();saveSettings();renderSide();feed('EVENT FIELD: '+LAYOUTS[st.layout].name);return}
 if(b.dataset.assist){st.assist=b.dataset.assist==='on';saveSettings();renderSide();return}
 if(b.dataset.sens){st.sensScale=+b.dataset.sens;saveSettings();renderSide();return}
 if(b.dataset.tactic){st.tactic=b.dataset.tactic;applyTactic();renderSide();feed('BREAKOUT: '+tacDefs[st.tactic].name);return}
 if(b.dataset.difficulty){st.difficulty=b.dataset.difficulty;applyTactic();saveSettings();renderSide();return}
 if(b.dataset.clock){st.regulation=b.dataset.clock==='reg';renderSide();return}
-if(b.dataset.kind){st.careerMode=b.dataset.kind==='career';renderSide();return}
+if(b.dataset.kind){if(st.matchActive)return;st.careerMode=b.dataset.kind==='career';renderSide();return}
 if(b.dataset.player!==undefined){selectPlayer(+b.dataset.player);return}
 if(b.dataset.buy){buyGear(b.dataset.buy);return}
 if(b.dataset.sponsor){signSponsor(b.dataset.sponsor);return}
 if(b.dataset.action==='fieldPlan'){showSide(false);refreshStageActions();return}
 if(b.dataset.action==='touchConfigure'){editor(true);return}
-if(b.dataset.action==='start'){if(st.phase==='live'){showSide(false)}else if(st.phase==='pointend'){beginPoint()}else{startMatch()}return}
+if(b.dataset.action==='start'){if(st.phase==='live'){showSide(false)}else if(st.phase==='pointend'){nextPoint()}else{startMatch()}return}
 if(b.dataset.action==='goArmory'||b.dataset.action==='goTactics'){st.sideTab=b.dataset.action==='goArmory'?'armory':'tactics';renderSide();return}
 }
-function buyGear(id){if(st.phase==='live')return;const g=GEAR.find(g=>g.id===id);if(!g)return;let l=career.gear[id],cost=Math.round(g.base*Math.pow(1.65,l));if(l>=g.max||cost>career.cash)return;career.cash-=cost;career.gear[id]++;persist();feed(g.name.toUpperCase()+' UPGRADED');syncUI();renderSide()}
+function buyGear(id){if(st.phase==='live'||st.phase==='countdown')return;const g=GEAR.find(g=>g.id===id);if(!g)return;let l=career.gear[id],cost=Math.round(g.base*Math.pow(1.65,l));if(l>=g.max||cost>career.cash)return;career.cash-=cost;career.totalSpent+=cost;career.gear[id]++;persist();feed(g.name.toUpperCase()+' UPGRADED');syncUI();renderSide()}
 function signSponsor(id){const s=SPONSORS.find(x=>x.id===id);if(!s||career.wins<s.need||career.sponsors.includes(id))return;career.sponsors.push(id);career.cash+=s.bonus;persist();feed('SPONSOR SIGNED: '+s.name);syncUI();renderSide()}
 function setTab(tab){if(st.phase==='countdown')return;st.sideTab=tab;if(st.phase==='live'){st.coach=true;st.paused=true;setView('tactical')}renderSide();showSide(true);updatePause()}
-function startMatch(){if(st.phase==='live'||st.phase==='countdown')return;if(st.careerMode&&career.cash<FEES[career.league]){modal('INSUFFICIENT FUNDS','You need entry money to enter this event. Play an exhibition or improve your budget through earlier events.','CHOOSE PRACTICE','close');return}
-if(st.careerMode){st.spent=FEES[career.league];career.cash-=st.spent;persist()}else st.spent=0;
-st.score=[0,0];st.point=1;st.earnings=0;st.wind={x:(Math.random()-.5)*2.4,y:(Math.random()-.5)*1.4};st.people.forEach(p=>{p.alive=true;p.atGoal=0;setNav(p)});st.time=st.mode===3?180:300;beginPoint()}
+function startMatch(){
+ if(st.phase==='live'||st.phase==='countdown'||st.phase==='matchend'||st.phase==='pointend')return false;
+ // The original game restarted the entire match whenever the next point began.
+ if(st.matchActive&&st.phase==='prep'){beginPoint();return true}
+ if(st.careerMode){
+  if(!createCareerEvent())return false;
+ }else{
+  st.event=null;st.matchActive=true;st.matchSettled=false;st.score=[0,0];st.point=1;st.ties=0;st.overtime=false;st.pointHistory=[];st.spent=0;
+ }
+ st.earnings=0;st.wind={x:(Math.random()-.5)*2.4,y:(Math.random()-.5)*1.4};
+ st.people.forEach(p=>{p.alive=true;p.atGoal=0;setNav(p)});
+ st.time=st.overtime?120:(st.mode===3?180:300);
+ beginPoint();return true;
+}
 function beginPoint(){
- st.phase='countdown';st.countdown=3.15;st.liveAge=0;st.coach=false;st.time=st.mode===3?180:300;
+ st.phase='countdown';st.countdown=3.15;st.liveAge=0;st.coach=false;st.clearClock=0;
+ st.time=st.overtime?120:(st.mode===3?180:300);
  st.paused=false;st.feed=[];el('feed').innerHTML='';st.crouch=false;st.shoot=false;st.mouse.down=false;
  st.balls=[];st.particles=[];st.splats=[];
  hideModal();showSide(false);setView('fps');syncUI();
- feed('PLAYERS ON THE STARTING GATE');sound('start');refreshStageActions();
+ feed(st.overtime?'SUDDEN DEATH / 1V1':'PLAYERS ON THE STARTING GATE');sound('start');refreshStageActions();
 }
 function refreshStageActions(){
  const btn=el('stageAction');if(!btn)return;
  const visible=(st.phase==='prep'&&!st.side)||(st.phase==='live'&&st.coach&&!st.side);
- btn.style.display=visible?'block':'none';btn.textContent=st.phase==='prep'?'▶ START POINT':'▶ RESUME PLAY';
+ btn.style.display=visible?'block':'none';btn.textContent=st.phase==='prep'?(st.matchActive?'▶ START NEXT POINT':'▶ START MATCH'):'▶ RESUME PLAY';
  const badge=el('pointBanner');if(!badge)return;
  if(st.phase==='countdown'){
- const n=Math.ceil(st.countdown);badge.classList.add('visible');badge.innerHTML='<strong>'+(n>0?n:'GO!')+'</strong><span>GET READY · BREAKOUT AT THE HORN</span>';
+ const n=Math.ceil(st.countdown);badge.classList.add('visible');badge.innerHTML='<strong>'+(n>0?n:'GO!')+'</strong><span>'+(st.overtime?'1V1 · WINNER ADVANCES':'GET READY · BREAKOUT AT THE HORN')+'</span>';
  }else if(st.phase==='live'&&st.liveAge<2.1){
  badge.classList.add('visible');const p=st.people.find(x=>x.team===0&&x.index===st.selected);
  const autorunning=p&&st.assist&&p.autoBreakout&&!p.manualOverride&&st.liveAge<5;
- badge.innerHTML='<strong class="small">'+(autorunning?'ASSISTED BREAKOUT':'BREAKOUT LIVE')+'</strong><span>'+(autorunning?'MOVE THE STICK TO TAKE OVER':'RUN TO COVER · WORK THE ANGLES')+'</span>';
+ badge.innerHTML='<strong class="small">'+(st.overtime?'SUDDEN DEATH':autorunning?'ASSISTED BREAKOUT':'BREAKOUT LIVE')+'</strong><span>'+(autorunning&&!st.overtime?'MOVE THE STICK TO TAKE OVER':'RUN TO COVER · WORK THE ANGLES')+'</span>';
  }else badge.classList.remove('visible');
 }
-function finishPoint(winner,reason){if(st.phase!=='live')return;st.phase='pointend';st.coach=false;refreshStageActions();st.shoot=false;st.mouse.down=false;document.exitPointerLock?.();if(winner===0||winner===1)st.score[winner]++;syncUI();sound(winner===0?'win':'loss');const label=winner===null?'POINT TIED':winner===0?'POINT WON':'POINT LOST';
-if(st.score[0]>=2||st.score[1]>=2){finishMatch();return}
-modal(label,reason+' · Score '+st.score[0]+'–'+st.score[1]+'. Set a new breakout for the next point.','NEXT POINT','next',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}</b><span>Team points</span></div><div class="modalStat"><b>${st.score[1]}</b><span>Opposition</span></div><div class="modalStat"><b>${st.point}</b><span>Point played</span></div></div>`);
+function finishPoint(winner,reason){
+ if(st.phase!=='live')return false;
+ const decided=winner===0||winner===1;
+ st.phase='pointend';st.coach=false;st.shoot=false;st.mouse.down=false;
+ document.exitPointerLock?.();if(decided)st.score[winner]++;
+ else st.ties++;
+ st.pointHistory.push({winner:decided?winner:null,reason,time:Math.max(0,Math.round(st.time))});
+ syncUI();sound(winner===0?'win':winner===1?'loss':'pop');refreshStageActions();
+ // Best two out of three. Drawn points trigger a 1v1 overtime if scores remain level.
+ const matchWon=decided&&(st.overtime||st.score[winner]>=2);
+ const regulationFinished=!st.overtime&&st.point>=3;
+ if(matchWon||(regulationFinished&&st.score[0]!==st.score[1])){
+  finishMatch();return true;
+ }
+ if(regulationFinished&&st.score[0]===st.score[1])st.overtime=true;
+ saveActiveMatch(st.point+1);
+ const label=st.overtime?'SUDDEN DEATH AHEAD':!decided?'NO POINT AWARDED':winner===0?'POINT WON':'POINT LOST';
+ const msg=st.overtime?'The match is level after regulation. One player per team enters a 2-minute tiebreaker.':reason+' · Score '+st.score[0]+'–'+st.score[1]+'. Draw another breakout for the next point.';
+ modal(label,msg,st.overtime?'PLAN OVERTIME':'PLAN NEXT POINT','next',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Match score</span></div><div class="modalStat"><b>${st.point}</b><span>Point completed</span></div><div class="modalStat"><b>${st.overtime?'1v1':st.mode+'v'+st.mode}</b><span>Next format</span></div></div>`);
+ return true;
 }
-function nextPoint(){st.point++;resetPoint();hideModal();feed('PLAN YOUR NEXT BREAKOUT')}
-function finishMatch(){st.phase='matchend';st.coach=false;refreshStageActions();const win=st.score[0]>st.score[1],prize=win?PRIZES[career.league]:Math.round(PRIZES[career.league]*.08),sponsorCash=SPONSORS.filter(s=>career.sponsors.includes(s.id)).reduce((a,s)=>a+s.bounty,0);let prior=career.league;
-if(st.careerMode){career.cash+=prize+sponsorCash;career.wins+=win?1:0;career.losses+=win?0:1;career.fans+=win?130+career.league*90:28;if(win){career.leagueWins++;if(career.leagueWins>=3&&career.league<8){career.league++;career.leagueWins=0}}persist()}
-let head=win?'MATCH VICTORY':'MATCH DEFEAT';let progression=career.league>prior?' · PROMOTED TO '+LEAGUES[career.league]:' · '+LEAGUES[career.league];
-modal(head,win?'You controlled the lanes and closed out the match.'+progression:'The opposition took the series. Regroup, improve the squad, and try again.', 'RETURN TO TEAM HQ','hq',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final score</span></div><div class="modalStat"><b>${st.careerMode?money(prize+sponsorCash):'—'}</b><span>Event earnings</span></div><div class="modalStat"><b>${career.wins}</b><span>Career wins</span></div></div><button class="outlineBtn" data-modal="rematch">PLAY AGAIN →</button>`);
-syncUI();renderSide();}
+function nextPoint(){
+ if(st.phase!=='pointend')return false;
+ st.point++;resetPoint();hideModal();feed('PLAN YOUR NEXT BREAKOUT');
+ window.SpeedballExperience?.openPlanner('between');return true;
+}
+function finishMatch(){
+ if(st.matchSettled||st.phase!=='pointend')return false;
+ st.matchSettled=true;st.matchActive=false;st.phase='matchend';st.coach=false;refreshStageActions();
+ const win=st.score[0]>st.score[1];let stage=0,matchAward=0,sponsorCash=0,championBonus=0,promotion='';
+ const event=st.careerMode?st.event:null;
+ if(event&&event.status==='active'){
+  stage=event.currentRound;
+  const result=CAMPAIGN.recordResult(event,win,st.score);
+  if(!result.recorded)return false;
+  matchAward=Math.round(PRIZES[event.league]*(win?[.07,.14,.22][stage]:[.04,.06,.10][stage]));
+  sponsorCash=SPONSORS.filter(s=>career.sponsors.includes(s.id)).reduce((a,s)=>a+s.bounty,0);
+  if(result.title){championBonus=event.topPurse;event.championBonus=championBonus;career.eventsWon++;career.leagueTitles++;
+   if(career.league<8&&career.leagueTitles>=CAMPAIGN.promoTarget(career.league)){
+    career.league++;career.leagueTitles=0;promotion=' · PROMOTED TO '+LEAGUES[career.league];
+   }
+  }else if(result.finished)career.eventsLost++;
+  career.wins+=win?1:0;career.losses+=win?0:1;
+  career.fans+=win?Math.round(115+event.league*35+stage*65):Math.round(25+stage*17);
+  career.cash+=matchAward+sponsorCash+championBonus;
+  career.totalEarnings+=matchAward+sponsorCash+championBonus;
+  event.grossMatchAwards+=matchAward;event.sponsorAwards+=sponsorCash;
+  if(result.finished)archiveEvent(event);else career.activeEvent=event;
+  persist();
+  if(!result.finished){
+   modal('ROUND WON · '+CAMPAIGN.ROUNDS[stage],`You beat ${event.results.at(-1).opponent} ${st.score[0]}–${st.score[1]}. ${money(matchAward+sponsorCash)} earned. Up next: ${CAMPAIGN.currentOpponent(event)}.`,
+   'PLAN NEXT MATCH','nextMatch',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final match</span></div><div class="modalStat"><b>${stage+1}/3</b><span>Rounds won</span></div><div class="modalStat"><b>${money(career.cash)}</b><span>Team funds</span></div></div><button class="outlineBtn" data-modal="hq">SAVE & RETURN TO HQ</button>`);
+  }else{
+   const title=result.title?'TOURNAMENT CHAMPIONS':'TOURNAMENT ELIMINATED';
+   const msg=result.title?`Three rounds conquered. Championship purse ${money(championBonus)}.${promotion||' Your division standing improved.'}`:`You lost to ${event.results.at(-1).opponent} in the ${CAMPAIGN.ROUNDS[stage].toLowerCase()}. Upgrade your squad and enter another tournament.`;
+   modal(title,msg,'RETURN TO TEAM HQ','hq',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final match</span></div><div class="modalStat"><b>${money(event.grossMatchAwards+event.sponsorAwards+championBonus)}</b><span>Event income</span></div><div class="modalStat"><b>${career.eventsWon}</b><span>Career trophies</span></div></div>`);
+  }
+ }else{
+  const practicePay=win?150:60;career.cash+=practicePay;career.totalEarnings+=practicePay;
+  career.practiceWins+=win?1:0;career.practiceLosses+=win?0:1;persist();
+  modal(win?'SCRIMMAGE VICTORY':'SCRIMMAGE COMPLETE',`Practice pays ${money(practicePay)} in local appearance credits. No career record or bracket placement changed.`,
+   'RETURN TO TEAM HQ','hq',`<div class="modalStats"><div class="modalStat"><b>${st.score[0]}–${st.score[1]}</b><span>Final score</span></div><div class="modalStat"><b>${money(practicePay)}</b><span>Practice income</span></div></div><button class="outlineBtn" data-modal="rematch">PLAY ANOTHER SCRIM →</button>`);
+ }
+ syncUI();renderSide();window.SpeedballExperience?.refreshHub?.();return true;
+}
 function modal(title,description,primary,action,extra=''){st.overlay={title,action};el('modal').innerHTML=`<div class="modalEyebrow">SPEEDBALL : ASCENT</div><h2 class="modalTitle">${title}</h2><p class="modalDesc">${description}</p>${extra}<button class="solidBtn" data-modal="${action}">${primary}</button>`;el('overlay').classList.add('show')}
 function hideModal(){el('overlay').classList.remove('show');st.overlay=null}
-function modalAction(action){if(action==='next')nextPoint();else if(action==='hq'){hideModal();fullMatchReset();st.sideTab='career';renderSide()}else if(action==='rematch'){hideModal();fullMatchReset();st.sideTab='tactics';renderSide()}else if(action==='close')hideModal()}
+function modalAction(action){if(action==='next')nextPoint();else if(action==='nextMatch')beginNextTournamentMatch();else if(action==='hq'){hideModal();fullMatchReset();st.sideTab='career';renderSide();window.SpeedballExperience?.openHub(true)}else if(action==='rematch'){hideModal();fullMatchReset();st.careerMode=false;st.sideTab='tactics';renderSide();window.SpeedballExperience?.openPlanner('hub')}else if(action==='close')hideModal()}
 function updatePause(){el('pauseOverlay').style.display=st.paused&&!st.coach&&!st.mobileEditing?'flex':'none';if(st.paused)document.exitPointerLock?.();refreshStageActions()}
 // KINEMATICS & PAINTBALL BALLISTICS
 function hFor(p){return p.slide>0?(p.dive?.36:.55):p.crouch?1.03:1.65}
@@ -1006,9 +1235,20 @@ p.cover=nearestCover(p)?1:0;
 simulateBalls(dt);if(st.frame%7===0)updateSpotting();
 for(const par of st.particles){par.x+=par.vx*dt;par.y+=par.vy*dt;par.z+=par.vz*dt;par.vz-=9.8*dt;par.life-=dt}st.particles=st.particles.filter(p=>p.life>0);
 st.shake*=Math.max(0,1-7*dt);if(st.frame%8===0)refreshStageActions();
-for(let team=0;team<2;team++)for(const p of st.people){if(p.team!==team||!p.alive)continue;if((team===0&&p.y< -17.0||team===1&&p.y>17.0)&&Math.abs(p.x)<2.8){finishPoint(team,p.name+' activated the opponent-side buzzer');break}}
-if(st.phase==='live'&&st.time<=0){let a=st.people.filter(p=>p.team===0&&p.alive).length,b=st.people.filter(p=>p.team===1&&p.alive).length;
-finishPoint(a===b?null:a>b?0:1,'Clock expired • prototype field-control tiebreak');}
+if(st.phase!=='live')return;
+for(let team=0;team<2&&st.phase==='live';team++)for(const p of st.people){if(p.team!==team||!p.alive)continue;
+ if((team===0&&p.y< -17.0||team===1&&p.y>17.0)&&Math.abs(p.x)<2.8){finishPoint(team,p.name+' activated the opponent-side buzzer');break}}
+if(st.phase!=='live')return;
+const ally=st.people.filter(p=>p.team===0&&p.alive).length;
+const enemy=st.people.filter(p=>p.team===1&&p.alive).length;
+if(ally===0||enemy===0){st.clearClock+=dt;const delay=st.overtime?.13:1.15;
+ if(st.clearClock>=delay){const winner=ally&&enemy?null:ally?0:enemy?1:null;
+  finishPoint(winner,st.overtime?'Sudden-death elimination':winner===null?'Both teams eliminated':'Opposing coach conceded after full team elimination');return;}}
+else st.clearClock=0;
+if(st.phase==='live'&&st.time<=0){
+ // End of game clock without an awardable buzzer: no automatic "alive-player" score.
+ finishPoint(null,st.overtime?'Sudden death clock elapsed: re-run overtime':'Clock expired without buzzer or concession: no point');
+}
 }}
 function sound(kind,vol=1){if(!st.audio)return;try{let ac=st.audio,t=ac.currentTime,o=ac.createOscillator(),gain=ac.createGain();o.type=kind==='slide'?'sawtooth':kind==='win'?'sine':'triangle';const freq={shot:160,pop:240,hit:105,win:650,loss:230,start:550,slide:55}[kind]||220;
 o.frequency.setValueAtTime(freq,t);o.frequency.exponentialRampToValueAtTime(Math.max(40,freq*(kind==='win'?1.35:.38)),t+.08);
@@ -1419,7 +1659,9 @@ function run(t){
  requestAnimationFrame(run);
 }
 // WebGL renderer observes the existing authoritative physics, AI, and career state.
-window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,tactics:tacDefs,leagues:LEAGUES,fees:FEES,prizes:PRIZES,roster,selectPlayer,setView,feed,resetPoint,fullMatchReset,showSide,setTab,renderSide,startMatch,beginPoint,updatePause,applyTactic,saveSettings,setPlayerPlan,issueOrder,safeGoal,blockedBody,rayClear,routeKey,gearCatalog:GEAR,sponsorCatalog:SPONSORS,buyGear,signSponsor,gameVersion:'0.6'};
+window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,tactics:tacDefs,leagues:LEAGUES,fees:FEES,prizes:PRIZES,roster,selectPlayer,setView,feed,resetPoint,fullMatchReset,showSide,setTab,renderSide,startMatch,beginPoint,updatePause,applyTactic,saveSettings,setPlayerPlan,issueOrder,safeGoal,blockedBody,rayClear,routeKey,gearCatalog:GEAR,sponsorCatalog:SPONSORS,buyGear,signSponsor,
+ prepareCareerEvent,withdrawEvent,beginNextTournamentMatch,eventSnapshot,gameVersion:'0.7'};
+if(window.__speedballEnableTests)window.SpeedballTest={step,finishPoint,finishMatch,nextPoint,modalAction,createCareerEvent,saveActiveMatch,prepareCareerEvent,beginNextTournamentMatch};
 // Initial ready room.
 document.documentElement.classList.toggle('touchDevice',touchDevice);buildField();spawnPlayers();resize();renderSide();setView('tactical');syncUI();refreshStageActions();requestAnimationFrame(run);
 })();
@@ -1486,27 +1728,47 @@ function drawRoutes(canvas,{preview=false,threat=false}={}){
  if(!preview){c.fillStyle='#deffc4';c.font='800 10px system-ui';c.textAlign='left';c.fillText('01  SNAKE',10,17);c.textAlign='right';c.fillText('DORITO  05',f.w-10,17);}
 }
 function planLength(p){const nodes=[{x:p.x,y:p.y},...routeOf(p)];let sum=0;for(let i=1;i<nodes.length;i++)sum+=Math.hypot(nodes[i].x-nodes[i-1].x,nodes[i].y-nodes[i-1].y);return Math.round(sum)}
-function refreshHub(){const c=core.career;const mode=st.mode;$('hubLeague').textContent=core.leagues[c.league];$('hubCash').textContent=cash(c.cash);$('hubWins').textContent=c.wins+'–'+c.losses;$('hubFans').textContent=c.fans.toLocaleString();$('hubRank').textContent=c.league===8?'PRO':`D${9-c.league}`;$('hub3').classList.toggle('active',mode===3);$('hub5').classList.toggle('active',mode===5);$('hubArenaBadge').textContent=core.layouts[st.layout].name;$('hubEventName').textContent=core.leagues[c.league]==='PRO TOUR'?'PRO TOUR FINALS':'ASCENT OPEN / '+core.leagues[c.league];$('hubEventDesc').textContent=core.layouts[st.layout].tone;$('hubFormat').textContent=mode+'v'+mode;$('hubPrize').textContent=cash(core.prizes[c.league]);$('hubEntry').textContent=core.fees[c.league]?cash(core.fees[c.league]):'FREE';drawRoutes(prevCanvas,{preview:true});}
+function refreshHub(){const c=core.career;const active=core.eventSnapshot(),mode=active?.mode||st.mode;$('hubLeague').textContent=core.leagues[c.league];$('hubCash').textContent=cash(c.cash);$('hubWins').textContent=c.wins+'–'+c.losses;$('hubFans').textContent=c.fans.toLocaleString();$('hubRank').textContent=c.league===8?'PRO':`D${9-c.league}`;$('hub3').classList.toggle('active',mode===3);$('hub5').classList.toggle('active',mode===5);$('hubArenaBadge').textContent=core.layouts[st.layout].name;$('hubEventName').textContent=active?`TOURNEY ${String(active.number).padStart(2,'0')} / ${core.leagues[active.league]}`:core.leagues[c.league]==='PRO TOUR'?'PRO TOUR FINALS':'ASCENT OPEN / '+core.leagues[c.league];
+$('hubEventDesc').textContent=active?`Next match: ASCENT vs ${window.SpeedballCampaign.currentOpponent(active)}. Your saved score is ${active.match.score.join('–')}; resume whenever you like.`:core.layouts[st.layout].tone;
+$('hubFormat').textContent=mode+'v'+mode;$('hubPrize').textContent=cash(active?active.topPurse:core.prizes[c.league]);$('hubEntry').textContent=active?'PAID':core.fees[c.league]?cash(core.fees[c.league]):'FREE';
+$('hubCareerBtn').textContent=active?'CONTINUE TOURNAMENT ↗':'ENTER CAREER ↗';
+$('hubScrimBtn').textContent=active?'PRACTICE · EVENT SAVED':'QUICK SCRIM →';
+$('hubLeagueProgress').textContent=c.league===8?'PRO TOUR • '+c.eventsWon+' TITLES':`${c.leagueTitles} / ${window.SpeedballCampaign.promoTarget(c.league)} TITLES TO PROMOTE`;
+$('hubWins').textContent=c.wins+'–'+c.losses;$('hubTitleCount').textContent=c.eventsWon+' TROPHIES';
+const b=$('hubBracket');
+if(active){b.innerHTML=`<div class="bracketTitle"><span>LIVE BRACKET · ${active.rounds.length} MATCHES TO TITLE</span><strong>EVENT #${String(active.number).padStart(2,'0')}</strong></div>
+<div class="bracketPath">${active.rounds.map((round,i)=>{const m=round.matches[0],done=m.complete,current=active.currentRound===i;return `<div class="bracketStop ${done?'won':current?'playing':'locked'}"><span class="bracketOrdinal">0${i+1}</span><div><strong>${i===0?'QUARTERFINAL':i===1?'SEMIFINAL':'FINAL'}</strong><small>${m.away} ${done?'· '+m.score:current?'· UP NEXT':''}</small></div><b>${done?'✓':current?'▶':'·'}</b></div>`}).join('')}</div>
+<div class="bracketBottom"><span>READY: <b>${window.SpeedballCampaign.currentOpponent(active)}</b> · ${active.match.score.join('–')} POINTS</span><button id="abandonEventBtn" title="Withdraw from current tournament">WITHDRAW</button></div>`;}
+else{const last=c.lastEvent;b.innerHTML=`<div class="bracketTitle"><span>CAREER CIRCUIT · ${c.eventsWon} TOURNAMENT TITLES</span><strong>SEASON ${String(Math.floor(c.eventsEntered/4)+1).padStart(2,'0')}</strong></div>
+<div class="bracketPath"><div class="bracketStop playing"><span class="bracketOrdinal">01</span><div><strong>QUARTERFINAL</strong><small>Win to unlock the semifinal</small></div><b>▶</b></div><div class="bracketStop locked"><span class="bracketOrdinal">02</span><div><strong>SEMIFINAL</strong><small>Advance through the bracket</small></div><b>·</b></div><div class="bracketStop locked"><span class="bracketOrdinal">03</span><div><strong>CHAMPIONSHIP</strong><small>Earn the full event purse</small></div><b>·</b></div></div><div class="bracketBottom"><span>${last?'LAST EVENT: '+last.status.toUpperCase()+' · '+last.wins+'/3 MATCHES WON':'YOUR FIRST TOURNAMENT IS READY'}</span><span>${cash(core.fees[c.league])} ENTRY</span></div>`;}
+const available=core.sponsorCatalog.find(q=>!c.sponsors.includes(q.id)&&c.wins>=q.need);
+if(available)b.insertAdjacentHTML('beforeend',`<button class="careerNotice" id="sponsorOfficeBtn">✦ ${available.name} CONTRACT UNLOCKED — VISIT TEAM FACILITY →</button>`);
+drawRoutes(prevCanvas,{preview:true});}
 function refreshFacility(){
  const c=core.career;const icons={marker:'🎯',loader:'◉',pads:'▧',boots:'↗',coaching:'♟'};
  facility.innerHTML=`<header class="facHead"><div><strong>SPEEDBALL : TEAM FACILITY</strong><span>EQUIPMENT · TRAINING · ENDORSEMENTS</span></div><button id="facBack">← TEAM HQ</button></header>
- <main class="facMain"><div class="facHero"><div><div class="hubLabel">THE WORK BEHIND THE WIN</div><h1>BUILD YOUR<br>ADVANTAGE.</h1><p>Every tournament paycheck funds better equipment, training, and sponsor opportunities. These upgrades alter the actual physics and teammate AI.</p></div><div class="facMoney"><small>AVAILABLE TEAM FUNDS</small><strong>${cash(c.cash)}</strong><small>${core.leagues[c.league]} · ${c.wins} EVENT WINS</small></div></div>
+ <main class="facMain"><div class="facHero"><div><div class="hubLabel">THE WORK BEHIND THE WIN</div><h1>BUILD YOUR<br>ADVANTAGE.</h1><p>Every tournament paycheck funds better equipment, training, and sponsor opportunities. These upgrades alter the actual physics and teammate AI.</p></div><div class="facMoney"><small>AVAILABLE TEAM FUNDS</small><strong>${cash(c.cash)}</strong><small>${core.leagues[c.league]} · ${c.eventsWon} TOURNAMENT TITLES</small></div></div>
  <h2 class="facSecTitle">GEAR & PERFORMANCE<span>Every purchase upgrades your team. Three tiers per category.</span></h2>
  <div class="facGrid">${core.gearCatalog.map(g=>{const lv=c.gear[g.id]||0,cost=Math.round(g.base*Math.pow(1.65,lv));return `<article class="facCard"><div class="facIcon">${icons[g.id]}</div><small>LEVEL ${lv} / 3</small><strong>${g.name}</strong><p>${g.sub}<br>${g.effect}</p><div class="facProgress"><i style="width:${lv/3*100}%"></i></div><button class="facBuy" data-fac-buy="${g.id}" ${lv>=3||c.cash<cost?'disabled':''}>${lv>=3?'FULLY UPGRADED':c.cash<cost?'NEED '+cash(cost):'UPGRADE · '+cash(cost)}</button></article>`}).join('')}</div>
- <h2 class="facSecTitle">SPONSORSHIP OFFICE<span>Unlock endorsement deals through event victories.</span></h2><div class="facGrid">${core.sponsorCatalog.map(s=>`<article class="facCard"><div class="facIcon">✦</div><small>SPONSOR CONTRACT</small><strong>${s.name}</strong><p>${s.sub}. ${cash(s.bounty)} per match, plus a ${cash(s.bonus)} signing bonus.</p><div class="facProgress"><i style="width:${Math.min(100,c.wins/s.need*100)}%"></i></div><button class="facBuy" data-fac-sponsor="${s.id}" ${c.sponsors.includes(s.id)||c.wins<s.need?'disabled':''}>${c.sponsors.includes(s.id)?'CONTRACT SIGNED':c.wins<s.need?c.wins+' / '+s.need+' WINS REQUIRED':'SIGN · '+cash(s.bonus)+' BONUS'}</button></article>`).join('')}</div><p class="facNote">Sponsors, equipment brands, prize balances, and gameplay benefits are simulated. Progress is stored on this device.</p></main>`;
+ <h2 class="facSecTitle">SPONSORSHIP OFFICE<span>Unlock endorsement deals through event victories.</span></h2><div class="facGrid">${core.sponsorCatalog.map(s=>`<article class="facCard"><div class="facIcon">✦</div><small>SPONSOR CONTRACT</small><strong>${s.name}</strong><p>${s.sub}. ${cash(s.bounty)} per match, plus a ${cash(s.bonus)} signing bonus.</p><div class="facProgress"><i style="width:${Math.min(100,c.wins/s.need*100)}%"></i></div><button class="facBuy" data-fac-sponsor="${s.id}" ${c.sponsors.includes(s.id)||c.wins<s.need?'disabled':''}>${c.sponsors.includes(s.id)?'CONTRACT SIGNED':c.wins<s.need?c.wins+' / '+s.need+' WINS REQUIRED':'SIGN · '+cash(s.bonus)+' BONUS'}</button></article>`).join('')}</div><section class="careerLedger"><h2>SEASON JOURNAL <span>${core.leagues[c.league]} · ${c.leagueTitles}/${window.SpeedballCampaign.promoTarget(c.league)} TITLES TO PROMOTION</span></h2>
+<div class="ledgerStats"><div><strong>${c.eventsWon}</strong><small>TOURNAMENT WINS</small></div><div><strong>${c.eventsEntered}</strong><small>EVENTS ENTERED</small></div><div><strong>${c.wins}–${c.losses}</strong><small>OFFICIAL MATCHES</small></div><div><strong>${cash(c.totalEarnings)}</strong><small>CAREER EARNINGS</small></div></div>
+<div class="ledgerRows">${c.history.length?c.history.slice(0,6).map(h=>`<div class="ledgerRow"><span>EVENT #${String(h.number).padStart(2,'0')} · ${core.leagues[h.league]}</span><strong>${h.status==='champion'?'🏆 CHAMPION':h.status==='withdrawn'?'WITHDRAWN':'ROUND '+(h.stage+1)+' EXIT'}</strong><span>${h.wins}/3 WON · ${cash(h.winnings)}</span></div>`).join(''):'<p class="facNote">No tournaments completed yet. Your first quarterfinal awaits.</p>'}</div>
+<button class="facProceed" id="facCareer">${c.activeEvent?'RESUME SAVED TOURNAMENT →':'ENTER NEXT TOURNAMENT →'}</button></section>
+<p class="facNote">Sponsors, equipment brands, prize balances, and gameplay benefits are simulated. Progress is stored on this device.</p></main>`;
 }
 function openFacility(){hub.classList.remove('open');board.classList.remove('open');facility.classList.add('open');st.menuOpen=true;refreshFacility()}
 facility.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
  if(b.id==='facBack'){openHub(true);return}
+ if(b.id==='facCareer'){openHub(true);prepareFromHub('career');return}
  if(b.dataset.facBuy){core.buyGear(b.dataset.facBuy);refreshFacility();refreshHub();return}
  if(b.dataset.facSponsor){core.signSponsor(b.dataset.facSponsor);refreshFacility();refreshHub();return}
 });
 function openHub(force=false){
- if(st.phase==='live'&&!force&&!window.confirm('Leave the current point? Your event progress will be lost.'))return;
+ if((st.phase==='live'||st.phase==='countdown')&&!force&&!window.confirm('Leave this point? The current point will restart, but your tournament, earned points, and entry fee remain saved.'))return;
  if(st.phase==='live'||st.phase==='countdown'||st.phase==='pointend'||st.phase==='matchend')core.fullMatchReset();
  facility.classList.remove('open');board.classList.remove('open');hub.classList.add('open');st.menuOpen=true;st.paused=false;st.coach=false;st.shoot=false;core.setView('tactical');core.showSide(false);core.updatePause();refreshHub();requestAnimationFrame(refreshHub);
 }
-function prepareFromHub(kind){st.careerMode=kind==='career';openPlanner('hub')}
+function prepareFromHub(kind){if(kind==='career'){st.careerMode=true;core.prepareCareerEvent();}else{core.fullMatchReset();st.careerMode=false;}openPlanner('hub')}
 function openPlanner(from='hub'){
  origin=from;
  previousView=st.view;
@@ -1523,10 +1785,10 @@ function resumeFromPlanner(start=false){
 function setTactic(name){st.tactic=name;core.applyTactic();core.renderSide();stepIndex=0;refreshPlanner();}
 function refreshPlanner(){if(!board.classList.contains('open'))return;
  const p=player();if(!p)return;
- $('planMatchTag').textContent=`${st.mode}v${st.mode} · ${core.layouts[st.layout].name}`;
- $('planMission').textContent=st.phase==='live'?'POINT PAUSED / COACH COMMAND':'READY FOR THE HORN';
- $('planMeta').textContent=`${st.mode} players · ${st.mode===3?'3:00':'5:00'} points · best of three`;
- $('planDeploy').textContent=st.phase==='live'?'RESUME POINT →':st.phase==='prep'?'START MATCH →':'PLAY POINT →';
+ $('planMatchTag').textContent=`${st.mode}v${st.mode} · ${core.eventSnapshot()&&st.careerMode?window.SpeedballCampaign.roundName(core.eventSnapshot())+' vs '+window.SpeedballCampaign.currentOpponent(core.eventSnapshot()):core.layouts[st.layout].name}`;
+ $('planMission').textContent=st.phase==='live'?'POINT PAUSED / COACH COMMAND':st.overtime?'OVERTIME · 1V1 SUDDEN DEATH':st.matchActive?`MATCH ${st.score.join('–')} · PLAN POINT ${st.point}`:'READY FOR THE HORN';
+ $('planMeta').textContent=st.overtime?'1 player per team · 2:00 sudden death':`${st.mode} players · ${st.mode===3?'3:00':'5:00'} points · best of three`;
+ $('planDeploy').textContent=st.phase==='live'?'RESUME POINT →':st.matchActive?'START NEXT POINT →':'START TOURNAMENT →';
  $('planBack').textContent=st.phase==='live'?'← RETURN TO POINT':'← TEAM HQ';
  $('planRoster').innerHTML=st.people.filter(q=>q.team===0).map(q=>`<button class="planPlayerBtn ${q.index===st.selected?'selected':''}" data-plan-player="${q.index}" aria-label="Select ${q.name}" aria-pressed="${q.index===st.selected}"><b>${String(q.index+1).padStart(2,'0')}</b><small>${q.name}</small></button>`).join('');
  $('planFocusName').textContent=p.name;$('planDistance').textContent=planLength(p)+'m';
@@ -1568,10 +1830,16 @@ $('planPresets').addEventListener('click',e=>{const b=e.target.closest('[data-pl
 $('planClear').addEventListener('click',()=>{const p=player();core.setPlayerPlan(p.index,[{...p.plan[0]}],'balanced');stepIndex=0;refreshPlanner()});
 $('planRisk').addEventListener('click',()=>{showRisk=!showRisk;$('planRisk').classList.toggle('on',showRisk);$('planRisk').setAttribute('aria-pressed',String(showRisk));refreshPlanner()});
 $('planBack').addEventListener('click',()=>resumeFromPlanner(false));$('planClose').addEventListener('click',()=>resumeFromPlanner(false));$('planDeploy').addEventListener('click',()=>resumeFromPlanner(true));
+$('hubBracket').addEventListener('click',e=>{
+ if(e.target.closest('#sponsorOfficeBtn')){openFacility();return}
+ if(!e.target.closest('#abandonEventBtn'))return;
+ if(!window.confirm('Withdraw from this tournament? The entry fee and bracket position will be lost.'))return;
+ core.withdrawEvent();refreshHub();
+});
 $('hubCareerBtn').addEventListener('click',()=>prepareFromHub('career'));
 $('hubScrimBtn').addEventListener('click',()=>prepareFromHub('scrim'));
 $('hubFacilityBtn').addEventListener('click',openFacility);
-for(const [id,n] of [['hub3',3],['hub5',5]])$(id).addEventListener('click',()=>{if(st.mode===n)return;st.mode=n;core.resetPoint();refreshHub();});
+for(const [id,n] of [['hub3',3],['hub5',5]])$(id).addEventListener('click',()=>{if(st.mode===n)return;if(core.eventSnapshot()){window.alert('Your active tournament format is locked. Finish or withdraw before changing divisions.');return;}st.mode=n;core.resetPoint();refreshHub();});
 $('hubSettings').addEventListener('click',()=>{if(window.matchMedia('(pointer:coarse)').matches){
  hub.classList.remove('open');st.menuOpen=false;core.setView('fps');core.showSide(false);
  const configure=$('touchEdit');configure?.click();if(st.mobileEditing){$('touchDone').addEventListener('click',()=>setTimeout(()=>openHub(true),30),{once:true});}
@@ -1586,7 +1854,7 @@ $('pauseMenuBtn')?.addEventListener('click',e=>{e.preventDefault();e.stopImmedia
 window.addEventListener('keydown',e=>{if(!st.menuOpen)return;if(e.code==='Escape'){e.preventDefault();if(facility.classList.contains('open')){openHub(true);return}if(board.classList.contains('open'))resumeFromPlanner(false);else if(st.phase==='live')resumeFromPlanner(false);}},true);
 window.addEventListener('resize',()=>{if(board.classList.contains('open'))drawRoutes(planCanvas,{threat:showRisk});if(hub.classList.contains('open'))drawRoutes(prevCanvas,{preview:true})});
 window.addEventListener('ascent-plan-change',()=>{if(board.classList.contains('open'))drawRoutes(planCanvas,{threat:showRisk})});
-window.SpeedballExperience={openHub,openPlanner,openFacility,refreshPlanner,drawRoutes,get current(){return{origin,stepIndex,showRisk}}};
+window.SpeedballExperience={openHub,openPlanner,openFacility,refreshHub,refreshFacility,refreshPlanner,drawRoutes,get current(){return{origin,stepIndex,showRisk}}};
 // Intro uses a live field map instead of a static stock image. No network dependency.
 st.menuOpen=true;core.showSide(false);core.setView('tactical');refreshHub();requestAnimationFrame(refreshHub);
 })();
