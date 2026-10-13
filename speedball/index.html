@@ -133,10 +133,170 @@
 #fieldWatermark{pointer-events:none;position:absolute;bottom:15px;left:50%;transform:translateX(-50%);z-index:3;color:#ffffffa2;text-shadow:0 2px 4px #000;font-size:9px;font-weight:950;letter-spacing:.22em}
 @media(pointer:coarse){#gfxMode{bottom:auto;top:51px;left:7px;right:auto;padding:6px 7px;font-size:8px;}#gfxInfo{bottom:4px;right:7px;padding:4px 6px;font-size:7px;opacity:.77}#fieldWatermark{display:none}.webgl-fps #crosshair3d{transform:translate(-50%,-50%) scale(.78)}}
 @media(max-width:900px){#gfxMode{display:none}#gfxInfo{display:none}}
+
+/* MOBILE CONTROLLER v0.4 -- ergonomic, movable multi-touch controls */
+/* WebGL is hidden until the 3D render loop reports its first successful frame. */
+#webglHost{display:none}
+.webgl-ready #webglHost{display:block}
+#gfxInfo{display:none}
+.webgl-ready #gfxInfo{display:flex}
+html,body,#stage{overscroll-behavior:none}
+#touchControls{--tc-scale:1;--tc-opacity:.91;-webkit-user-select:none;user-select:none;touch-action:none;isolation:isolate}
+#touchControls::before{display:none!important}
+#touchControls button{appearance:none;-webkit-appearance:none;-webkit-tap-highlight-color:transparent;touch-action:none;user-select:none}
+#touchControls .controlUnit{opacity:var(--tc-opacity);-webkit-tap-highlight-color:transparent;touch-action:none;will-change:left,top}
+#touchControls .joy{position:absolute;left:14%;top:65%;right:auto;bottom:auto;transform:translate(-50%,-50%) scale(var(--tc-scale));transform-origin:center;z-index:3;display:flex;align-items:center;justify-content:center;width:120px;height:120px;border:2px solid #e1ffe486;border-radius:50%;background:radial-gradient(circle at 50% 38%,#3b60524d 0,#0d262ae0 75%);box-shadow:0 0 0 9px #020e138c,0 7px 25px #0009,inset 0 0 24px #7ddbbc18;pointer-events:auto}
+#touchControls .joy::after{content:'';position:absolute;inset:15px;border:1px dashed #caeed144;border-radius:50%;pointer-events:none}
+#touchControls .joyKnob{position:absolute;left:50%;top:50%;width:51px;height:51px;margin:-25.5px 0 0 -25.5px;border:2px solid #edffb8;border-radius:50%;background:linear-gradient(155deg,#eaffb6ef,#76d8b9ed);box-shadow:0 4px 12px #030c1088,0 0 0 4px #eaffac16;transform:translate(0,0);z-index:2;pointer-events:none;transition:background .1s}
+#touchControls .joy.active{border-color:#d7ff54;box-shadow:0 0 0 10px #7deed41a,0 0 28px #d4ff3355,inset 0 0 24px #7ddbbc18}
+.joyTicks{position:absolute;inset:0;border-radius:50%;pointer-events:none}
+.joyTicks span{position:absolute;background:#d3ff5077;border-radius:2px;width:12px;height:3px;left:calc(50% - 6px);top:10px}
+.joyTicks span:nth-child(2){top:auto;bottom:10px}.joyTicks span:nth-child(3){top:calc(50% - 2px);left:9px;width:3px;height:12px}.joyTicks span:nth-child(4){top:calc(50% - 2px);left:auto;right:9px;width:3px;height:12px}
+#touchControls .joyCaption{font-size:9px;letter-spacing:.18em;font-weight:950;position:absolute;bottom:-27px;left:0;right:0;text-align:center;color:#ecffe2;text-shadow:0 2px 6px #000}
+#touchMoveZone{position:absolute;left:0;bottom:0;top:25%;width:41%;pointer-events:none;touch-action:none;z-index:1}
+#touchControls.touch-fps.floating:not(.editing) #touchMoveZone{pointer-events:auto}
+#touchControls .touchRight{position:absolute;left:70%;top:60%;right:auto;bottom:auto;display:grid;grid-template-columns:repeat(2,67px);grid-template-rows:repeat(3,54px);gap:7px;width:max-content;height:max-content;transform:translate(-50%,-50%) scale(var(--tc-scale));transform-origin:center;pointer-events:none;z-index:3}
+#touchControls .touchBtn{border:1px solid #b9ead19c;background:linear-gradient(165deg,#194641e8,#10252de8);box-shadow:0 4px 11px #0009,inset 0 1px 0 #ffffff24;color:#f2fffa;font-weight:950;line-height:1.08;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;overflow:hidden}
+#touchControls .touchBtn b{display:block;font-size:20px;line-height:1;color:#e2ffcc}
+#touchControls .touchBtn small{font-size:8px;letter-spacing:.07em;font-weight:950;white-space:nowrap;color:#d4e9dc}
+#touchControls .actBtn{width:67px;height:54px;border-radius:15px;pointer-events:auto;min-width:0;min-height:0;padding:4px 2px}
+#touchControls .actBtn.held,#touchControls .actBtn[aria-pressed=true]{border-color:#d3ff50;background:linear-gradient(140deg,#83b83be8,#294b24ef);box-shadow:0 0 0 2px #d5ff504d,0 5px 17px #000b}
+#touchControls .actBtn.held small,#touchControls .actBtn[aria-pressed=true] small{color:#fff}
+#touchControls .fire{position:absolute;left:89%;top:64%;right:auto;bottom:auto;width:101px;height:101px;border-radius:50%;border:3px solid #e1ff79;transform:translate(-50%,-50%) scale(var(--tc-scale));transform-origin:center;background:radial-gradient(circle at 36% 28%,#f4ffa9,#b7e849 68%,#7ea625 100%);color:#10200a;box-shadow:0 0 0 8px #040f1688,0 0 0 11px #e5ff4c33,0 9px 20px #000b;z-index:4;pointer-events:auto;gap:5px}
+#touchControls .fire b{font-size:19px;letter-spacing:.04em;color:#172809;text-shadow:0 1px 0 #ffffff8c}
+#touchControls .fire small{font-size:8px;color:#294019}
+#touchControls .fire .fireRing{position:absolute;inset:7px;border-radius:50%;border:1px solid #365b285c;pointer-events:none}
+#touchControls .fire.held{transform:translate(-50%,-50%) scale(calc(var(--tc-scale) * .94));background:radial-gradient(circle,#fefff0,#d4ff5b 75%);box-shadow:0 0 0 8px #78cf2b25,0 0 0 13px #dcff6380,0 0 35px #dcff6399}
+#touchControls .fire:disabled{opacity:.5}
+#touchControls .touchTop{position:absolute;top:9px;right:max(12px,env(safe-area-inset-right));bottom:auto;left:auto;z-index:5;display:flex;gap:6px;pointer-events:none}
+#touchControls .touchTop .topBtn{width:49px;height:43px;min-height:0;min-width:0;padding:3px;border-radius:11px;pointer-events:auto;gap:3px;background:#0c252cdd;border-color:#90afa47c}
+#touchControls .topBtn b{font-size:17px}.touchTop .topBtn small{font-size:7px}
+#touchControls .topBtn:active{background:#3c6551}
+#touchControls .topBtn#touchEdit{border-color:#d2ff5066}
+#mobileStatus{position:absolute;top:12px;left:max(12px,env(safe-area-inset-left));border:1px solid #9dbab970;display:flex;align-items:center;gap:6px;padding:7px 9px;background:#071921d8;border-radius:9px;color:#eaffde;z-index:3;pointer-events:none;font-size:9px;font-weight:950;letter-spacing:.035em;box-shadow:0 3px 12px #0008}
+.mobilePlayer{color:#dcff69}.mobileDivider{height:12px;width:1px;background:#ffffff34}
+#touchAimHint{position:absolute;right:24%;top:44%;z-index:2;font-size:9px;letter-spacing:.18em;color:#ecf8dfc2;text-shadow:0 2px 7px #020d0b;pointer-events:none;opacity:0;animation:aimHintFade 9s 1}
+@keyframes aimHintFade{0%,12%{opacity:0}20%,60%{opacity:.8}95%,100%{opacity:0}}
+#touchControls:not(.touch-fps) #touchAimHint{display:none}
+#touchEditor{display:none;pointer-events:auto;position:absolute;left:max(8px,env(safe-area-inset-left));top:8px;z-index:8;width:min(440px,calc(100% - 16px));max-height:min(230px,84%);overflow:auto;background:linear-gradient(130deg,#0b2226f8,#1f3530f5);border:1px solid #cdfb918d;box-shadow:0 12px 32px #000c;border-radius:14px;padding:10px 12px;color:#e7fbe9;touch-action:pan-y}
+#touchControls.editing #touchEditor{display:block}
+.editHeader{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.editHeader strong{display:block;font-size:12px;letter-spacing:.14em;color:#d7ff6e}.editHeader span{display:block;font-size:9px;opacity:.8;margin-top:4px;line-height:1.3}
+.editDone{background:#d3ff50;color:#142318;border:0;border-radius:8px;min-width:58px;height:33px;padding:4px 9px;font-weight:1000;font-size:10px}
+.editRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0 6px}
+.editRow label{font-size:9px;letter-spacing:.1em;font-weight:850;display:flex;flex-direction:column;gap:4px}
+.editRow input{width:100%;margin:0;accent-color:#ddff70}
+.editActions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.editActions button{background:#1b3a3a;border:1px solid #658d75;color:#e6fae5;border-radius:6px;padding:7px 7px;font-size:9px;font-weight:900;letter-spacing:.04em;min-height:29px}
+.floatOption{font-size:9px;display:flex;align-items:center;gap:4px;white-space:nowrap}.floatOption input{accent-color:#c6ff47}
+#touchControls.editing .controlUnit{opacity:1!important;outline:2px dashed #d8ff669d;outline-offset:7px;cursor:grab}
+#touchControls.editing .controlUnit:active{cursor:grabbing}
+#touchControls.editing .touchRight .actBtn{pointer-events:none}
+#touchControls.editing .fire b{pointer-events:none}
+#touchControls.editing #touchMoveZone{pointer-events:none!important}
+#touchControls.editing #touchAimHint{display:none}
+#touchControls.editing .joy::before{content:'DRAG';position:absolute;top:-28px;left:50%;transform:translateX(-50%);color:#ddff70;font-size:10px;font-weight:1000;letter-spacing:.1em}
+@media(pointer:coarse){
+ #app{height:100dvh;min-height:0!important}
+ #headerTactics,#headerView,#headerSwitch{display:none!important}
+ #header .brandText{font-size:clamp(15px,2.4vw,19px)}
+ #header .headSpacer{flex:1}
+ #gfxMode,#gfxInfo{display:none!important}
+ #stage{touch-action:none}
+ #telemetry,#windChip,.viewChip{display:none!important}
+ #controlTip{display:none!important}
+ #touchControls{display:block}
+}
+@media(pointer:coarse) and (orientation:landscape){
+ #header{height:41px;min-height:41px}
+ #header .brandSub{display:none}
+ #header .brandText{font-size:15px}
+ #header .headerBtn{padding:6px 9px;min-height:31px}
+ #hudTop{top:5px;transform:translateX(-50%) scale(.63)}
+ #touchControls .touchTop{top:7px}
+ #mobileStatus{top:7px}
+ #touchAimHint{top:48%}
+ #pointBanner{top:28%}
+ #pointBanner strong.small{font-size:22px}
+ #pointBanner span{font-size:8px;padding:4px 7px}
+}
+@media(pointer:coarse) and (orientation:portrait){
+ #header{height:48px;min-height:48px}
+ #hudTop{top:5px;transform:translateX(-50%) scale(.6)}
+ #touchControls .touchTop{top:78px;right:8px;gap:5px}
+ #touchControls .touchTop .topBtn{width:46px;height:39px;min-width:0;min-height:0}
+ #mobileStatus{top:82px;left:8px;width:120px;max-width:120px;flex-wrap:wrap;font-size:8px;padding:5px 7px;gap:3px}
+ #mobileStatus .mobileDivider{display:none}
+ #mobileStatus .mobilePlayer{width:100%;font-size:9px}
+ #touchControls .touchRight{grid-template-columns:repeat(2,67px);grid-template-rows:repeat(3,54px)}
+ #touchControls .fire{width:102px;height:102px}
+ #touchEditor{top:137px;left:10px;width:calc(100% - 20px)}
+ #touchAimHint{top:44%;right:20%}
+ #pointBanner{top:35%}
+ #pointBanner strong.small{font-size:25px}
+ #pointBanner span{font-size:8px;padding:5px 8px}
+}
+@media(pointer:coarse) and (max-height:390px){
+ #touchControls .touchTop .topBtn{height:34px;width:44px;min-height:0;min-width:0;gap:0}
+ #touchControls .topBtn b{font-size:15px}
+ #touchControls .topBtn small{font-size:7px}
+ #mobileStatus{padding:5px 7px}
+ #touchControls .touchRight{grid-template-columns:repeat(2,59px);grid-template-rows:repeat(3,47px);gap:5px}
+ #touchControls .actBtn{width:59px;height:47px;border-radius:12px;min-height:0;min-width:0;gap:3px}
+ #touchControls .actBtn b{font-size:17px}
+ #touchControls .actBtn small{font-size:7px}
+ #touchControls .joy{width:110px;height:110px}
+ #touchControls .fire{width:87px;height:87px}
+ #touchControls .fire b{font-size:17px}
+ #touchControls .fire small{font-size:7px}
+ #touchControls .joyKnob{width:47px;height:47px;margin:-23.5px 0 0 -23.5px}
+ #touchEditor{max-height:calc(100% - 25px)}
+}
+@media(pointer:coarse) and (max-width:360px){
+ #touchControls .touchTop{gap:3px}
+ #touchControls .touchTop .topBtn{width:41px;min-width:0;padding:2px}
+ #touchControls .touchTop .topBtn small{font-size:6px}
+ #mobileStatus{max-width:122px}
+}
+
 </style></head><body>
 <div id="app"><header id="header"><div class="brand"><div class="brandLogo">✕</div><div><div class="brandText">SPEEDBALL<span>:</span>ASCENT</div><div class="brandSub">PROFESSIONAL PAINTBALL SIMULATOR</div></div></div><div class="headDivider"></div><div class="headTag">TOUR STATUS<b id="headLeague">ROOKIE CIRCUIT</b></div><div class="headSpacer"></div><div class="statPill"><i>TEAM FUNDS</i><span id="headCash">$2,500</span></div><button class="headerBtn" id="headerTactics">TACTICS</button><button class="headerBtn" id="headerView">↗ FPS VIEW</button><button class="headerBtn" id="headerSwitch">⇄ PLAYER</button><button class="headerBtn" id="headerPause">Ⅱ</button></header>
-<div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="webglHost" aria-hidden="true"></div><div id="crosshair3d"></div><button id="gfxMode" title="Cycle rendering quality">GRAPHICS: AUTO</button><div id="gfxInfo"><span class="pip"></span><span id="fpsRead">WEBGL 3D</span></div><div id="fieldWatermark">AUTHENTIC FIELD SCALE &bull; LIVE BALLISTICS &bull; TEAM COMMAND</div><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls"><div class="joy" id="joy"><div class="joyKnob" id="joyKnob"></div></div><div class="touchTop"><button class="touchBtn" id="touchView">VIEW</button><button class="touchBtn" id="touchSwitch">PLAYER</button><button class="touchBtn" id="touchPlan">COACH</button><button class="touchBtn" id="touchFull" title="Fullscreen">⛶</button></div><div class="touchRight"><button class="touchBtn" id="touchLeft">◀ LEAN</button><button class="touchBtn" id="touchRightLean">LEAN ▶</button><button class="touchBtn" id="touchCrouch">CROUCH</button><button class="touchBtn" id="touchSlide">SLIDE</button><button class="touchBtn fire" id="touchFire">FIRE</button></div></div><div id="pauseOverlay"><div class="pauseCard"><h3>PLAY PAUSED</h3><p class="minorNote">Study the field, change your view, then get back in the fight.</p><button id="resumeBtn" class="solidBtn">RESUME POINT</button><button id="pauseMenuBtn" class="outlineBtn">RETURN TO TEAM HQ</button></div></div></section><aside id="side"><div class="sidePad"><div class="sideHeader"><div><div class="sideEyebrow" id="sideEyebrow">COACH'S TABLE</div><div class="sideTitle" id="sideTitle">Breakout plan</div></div><button class="exitSide" id="closeSide">✕ CLOSE</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="tactics">TACTICS</button><button class="tab" data-tab="roster">SQUAD</button><button class="tab" data-tab="career">CAREER</button><button class="tab" data-tab="armory">ARMORY</button></div><div id="sideContent"></div></div></aside><div id="overlay"><div class="modal" id="modal"></div></div></div><footer id="footer"><span>ASCENT 3D // WEBGL REAL-TIME ENGINE</span><span>FIELD 150 × 120 FT &nbsp;•&nbsp; .68 CAL &nbsp;•&nbsp; 300 FPS / 10.5 BPS</span><span>LOCAL CAREER SAVE</span></footer></div>
-<script>(()=>{'use strict';
+<div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="webglHost" aria-hidden="true"></div><div id="crosshair3d"></div><button id="gfxMode" title="Cycle rendering quality">GRAPHICS: AUTO</button><div id="gfxInfo"><span class="pip"></span><span id="fpsRead">WEBGL 3D</span></div><div id="fieldWatermark">AUTHENTIC FIELD SCALE &bull; LIVE BALLISTICS &bull; TEAM COMMAND</div><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls" aria-label="Mobile match controls">
+  <div id="touchMoveZone" aria-hidden="true"></div>
+  <div id="mobileStatus" aria-live="off"><span class="mobilePlayer" id="mobilePlayer">AVERY</span><span class="mobileDivider"></span><span id="mobileAmmo">180 PAINT</span><span class="mobileDivider"></span><span id="mobileEnergy">100% STA</span></div>
+  <div id="joy" class="joy controlUnit" data-move="joy" role="group" aria-label="Movement joystick">
+    <div class="joyTicks" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div id="joyKnob" class="joyKnob"></div><div class="joyCaption">MOVE</div>
+  </div>
+  <div id="touchTop" class="touchTop" role="toolbar" aria-label="Match shortcuts">
+    <button class="touchBtn topBtn" id="touchView" aria-label="Toggle tactical map"><b>&#9638;</b><small>MAP</small></button>
+    <button class="touchBtn topBtn" id="touchSwitch" aria-label="Switch player"><b>&#8646;</b><small>NEXT</small></button>
+    <button class="touchBtn topBtn" id="touchPlan" aria-label="Open tactical coaching"><b>&#9818;</b><small>COACH</small></button>
+    <button class="touchBtn topBtn" id="touchEdit" aria-label="Customize touch controls"><b>&#9881;</b><small>HUD</small></button>
+    <button class="touchBtn topBtn" id="touchFull" aria-label="Enter or leave fullscreen"><b>&#9974;</b><small>FULL</small></button>
+  </div>
+  <div id="touchRight" class="touchRight controlUnit" data-move="actions" role="group" aria-label="Movement action buttons">
+    <button class="touchBtn actBtn leanBtn" id="touchLeft" aria-label="Hold to lean left"><b>&#8598;</b><small>LEFT</small></button>
+    <button class="touchBtn actBtn leanBtn" id="touchRightLean" aria-label="Hold to lean right"><b>&#8599;</b><small>RIGHT</small></button>
+    <button class="touchBtn actBtn" id="touchCrouch" aria-pressed="false" aria-label="Toggle crouch"><b>&#8595;</b><small id="crouchLabel">CROUCH</small></button>
+    <button class="touchBtn actBtn" id="touchSlide" aria-label="Slide while sprinting"><b>&#10148;</b><small>SLIDE</small></button>
+    <button class="touchBtn actBtn" id="touchDive" aria-label="Dive while sprinting"><b>&#8600;</b><small>DIVE</small></button>
+    <button class="touchBtn actBtn" id="touchReload" aria-label="Reload with a paint pod"><b>&#8635;</b><small id="reloadLabel">RELOAD</small></button>
+  </div>
+  <button id="touchFire" class="touchBtn fire controlUnit" data-move="fire" aria-label="Hold to fire; drag to aim" title="Hold to fire, drag to aim"><span class="fireRing" aria-hidden="true"></span><b>FIRE</b><small>HOLD + AIM</small></button>
+  <div id="touchAimHint" aria-hidden="true">SWIPE TO AIM</div>
+  <section id="touchEditor" aria-label="Customize mobile controls" role="dialog" aria-modal="false">
+    <div class="editHeader"><div><strong>YOUR CONTROLS</strong><span>Drag MOVE, ACTIONS, or FIRE to reposition</span></div><button id="touchDone" class="editDone">DONE</button></div>
+    <div class="editRow">
+      <label>SIZE <input id="touchSize" type="range" min="0.78" max="1.2" step="0.02" value="1" /></label>
+      <label>OPACITY <input id="touchOpacity" type="range" min="0.48" max="1" step="0.02" value="0.9" /></label>
+      <label>AIM <input id="touchSensitivity" type="range" min="0.55" max="1.8" step="0.05" value="1" /></label>
+    </div>
+    <div class="editActions"><label class="floatOption"><input id="touchFloating" type="checkbox" checked /> Floating stick</label><button id="touchMirror">FLIP HANDS</button><button id="touchQuality">GRAPHICS</button><button id="touchReset">RESET</button></div>
+  </section>
+</div><div id="pauseOverlay"><div class="pauseCard"><h3>PLAY PAUSED</h3><p class="minorNote">Study the field, change your view, then get back in the fight.</p><button id="resumeBtn" class="solidBtn">RESUME POINT</button><button id="pauseMenuBtn" class="outlineBtn">RETURN TO TEAM HQ</button></div></div></section><aside id="side"><div class="sidePad"><div class="sideHeader"><div><div class="sideEyebrow" id="sideEyebrow">COACH'S TABLE</div><div class="sideTitle" id="sideTitle">Breakout plan</div></div><button class="exitSide" id="closeSide">✕ CLOSE</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="tactics">TACTICS</button><button class="tab" data-tab="roster">SQUAD</button><button class="tab" data-tab="career">CAREER</button><button class="tab" data-tab="armory">ARMORY</button></div><div id="sideContent"></div></div></aside><div id="overlay"><div class="modal" id="modal"></div></div></div><footer id="footer"><span>ASCENT 3D // WEBGL REAL-TIME ENGINE</span><span>FIELD 150 × 120 FT &nbsp;•&nbsp; .68 CAL &nbsp;•&nbsp; 300 FPS / 10.5 BPS</span><span>LOCAL CAREER SAVE</span></footer></div>
+<script>
+(()=>{'use strict';
 const $=s=>document.querySelector(s), el=(id)=>document.getElementById(id), cv=el('game'), ctx=cv.getContext('2d',{alpha:false});
 const touchDevice=window.matchMedia('(pointer:coarse)').matches||(typeof navigator!=='undefined'&&navigator.maxTouchPoints>0)||('ontouchstart' in window);
 const FIELD={w:45.72,h:36.58,x:22.86,y:18.29};
@@ -159,7 +319,7 @@ const saveSettings=()=>{try{localStorage.setItem('ascent-settings-v2',JSON.strin
 let career={cash:2500,wins:0,losses:0,league:0,leagueWins:0,fans:120,sponsors:[],gear:{marker:0,loader:0,pads:0,boots:0,coaching:0}};
 try{const saved=JSON.parse(localStorage.getItem('ascent-career-v1')||'null');if(saved&&typeof saved.cash==='number')career={...career,...saved,gear:{...career.gear,...saved.gear},sponsors:saved.sponsors||[]}}catch(e){}
 const persist=()=>{try{localStorage.setItem('ascent-career-v1',JSON.stringify(career))}catch(e){}};
-const st={phase:'prep',view:'tactical',mode:3,sideTab:'tactics',side:true,tactic:'balanced',layout:settings.layout||'classic',assist:settings.assist!==false,sensScale:settings.sensScale||1,coach:false,countdown:0,liveAge:0,selected:0,people:[],bunkers:[],balls:[],splats:[],particles:[],feed:[],score:[0,0],point:1,time:180,timeScale:1,regulation:true,difficulty:settings.difficulty||'rookie',careerMode:true,paused:false,frame:0,now:0,last:0,w:0,h:0,dpr:1,map:null,project:0,mouse:{x:0,y:0,down:false},keys:{},move:{x:0,y:0},touch:{x:0,y:0,lookId:null,lastX:0,lastY:0,fireId:null},leanL:false,leanR:false,crouch:false,shoot:false,spent:0,earnings:0,shotTimes:[],audio:null,overlay:null,shake:0,hitFlash:0,flare:0,camera:{x:0,y:0,z:1.62,yaw:0,pitch:0},wind:{x:.65,y:-.45},sens:0.0025};
+const st={phase:'prep',view:'tactical',mode:3,sideTab:'tactics',side:true,tactic:'balanced',layout:settings.layout||'classic',assist:settings.assist!==false,sensScale:settings.sensScale||1,coach:false,countdown:0,liveAge:0,selected:0,people:[],bunkers:[],balls:[],splats:[],particles:[],feed:[],score:[0,0],point:1,time:180,timeScale:1,regulation:true,difficulty:settings.difficulty||'rookie',careerMode:true,paused:false,frame:0,now:0,last:0,w:0,h:0,dpr:1,map:null,project:0,mouse:{x:0,y:0,down:false},keys:{},move:{x:0,y:0},touch:{x:0,y:0,lookId:null,lastX:0,lastY:0,fireId:null},mobileEditing:false,mobileWasPaused:false,leanL:false,leanR:false,crouch:false,shoot:false,spent:0,earnings:0,shotTimes:[],audio:null,overlay:null,shake:0,hitFlash:0,flare:0,camera:{x:0,y:0,z:1.62,yaw:0,pitch:0},wind:{x:.65,y:-.45},sens:0.0025};
 let W=1000,H=620,canvasRatio=1;
 function resize(){const r=cv.getBoundingClientRect();W=Math.max(2,r.width);H=Math.max(2,r.height);canvasRatio=Math.min(devicePixelRatio||1,touchDevice?1.22:1.55);cv.width=Math.round(W*canvasRatio);cv.height=Math.round(H*canvasRatio);ctx.setTransform(canvasRatio,0,0,canvasRatio,0,0);st.w=W;st.h=H}
 window.addEventListener('resize',resize);
@@ -222,10 +382,10 @@ function spawnPlayers(){let m=st.mode;const xstarts=m===3?[-1.45,0,1.45]:[-2.12,
  st.people.push({id:team*m+i,team,index:i,name:team===0?roster[i]:['GHOST','STRYKER','FLINT','VEX','TALON'][i],role:(m===3?['SNAKE','CENTER','DORITO']:['SNAKE','MID','FRONT','DORITO','BACK'])[i],x,y,vx:0,vy:0,yaw:team===0?0:Math.PI,pitch:0,lean:0,leanTarget:0,crouch:false,slide:0,slideVX:0,slideVY:0,stamina:100,alive:true,ammo:180+career.gear.loader*40,pods:3,reload:0,shotAt:0,shotCount:0,fireHold:0,lastTrigger:0,accuracy:0,goal:{x,y},think:0,backGoal:false,recoil:0,lastFPS:290,elims:0,suppression:0,age:0,dirty:0,cover:0,atGoal:0,spottedUntil:0,lastSeen:null,aiSight:0,targetId:null,burst:0,burstRest:0,laneTimer:1.2+Math.random()*1.0,laneShots:0,laneYaw:null,autoBreakout:true,manualOverride:false,callout:0})
  }}applyTactic();st.selected=Math.min(st.selected,m-1);
 }
-function resetPoint(){spawnPlayers();st.balls=[];st.splats=[];st.particles=[];st.shotTimes=[];st.time=st.mode===3?180:300;st.phase='prep';st.coach=false;st.countdown=0;st.liveAge=0;st.paused=false;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.touch.x=st.touch.y=0;st.view='tactical';showSide(true);syncUI();renderSide();}
+function resetPoint(){st.mobileEditing=false;el('touchControls')?.classList.remove('editing');spawnPlayers();st.balls=[];st.splats=[];st.particles=[];st.shotTimes=[];st.time=st.mode===3?180:300;st.phase='prep';st.coach=false;st.countdown=0;st.liveAge=0;st.paused=false;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.touch.x=st.touch.y=0;st.view='tactical';showSide(true);syncUI();renderSide();}
 function fullMatchReset(){st.coach=false;st.score=[0,0];st.point=1;st.earnings=0;st.spent=0;buildField();resetPoint()}
 function showSide(show){st.side=show;el('side').classList.toggle('hidden',!show);resize();refreshStageActions()}
-function setView(view){st.view=view;el('headerView').textContent=view==='fps'?'▧ MAP VIEW':'↗ FPS VIEW';el('viewChip').innerHTML='<span class="liveCircle"></span>'+(view==='fps'?'FIRST PERSON / '+roster[st.selected]:'TACTICAL / FIELD OVERVIEW');if(view==='fps'&&(st.phase==='live'||st.phase==='countdown')&&!touchDevice){el('controlTip').textContent='CLICK FIELD TO LOOK • WASD MOVE • FIRE • SHIFT SLIDE • F DIVE • C CROUCH • Q/E LEAN • TAB PLAYER • V VIEW'}else if(view==='fps'&&touchDevice){el('controlTip').textContent='DRAG OPEN FIELD TO LOOK • HOLD FIRE • DOUBLE-TAP SLIDE FOR DIVE • LEAN'}else if(view==='tactical'&&st.phase==='live'){el('controlTip').textContent='WASD MOVE • AIM & FIRE WITH MOUSE • SHIFT SLIDE • TAB PLAYER • V FIRST PERSON'}else{el('controlTip').textContent='SELECT PLAYER → CLICK DESTINATION • CHOOSE A BREAKOUT • START POINT'}resize()}
+function setView(view){st.view=view;el('headerView').textContent=view==='fps'?'▧ MAP VIEW':'↗ FPS VIEW';el('viewChip').innerHTML='<span class="liveCircle"></span>'+(view==='fps'?'FIRST PERSON / '+roster[st.selected]:'TACTICAL / FIELD OVERVIEW');if(view==='fps'&&(st.phase==='live'||st.phase==='countdown')&&!touchDevice){el('controlTip').textContent='CLICK FIELD TO LOOK • WASD MOVE • FIRE • SHIFT SLIDE • F DIVE • C CROUCH • Q/E LEAN • TAB PLAYER • V VIEW'}else if(view==='fps'&&touchDevice){el('controlTip').textContent='DRAG OPEN FIELD TO LOOK • HOLD FIRE • DOUBLE-TAP SLIDE FOR DIVE • LEAN'}else if(view==='tactical'&&st.phase==='live'){el('controlTip').textContent='WASD MOVE • AIM & FIRE WITH MOUSE • SHIFT SLIDE • TAB PLAYER • V FIRST PERSON'}else{el('controlTip').textContent='SELECT PLAYER → CLICK DESTINATION • CHOOSE A BREAKOUT • START POINT'}resize();el('touchControls')?.classList.toggle('touch-fps',view==='fps')}
 function selectPlayer(i){let n=(i+st.mode)%st.mode;if(st.phase==='live'&&!st.people.some(p=>p.team===0&&p.index===n&&p.alive)){let available=st.people.find(p=>p.team===0&&p.alive);if(available)n=available.index;}st.selected=n;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.mouse.down=false;setView(st.view);renderSide();syncUI()}
 function feed(s,team=0){st.feed.unshift({text:s,team,t:performance.now()});st.feed.length=Math.min(st.feed.length,5);el('feed').innerHTML=st.feed.map(f=>'<div class="feedLine '+(f.team?'enemy':'')+'"><span>◆</span> '+f.text+'</div>').join('')}
 function syncUI(){el('headLeague').textContent=LEAGUES[career.league];el('headCash').textContent=money(career.cash);el('myScore').textContent=st.score[0];el('oppScore').textContent=st.score[1];el('timeLeft').textContent=fmtTime(st.time);el('scoreMode').textContent=st.mode+'v'+st.mode+' • POINT '+st.point;el('friendsAlive').textContent=st.people.filter(p=>p.team===0&&p.alive).length+' ACTIVE';el('enemiesAlive').textContent=st.people.filter(p=>p.team===1&&p.alive).length+' ACTIVE';setViewLabelOnly();}
@@ -235,7 +395,7 @@ function renderSide(){for(const b of el('tabs').querySelectorAll('button'))b.cla
 let title={tactics:['COACH’S TABLE','Breakout plan'],roster:['TEAM COMMS','Your roster'],career:['ROAD TO PRO','Career HQ'],armory:['GEAR & TRAINING','Team armory']}[st.sideTab];el('sideEyebrow').textContent=title[0];el('sideTitle').textContent=title[1];
 const panel=el('sideContent');
 if(st.sideTab==='tactics'){
- panel.innerHTML=`<div class="sectionLabel">Match format</div><div class="modeCards"><button class="modeCard ${st.mode===3?'selected':''}" data-mode="3"><div class="modeBig">3v3</div><div class="modeDesc">3-minute points<br>Best of 3</div></button><button class="modeCard ${st.mode===5?'selected':''}" data-mode="5"><div class="modeBig">5v5</div><div class="modeDesc">5-minute points<br>Best of 3</div></button></div><button class="solidBtn" data-action="start" style="margin-top:10px">▶ ${st.phase==='live'?'RETURN TO MATCH':'PLAY '+st.mode+'v'+st.mode+' MATCH'} ${st.careerMode?' · '+money(FEES[career.league])+' ENTRY':''}</button><div class="sectionLabel">Event field layout</div><div class="layoutSelect">${Object.entries(LAYOUTS).map(([id,v])=>`<button data-layout="${id}" class="layoutBtn ${st.layout===id?'selected':''}"><b>${v.name}</b><small>${v.sub}</small></button>`).join('')}</div><div class="sectionLabel">Tactical playbook / ${st.mode}-player formation</div>${Object.entries(tacDefs).map(([id,t])=>`<button class="tacticBtn ${st.tactic===id?'selected':''}" data-tactic="${id}"><span class="tacticIcon">${t.symbol}</span><span><div class="tacticName">${t.name}</div><div class="tacticDesc">${t.desc}</div></span>${st.tactic===id?'<span class="tacticCheck">✓</span>':''}</button>`).join('')}<div class="notice"><b>COACH THE BREAKOUT</b><br>Tap a player, then tap ground beside a bunker to place their route. Every point begins with a visible horn countdown. Your controlled player can sprint automatically to the selected cover until you touch movement.</div><button class="outlineBtn" data-action="fieldPlan">⌖ EXPAND FIELD / PLACE ROUTES</button><div class="sectionLabel">Control assists</div><div class="modeCards"><button class="modeCard ${st.assist?'selected':''}" data-assist="on"><div class="tacticName">BREAKOUT ASSIST</div><div class="modeDesc">${st.assist?'ON':'OFF'} · route autopilot</div></button><button class="modeCard ${!st.assist?'selected':''}" data-assist="off"><div class="tacticName">MANUAL BREAKOUT</div><div class="modeDesc">Full control from horn</div></button></div><div class="sectionLabel">Touch look speed</div><div class="tagGrid">${[['0.65','LOW'],['1','NORMAL'],['1.45','FAST']].map(([v,t])=>`<button class="difficultyBtn ${Math.abs(st.sensScale-Number(v))<.01?'selected':''}" data-sens="${v}">${t}</button>`).join('')}</div><div class="sectionLabel">Opponent skill</div><div class="tagGrid">${['rookie','contender','elite'].map(d=>`<button class="difficultyBtn ${st.difficulty===d?'selected':''}" data-difficulty="${d}">${d.toUpperCase()}</button>`).join('')}</div><div class="sectionLabel">Point setup</div><div class="tagGrid"><span class="tag">${st.regulation?'REGULATION':'2× QUICK MATCH'} CLOCK</span><span class="tag">${st.difficulty.toUpperCase()} AI</span><span class="tag">${st.careerMode?'CAREER EVENT':'EXHIBITION'}</span></div><div class="modeCards" style="margin-top:9px"><button class="modeCard ${st.regulation?'selected':''}" data-clock="reg"><div class="tacticName">REGULATION</div><div class="modeDesc">Real-time clock</div></button><button class="modeCard ${!st.regulation?'selected':''}" data-clock="quick"><div class="tacticName">QUICK</div><div class="modeDesc">2× accelerated</div></button></div><div class="modeCards" style="margin-top:8px"><button class="modeCard ${st.careerMode?'selected':''}" data-kind="career"><div class="tacticName">CAREER</div><div class="modeDesc">Prize & ranking</div></button><button class="modeCard ${!st.careerMode?'selected':''}" data-kind="exhibition"><div class="tacticName">PRACTICE</div><div class="modeDesc">No entry fee</div></button></div><button class="solidBtn" data-action="start">${st.phase==='prep'&&st.point>1?'▶ PLAY NEXT POINT':'▶ '+(st.phase==='live'?'RETURN TO MATCH':'START MATCH')} ${st.careerMode?' · '+money(FEES[career.league])+' ENTRY':''}</button><div class="minorNote">Point clocks use 3:00 (3v3) or 5:00 (5v5) game time. Quick mode runs the clock at 2×. Rules are inspired by competitive NXL formats; some referee and tournament details are simplified.</div>`;
+ panel.innerHTML=`<div class="sectionLabel">Match format</div><div class="modeCards"><button class="modeCard ${st.mode===3?'selected':''}" data-mode="3"><div class="modeBig">3v3</div><div class="modeDesc">3-minute points<br>Best of 3</div></button><button class="modeCard ${st.mode===5?'selected':''}" data-mode="5"><div class="modeBig">5v5</div><div class="modeDesc">5-minute points<br>Best of 3</div></button></div><button class="solidBtn" data-action="start" style="margin-top:10px">▶ ${st.phase==='live'?'RETURN TO MATCH':'PLAY '+st.mode+'v'+st.mode+' MATCH'} ${st.careerMode?' · '+money(FEES[career.league])+' ENTRY':''}</button><div class="sectionLabel">Event field layout</div><div class="layoutSelect">${Object.entries(LAYOUTS).map(([id,v])=>`<button data-layout="${id}" class="layoutBtn ${st.layout===id?'selected':''}"><b>${v.name}</b><small>${v.sub}</small></button>`).join('')}</div><div class="sectionLabel">Tactical playbook / ${st.mode}-player formation</div>${Object.entries(tacDefs).map(([id,t])=>`<button class="tacticBtn ${st.tactic===id?'selected':''}" data-tactic="${id}"><span class="tacticIcon">${t.symbol}</span><span><div class="tacticName">${t.name}</div><div class="tacticDesc">${t.desc}</div></span>${st.tactic===id?'<span class="tacticCheck">✓</span>':''}</button>`).join('')}<div class="notice"><b>COACH THE BREAKOUT</b><br>Tap a player, then tap ground beside a bunker to place their route. Every point begins with a visible horn countdown. Your controlled player can sprint automatically to the selected cover until you touch movement.</div><button class="outlineBtn" data-action="fieldPlan">⌖ EXPAND FIELD / PLACE ROUTES</button>${touchDevice?'<button class="outlineBtn" data-action="touchConfigure" style="margin-top:10px">CUSTOMIZE MOBILE CONTROLS</button>':''}<div class="sectionLabel">Control assists</div><div class="modeCards"><button class="modeCard ${st.assist?'selected':''}" data-assist="on"><div class="tacticName">BREAKOUT ASSIST</div><div class="modeDesc">${st.assist?'ON':'OFF'} · route autopilot</div></button><button class="modeCard ${!st.assist?'selected':''}" data-assist="off"><div class="tacticName">MANUAL BREAKOUT</div><div class="modeDesc">Full control from horn</div></button></div><div class="sectionLabel">Touch look speed</div><div class="tagGrid">${[['0.65','LOW'],['1','NORMAL'],['1.45','FAST']].map(([v,t])=>`<button class="difficultyBtn ${Math.abs(st.sensScale-Number(v))<.01?'selected':''}" data-sens="${v}">${t}</button>`).join('')}</div><div class="sectionLabel">Opponent skill</div><div class="tagGrid">${['rookie','contender','elite'].map(d=>`<button class="difficultyBtn ${st.difficulty===d?'selected':''}" data-difficulty="${d}">${d.toUpperCase()}</button>`).join('')}</div><div class="sectionLabel">Point setup</div><div class="tagGrid"><span class="tag">${st.regulation?'REGULATION':'2× QUICK MATCH'} CLOCK</span><span class="tag">${st.difficulty.toUpperCase()} AI</span><span class="tag">${st.careerMode?'CAREER EVENT':'EXHIBITION'}</span></div><div class="modeCards" style="margin-top:9px"><button class="modeCard ${st.regulation?'selected':''}" data-clock="reg"><div class="tacticName">REGULATION</div><div class="modeDesc">Real-time clock</div></button><button class="modeCard ${!st.regulation?'selected':''}" data-clock="quick"><div class="tacticName">QUICK</div><div class="modeDesc">2× accelerated</div></button></div><div class="modeCards" style="margin-top:8px"><button class="modeCard ${st.careerMode?'selected':''}" data-kind="career"><div class="tacticName">CAREER</div><div class="modeDesc">Prize & ranking</div></button><button class="modeCard ${!st.careerMode?'selected':''}" data-kind="exhibition"><div class="tacticName">PRACTICE</div><div class="modeDesc">No entry fee</div></button></div><button class="solidBtn" data-action="start">${st.phase==='prep'&&st.point>1?'▶ PLAY NEXT POINT':'▶ '+(st.phase==='live'?'RETURN TO MATCH':'START MATCH')} ${st.careerMode?' · '+money(FEES[career.league])+' ENTRY':''}</button><div class="minorNote">Point clocks use 3:00 (3v3) or 5:00 (5v5) game time. Quick mode runs the clock at 2×. Rules are inspired by competitive NXL formats; some referee and tournament details are simplified.</div>`;
 }else if(st.sideTab==='roster'){
  panel.innerHTML=`<div class="notice">Pick any athlete as your playable character. Uncontrolled players execute the pre-game route, communicate, and engage automatically.</div><div class="sectionLabel">Starting lineup</div>${st.people.filter(p=>p.team===0).map(p=>`<div class="playerRow ${st.selected===p.index?'selected':''}" data-player="${p.index}"><div class="avatar">${String(p.index+1).padStart(2,'0')}</div><div><h4>${p.name}</h4><p>${p.role} · ${p.alive?'READY / ACTIVE':'ELIMINATED'}</p></div><div class="rosterNum">${st.selected===p.index?'CONTROL':'SELECT →'}</div></div>`).join('')}<div class="sectionLabel">Squad progression</div><div class="cardBlock"><div class="cardHead"><div><b>Team cohesion</b><div class="cardSmall">Reaction, fire discipline and breakout success improve with training.</div></div><span class="smallTag">LVL ${career.gear.coaching+1}</span></div><div class="progress"><span style="width:${25+career.gear.coaching*25}%"></span></div></div><button class="outlineBtn" data-action="goArmory">UPGRADE SQUAD SKILLS →</button>`;
 }else if(st.sideTab==='career'){
@@ -257,6 +417,7 @@ if(b.dataset.player!==undefined){selectPlayer(+b.dataset.player);return}
 if(b.dataset.buy){buyGear(b.dataset.buy);return}
 if(b.dataset.sponsor){signSponsor(b.dataset.sponsor);return}
 if(b.dataset.action==='fieldPlan'){showSide(false);refreshStageActions();return}
+if(b.dataset.action==='touchConfigure'){editor(true);return}
 if(b.dataset.action==='start'){if(st.phase==='live'){showSide(false)}else if(st.phase==='pointend'){beginPoint()}else{startMatch()}return}
 if(b.dataset.action==='goArmory'||b.dataset.action==='goTactics'){st.sideTab=b.dataset.action==='goArmory'?'armory':'tactics';renderSide();return}
 }
@@ -280,7 +441,7 @@ function refreshStageActions(){
  const badge=el('pointBanner');if(!badge)return;
  if(st.phase==='countdown'){
  const n=Math.ceil(st.countdown);badge.classList.add('visible');badge.innerHTML='<strong>'+(n>0?n:'GO!')+'</strong><span>GET READY · BREAKOUT AT THE HORN</span>';
- }else if(st.phase==='live'&&st.liveAge<5.2){
+ }else if(st.phase==='live'&&st.liveAge<2.1){
  badge.classList.add('visible');const p=st.people.find(x=>x.team===0&&x.index===st.selected);
  const autorunning=p&&st.assist&&p.autoBreakout&&!p.manualOverride&&st.liveAge<5;
  badge.innerHTML='<strong class="small">'+(autorunning?'ASSISTED BREAKOUT':'BREAKOUT LIVE')+'</strong><span>'+(autorunning?'MOVE THE STICK TO TAKE OVER':'RUN TO COVER · WORK THE ANGLES')+'</span>';
@@ -299,7 +460,7 @@ syncUI();renderSide();}
 function modal(title,description,primary,action,extra=''){st.overlay={title,action};el('modal').innerHTML=`<div class="modalEyebrow">SPEEDBALL : ASCENT</div><h2 class="modalTitle">${title}</h2><p class="modalDesc">${description}</p>${extra}<button class="solidBtn" data-modal="${action}">${primary}</button>`;el('overlay').classList.add('show')}
 function hideModal(){el('overlay').classList.remove('show');st.overlay=null}
 function modalAction(action){if(action==='next')nextPoint();else if(action==='hq'){hideModal();fullMatchReset();st.sideTab='career';renderSide()}else if(action==='rematch'){hideModal();fullMatchReset();st.sideTab='tactics';renderSide()}else if(action==='close')hideModal()}
-function updatePause(){el('pauseOverlay').style.display=st.paused&&!st.coach?'flex':'none';if(st.paused)document.exitPointerLock?.();refreshStageActions()}
+function updatePause(){el('pauseOverlay').style.display=st.paused&&!st.coach&&!st.mobileEditing?'flex':'none';if(st.paused)document.exitPointerLock?.();refreshStageActions()}
 // KINEMATICS & PAINTBALL BALLISTICS
 function hFor(p){return p.slide>0?(p.dive?.36:.55):p.crouch?1.03:1.65}
 function markerH(p){return p.slide>0?(p.dive?.26:.42):p.crouch?.88:1.38}
@@ -340,14 +501,14 @@ function setNav(p){p.nav=navRoute({x:p.x,y:p.y},p.goal);p.navIndex=0;p.atGoal=0}
 function moveBody(p,dx,dy,dt){if(!dx&&!dy)return;let nx=p.x+dx*dt,ny=p.y+dy*dt;if(!blockedBody(nx,p.y))p.x=nx;else p.vx=0;if(!blockedBody(p.x,ny))p.y=ny;else p.vy=0;
 for(const q of st.people){if(q===p||!q.alive)continue;let d=dist(p.x,p.y,q.x,q.y);if(d<.61&&d>.001){let overlap=(.61-d)*.45,ux=(p.x-q.x)/d,uy=(p.y-q.y)/d;if(!blockedBody(p.x+ux*overlap,p.y+uy*overlap)){p.x+=ux*overlap;p.y+=uy*overlap}}}}
 function slidePlayer(p,dive=false){
- if(p.slide>0||p.stamina<(dive?34:22))return;
- const speed=Math.hypot(p.vx,p.vy);if(speed<(dive?4.3:2.9))return;
+ if(p.slide>0||p.stamina<(dive?34:22))return false;
+ const speed=Math.hypot(p.vx,p.vy);if(speed<(dive?4.3:2.9))return false;
  const u={x:p.vx/speed,y:p.vy/speed};
  // A slide converts existing sprint momentum; no stationary rocket launch.
  p.dive=!!dive;p.slide=(dive?1.12:.83)+career.gear.pads*.065;
  const initial=clamp(speed*(dive?1.18:1.08),3.3,dive?7.15:6.6);
  p.slideVX=u.x*initial;p.slideVY=u.y*initial;p.stamina-=dive?34:22;
- p.crouch=true;st.shake=dive?.29:.20;sound('slide');
+ p.crouch=true;st.shake=dive?.29:.20;sound('slide');return true;
 }
 function humanInput(p,dt){if(!p.alive){st.shoot=false;return}
 let mx=(st.keys.KeyD?1:0)-(st.keys.KeyA?1:0)+st.touch.x,my=(st.keys.KeyS?1:0)-(st.keys.KeyW?1:0)+st.touch.y;
@@ -704,7 +865,10 @@ const enemies=st.people.filter(q=>q.team===1&&q.alive).sort((a,b)=>dist(p.x,p.y,
 el('teleBPS').textContent=st.shotTimes.filter(t=>st.now/1000-t<1).length+'/10.5';el('windChip').textContent='↗ WIND '+Math.hypot(st.wind.x,st.wind.y).toFixed(1)+' M/S · '+(st.wind.x>0?'RIGHT':'LEFT')+' CROSS-FIELD';el('teleCover').textContent=p.cover?'COVER':'OPEN';el('teleChrono').textContent=Math.round(p.lastFPS);el('teleWind').textContent=Math.hypot(st.wind.x,st.wind.y).toFixed(1);el('teleStamina').textContent=Math.round(p.stamina)+'%';
 el('timeLeft').textContent=fmtTime(st.time);el('friendsAlive').textContent=st.people.filter(x=>x.team===0&&x.alive).length+' ACTIVE';el('enemiesAlive').textContent=st.people.filter(x=>x.team===1&&x.alive).length+' ACTIVE';
 const useMobile=touchDevice||window.matchMedia('(max-width:780px)').matches;
-el('touchControls').style.display=useMobile&&st.phase==='live'&&!st.side&&!st.paused?'block':'none';el('telemetry').style.display=(st.phase==='live'||st.phase==='prep'||st.phase==='countdown')&&!st.side?'block':'none';}
+el('touchControls').style.display=useMobile&&((st.phase==='live'&&!st.side&&!st.paused)||st.mobileEditing)?'block':'none';el('telemetry').style.display=(st.phase==='live'||st.phase==='prep'||st.phase==='countdown')&&!st.side&&!useMobile?'block':'none';
+const ammo=el('mobileAmmo'),energy=el('mobileEnergy');if(ammo){el('mobilePlayer').textContent=p.name;ammo.textContent=p.reload>0?'RELOADING':p.ammo+' PAINT';energy.textContent=Math.round(p.stamina)+'% STA';}
+const crouch=el('touchCrouch'),reloadBtn=el('touchReload');if(crouch){crouch.setAttribute('aria-pressed',String(st.crouch));el('crouchLabel').textContent=st.crouch?'STAND':'CROUCH';}if(reloadBtn){reloadBtn.disabled=!p.alive||p.pods<=0||p.reload>0;el('reloadLabel').textContent=p.reload>0?'LOADING':p.pods===0?'NO PODS':'RELOAD';}
+}
 function worldFromMouse(x,y){const s=st.map?.s||Math.min((W-56)/FIELD.w,(H-56)/FIELD.h);return {x:clamp((x-W/2)/s,-FIELD.x+.4,FIELD.x-.4),y:clamp((y-H/2)/s,-FIELD.y+.4,FIELD.y-.4)}}
 function fieldPointer(x,y,down=false){if(st.view!=='tactical')return;const pos=worldFromMouse(x,y);
 if(st.phase==='prep'||st.phase==='pointend'||st.paused){if(!down)return;
@@ -712,13 +876,13 @@ let players=st.people.filter(p=>p.team===0);let nearest=players.sort((a,b)=>dist
 let p=st.people.find(p=>p.team===0&&p.index===st.selected);if(p){p.goal=safeGoal(pos.x,pos.y);setNav(p);feed(p.name+' ROUTE → UPDATED')}return}
 if(st.phase==='live'){const p=st.people.find(p=>p.team===0&&p.index===st.selected);if(p){p.yaw=Math.atan2(pos.x-p.x,-(pos.y-p.y));p.pitch=.005+dist(pos.x,pos.y,p.x,p.y)*.0007;}}
 }
-function rotateFPS(dx,dy){if(st.view!=='fps'||st.phase!=='live')return;const p=st.people.find(p=>p.team===0&&p.index===st.selected);if(!p)return;p.yaw+=dx*st.sens*(st.touch.lookId!==null?st.sensScale*1.65:1);p.pitch=clamp(p.pitch+dy*st.sens*(st.touch.lookId!==null?st.sensScale*1.65:1),-.50,.44)}
+function rotateFPS(dx,dy,isTouch=false){if(st.view!=='fps'||st.phase!=='live'||st.mobileEditing||st.paused)return;const p=st.people.find(p=>p.team===0&&p.index===st.selected);if(!p)return;const speed=isTouch?st.sensScale*1.40:1;p.yaw+=dx*st.sens*speed;p.pitch=clamp(p.pitch+dy*st.sens*speed,-.50,.44)}
 function pointOnCanvas(e){const r=cv.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
 cv.addEventListener('pointerdown',e=>{initAudio();if(st.side&&st.phase==='live')return;const v=pointOnCanvas(e);st.mouse.x=v.x;st.mouse.y=v.y;
 if(st.view==='tactical'){fieldPointer(v.x,v.y,true);if(st.phase==='live')st.mouse.down=true}
-else if(st.phase==='live'){if(e.pointerType==='mouse'&&document.pointerLockElement!==cv&&cv.requestPointerLock)cv.requestPointerLock().catch(()=>{});if(e.pointerType==='touch'){st.touch.lookId=e.pointerId;st.touch.lastX=e.clientX;st.touch.lastY=e.clientY;try{cv.setPointerCapture(e.pointerId)}catch(err){}}else{st.mouse.down=true;st.mouseId=e.pointerId;st.touch.lookId=e.pointerId;st.touch.lastX=e.clientX;st.touch.lastY=e.clientY}}});
+else if(st.phase==='live'){if(e.pointerType==='mouse'&&document.pointerLockElement!==cv&&cv.requestPointerLock)cv.requestPointerLock().catch(()=>{});if(e.pointerType==='touch'){if(st.touch.lookId===null){st.touch.lookId=e.pointerId;st.touch.lastX=e.clientX;st.touch.lastY=e.clientY;try{cv.setPointerCapture(e.pointerId)}catch(err){}}}else{st.mouse.down=true;st.mouseId=e.pointerId;st.touch.lookId=e.pointerId;st.touch.lastX=e.clientX;st.touch.lastY=e.clientY}}});
 cv.addEventListener('pointermove',e=>{let v=pointOnCanvas(e);st.mouse.x=v.x;st.mouse.y=v.y;if(st.view==='tactical'){if(st.phase==='live')fieldPointer(v.x,v.y);return}
-if(st.view==='fps'&&st.phase==='live'&&(!st.paused)){if(document.pointerLockElement===cv){rotateFPS(e.movementX,-e.movementY)}else if(st.touch.lookId===e.pointerId){rotateFPS(e.clientX-st.touch.lastX,-(e.clientY-st.touch.lastY));st.touch.lastX=e.clientX;st.touch.lastY=e.clientY}}});
+if(st.view==='fps'&&st.phase==='live'&&(!st.paused)){if(document.pointerLockElement===cv){rotateFPS(e.movementX,-e.movementY)}else if(st.touch.lookId===e.pointerId){rotateFPS(e.clientX-st.touch.lastX,-(e.clientY-st.touch.lastY),e.pointerType==='touch');st.touch.lastX=e.clientX;st.touch.lastY=e.clientY}}});
 window.addEventListener('pointerup',e=>{if(st.touch.lookId===e.pointerId)st.touch.lookId=null;if(st.mouseId===e.pointerId){st.mouse.down=false;st.mouseId=null}});
 cv.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('keydown',e=>{if(['Tab','Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();if(e.repeat&&['Tab','KeyV','KeyP'].includes(e.code))return;
@@ -746,37 +910,119 @@ simpleClick('pauseMenuBtn',()=>{st.paused=false;updatePause();fullMatchReset();s
 el('tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)setTab(b.dataset.tab)});
 el('sideContent').addEventListener('click',clickPanel);
 el('modal').addEventListener('click',e=>{let b=e.target.closest('[data-modal]');if(b)modalAction(b.dataset.modal)});
-simpleClick('touchView',()=>setView(st.view==='fps'?'tactical':'fps'));
-simpleClick('touchSwitch',()=>selectPlayer(st.selected+1));
-simpleClick('touchPlan',()=>setTab('tactics'));
-const touchHold=(id,down,up)=>{const node=el(id);node.addEventListener('pointerdown',e=>{initAudio();e.preventDefault();e.stopPropagation();node.classList.add('held');node.setPointerCapture(e.pointerId);down(e)});['pointerup','pointercancel','lostpointercapture'].forEach(type=>node.addEventListener(type,e=>{e.preventDefault();node.classList.remove('held');up(e)}))};
-touchHold('touchFire',e=>{st.touch.fireId=e.pointerId;st.shoot=true},e=>{if(st.touch.fireId===e.pointerId){st.touch.fireId=null;st.shoot=false}});
-touchHold('touchLeft',()=>{st.leanL=true},()=>{st.leanL=false});
-touchHold('touchRightLean',()=>{st.leanR=true},()=>{st.leanR=false});
-touchHold('touchSlide',()=>{
- const p=st.people.find(q=>q.team===0&&q.index===st.selected);
- if(!p||!p.alive)return;
- const doubleTap=st.now-(p.lastSlideTap||-10000)<480;
- p.lastSlideTap=st.now;
- if(doubleTap&&p.slide>0&&!p.dive&&Math.hypot(p.vx,p.vy)>2.4&&p.stamina>=12){
-  p.dive=true;p.stamina-=12;p.slide=Math.max(p.slide,.8);p.slideVX*=.94;p.slideVY*=.94;feed('HEADFIRST DIVE → COVER');
- }else slidePlayer(p,false);
-},()=>{});
-touchHold('touchCrouch',()=>{st.crouch=!st.crouch;el('touchCrouch').textContent=st.crouch?'STAND':'CROUCH'},()=>{});
-const joy=el('joy'),knob=el('joyKnob');let joyId=null;
-function joyMove(e){let r=joy.getBoundingClientRect(),x=e.clientX-(r.left+r.width/2),y=e.clientY-(r.top+r.height/2),max=r.width*.36,l=Math.hypot(x,y);if(l>max){x*=max/l;y*=max/l}st.touch.x=x/max;st.touch.y=y/max;knob.style.transform=`translate(${x}px,${y}px)`;if(l>max*.2){let p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p)p.manualOverride=true}}
-joy.addEventListener('pointerdown',e=>{e.stopPropagation();e.preventDefault();joyId=e.pointerId;joy.setPointerCapture(e.pointerId);joyMove(e)});
-joy.addEventListener('pointermove',e=>{if(e.pointerId===joyId)joyMove(e)});
-for(const ev of ['pointerup','pointercancel','lostpointercapture'])joy.addEventListener(ev,e=>{if(e.pointerId===joyId){joyId=null;st.touch.x=0;st.touch.y=0;knob.style.transform='translate(0,0)'}});
+// Touch-first match controller: independent pointers, custom locations and meaningful action keys.
+const ctl=el('touchControls'),stage=el('stage'),joy=el('joy'),knob=el('joyKnob');
+const touchNodes={joy,actions:el('touchRight'),fire:el('touchFire')};
+const touchDefaults={scale:1,opacity:.91,floating:true,mirror:false,positions:{}};
+let touchPrefs={...touchDefaults,positions:{}};
+try{const v=JSON.parse(localStorage.getItem('ascent-touch-v4')||'null');if(v&&typeof v==='object')touchPrefs={...touchDefaults,...v,positions:v.positions||{}}}catch(e){}
+const touchSave=()=>{try{localStorage.setItem('ascent-touch-v4',JSON.stringify(touchPrefs))}catch(e){}};
+const touchMode=()=>stage.clientWidth<stage.clientHeight?'portrait':'landscape';
+function baseTouchPositions(){const w=stage.clientWidth,h=stage.clientHeight,portrait=w<h;
+ if(portrait)return {joy:{x:.22,y:.725},fire:{x:Math.max(.72,1-72/w),y:.55},actions:{x:Math.max(.62,1-103/w),y:.81}};
+ const fireX=1-Math.min(118,Math.max(73,w*.116))/w;
+ return {joy:{x:Math.min(.185,Math.max(.13,96/w)),y:.62},fire:{x:fireX,y:.63},actions:{x:fireX-Math.min(154,Math.max(137,w*.215))/w,y:.61}};
+}
+function touchPositions(){const mode=touchMode(),saved=touchPrefs.positions?.[mode]||{},defaults=baseTouchPositions();
+ const copy={};for(const k of ['joy','actions','fire']){const p=saved[k]||defaults[k];copy[k]={x:Math.max(0,Math.min(1,p.x)),y:Math.max(0,Math.min(1,p.y))};if(!saved[k]&&touchPrefs.mirror)copy[k].x=1-copy[k].x}return copy;}
+function touchClamp(key,p){const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight);
+ const scale=touchPrefs.scale;const width=(key==='joy'?120:key==='fire'?101:144)*scale,height=(key==='joy'?125:key==='fire'?101:178)*scale;
+ const pxX=Math.min(w-width/2-7,Math.max(width/2+7,p.x*w));
+ const pxY=Math.min(h-height/2-9,Math.max(height/2+9,p.y*h));
+ return {x:pxX/w,y:pxY/h};}
+function placeTouchControls(){if(!ctl)return;const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;
+ ctl.style.setProperty('--tc-scale',String(touchPrefs.scale));ctl.style.setProperty('--tc-opacity',String(touchPrefs.opacity));
+ ctl.classList.toggle('floating',!!touchPrefs.floating);ctl.classList.toggle('touch-fps',st.view==='fps');
+ const pos=touchPositions();for(const key of Object.keys(touchNodes)){
+  const p=touchClamp(key,pos[key]);touchNodes[key].style.left=(p.x*w).toFixed(1)+'px';touchNodes[key].style.top=(p.y*h).toFixed(1)+'px';
+ }
+}
+function setTouchPosition(key,clientX,clientY,save=true){const r=stage.getBoundingClientRect();const p=touchClamp(key,{x:(clientX-r.left)/r.width,y:(clientY-r.top)/r.height});
+ touchNodes[key].style.left=(p.x*r.width).toFixed(1)+'px';touchNodes[key].style.top=(p.y*r.height).toFixed(1)+'px';
+ if(save){const mode=touchMode();if(!touchPrefs.positions[mode])touchPrefs.positions[mode]={};touchPrefs.positions[mode][key]=p;touchSave();}
+ return p;
+}
+function haptic(ms=8){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
+function editor(open){if(!touchDevice&&!window.matchMedia('(max-width:780px)').matches)return;
+ if(open){st.mobileWasPaused=st.paused;st.mobileEditing=true;st.paused=true;st.shoot=false;st.mouse.down=false;st.leanL=st.leanR=false;st.touch.fireId=null;st.touch.x=st.touch.y=0;knob.style.transform='translate(0,0)';showSide(false);}
+ else {st.mobileEditing=false;st.paused=st.mobileWasPaused;touchSave();}
+ ctl.classList.toggle('editing',st.mobileEditing);
+ el('touchSize').value=String(touchPrefs.scale);el('touchOpacity').value=String(touchPrefs.opacity);el('touchSensitivity').value=String(st.sensScale);el('touchFloating').checked=!!touchPrefs.floating;
+ updatePause();placeTouchControls();updateTelemetry();
+}
+for(const [id,fn] of [['touchView',()=>setView(st.view==='fps'?'tactical':'fps')],['touchSwitch',()=>selectPlayer(st.selected+1)],['touchPlan',()=>setTab('tactics')],['touchEdit',()=>editor(true)],['touchDone',()=>editor(false)]])simpleClick(id,()=>{if(st.mobileEditing&&id!=='touchDone')return;haptic(6);fn();placeTouchControls()});
+for(const id of ['touchSize','touchOpacity','touchSensitivity'])el(id).addEventListener('input',e=>{let v=Number(e.target.value);
+ if(id==='touchSize')touchPrefs.scale=v;else if(id==='touchOpacity')touchPrefs.opacity=v;else{st.sensScale=v;saveSettings();}
+ placeTouchControls();touchSave();});
+el('touchFloating').addEventListener('change',e=>{touchPrefs.floating=e.target.checked;placeTouchControls();touchSave()});
+simpleClick('touchQuality',()=>{el('gfxMode')?.click();haptic();});
+simpleClick('touchMirror',()=>{touchPrefs.mirror=!touchPrefs.mirror;touchPrefs.positions={};touchSave();placeTouchControls();haptic()});
+simpleClick('touchReset',()=>{touchPrefs={...touchDefaults,positions:{}};st.sensScale=1;saveSettings();touchSave();el('touchSize').value=1;el('touchOpacity').value=.91;el('touchSensitivity').value=1;el('touchFloating').checked=true;placeTouchControls();haptic()});
+// In edit mode the entire control group becomes a drag handle, including its child buttons.
+for(const [key,node] of Object.entries(touchNodes)){
+ let dragId=null,offX=0,offY=0;
+ node.addEventListener('pointerdown',e=>{if(!st.mobileEditing)return;e.preventDefault();e.stopImmediatePropagation();dragId=e.pointerId;
+ const r=node.getBoundingClientRect();offX=e.clientX-(r.left+r.width/2);offY=e.clientY-(r.top+r.height/2);node.setPointerCapture(e.pointerId);},true);
+ node.addEventListener('pointermove',e=>{if(!st.mobileEditing||dragId!==e.pointerId)return;e.preventDefault();e.stopImmediatePropagation();setTouchPosition(key,e.clientX-offX,e.clientY-offY,false);},true);
+ const finish=e=>{if(dragId!==e.pointerId)return;if(st.mobileEditing){e.preventDefault();e.stopImmediatePropagation();setTouchPosition(key,e.clientX-offX,e.clientY-offY,true);}dragId=null;};
+ for(const ev of ['pointerup','pointercancel','lostpointercapture'])node.addEventListener(ev,finish,true);
+}
+function holdTouch(id,onDown,onUp=()=>{},onMove=null){const node=el(id);let current=null;
+ node.addEventListener('pointerdown',e=>{if(st.mobileEditing||current!==null||st.phase!=='live'||st.paused)return;e.preventDefault();e.stopPropagation();initAudio();current=e.pointerId;node.classList.add('held');node.setPointerCapture(e.pointerId);haptic(id==='touchFire'?5:9);onDown(e)});
+ node.addEventListener('pointermove',e=>{if(current!==e.pointerId||st.mobileEditing)return;e.preventDefault();if(onMove)onMove(e)});
+ const release=e=>{if(current!==e.pointerId)return;current=null;node.classList.remove('held');onUp(e)};
+ for(const ev of ['pointerup','pointercancel','lostpointercapture'])node.addEventListener(ev,release);
+ return node;
+}
+let fireXY=null;
+holdTouch('touchFire',e=>{st.touch.fireId=e.pointerId;st.shoot=true;fireXY={x:e.clientX,y:e.clientY}},e=>{if(st.touch.fireId===e.pointerId){st.shoot=false;st.touch.fireId=null}fireXY=null},e=>{
+ // Right thumb can micro-aim while continuously shooting; left thumb keeps moving.
+ if(!fireXY)return;const dx=e.clientX-fireXY.x,dy=e.clientY-fireXY.y;fireXY={x:e.clientX,y:e.clientY};
+ if(st.touch.lookId===null&&Math.abs(dx)+Math.abs(dy)>0)rotateFPS(dx,-dy,true);
+});
+let lastControlHint=-9999;function controlHint(msg){if(st.now-lastControlHint>1200){feed(msg);lastControlHint=st.now}}
+holdTouch('touchLeft',()=>{st.leanL=true},()=>{st.leanL=false});
+holdTouch('touchRightLean',()=>{st.leanR=true},()=>{st.leanR=false});
+holdTouch('touchSlide',()=>{const p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p&&p.alive&&!slidePlayer(p,false))controlHint('BUILD SPEED BEFORE SLIDING')});
+holdTouch('touchDive',()=>{const p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p&&p.alive&&!slidePlayer(p,true))controlHint('SPRINT BEFORE DIVING')});
+holdTouch('touchCrouch',()=>{st.crouch=!st.crouch;const b=el('touchCrouch');b.setAttribute('aria-pressed',String(st.crouch));el('crouchLabel').textContent=st.crouch?'STAND':'CROUCH'});
+holdTouch('touchReload',()=>{const p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p&&p.alive)reload(p)});
+let joyId=null,joyOwner=null;
+function joyMove(e){const r=joy.getBoundingClientRect(),rad=Math.min(r.width,r.height)/2;
+ let x=e.clientX-(r.left+r.width/2),y=e.clientY-(r.top+r.height/2);const max=rad*.61,l=Math.hypot(x,y);if(l>max){x=x/l*max;y=y/l*max}
+ const deadzone=.12;const strength=Math.hypot(x,y)/max;const output=strength<deadzone?0:(strength-deadzone)/(1-deadzone);const mul=strength>0?output/strength:0;
+ st.touch.x=x/max*mul;st.touch.y=y/max*mul;knob.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;
+ if(output>.14){const p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p)p.manualOverride=true}
+}
+function joyRelease(e){if(joyId!==e.pointerId)return;joyId=null;joy.classList.remove('active');st.touch.x=0;st.touch.y=0;knob.style.transform='translate(0,0)';
+ // Floating controls return to the configured anchor after release.
+ if(joyOwner==='zone')placeTouchControls();joyOwner=null;
+}
+joy.addEventListener('pointerdown',e=>{if(st.mobileEditing||joyId!==null||st.phase!=='live')return;e.stopPropagation();e.preventDefault();joyId=e.pointerId;joyOwner='joy';joy.classList.add('active');joy.setPointerCapture(e.pointerId);joyMove(e)});
+joy.addEventListener('pointermove',e=>{if(joyOwner==='joy'&&joyId===e.pointerId)joyMove(e)});
+for(const ev of ['pointerup','pointercancel','lostpointercapture'])joy.addEventListener(ev,joyRelease);
+const moveZone=el('touchMoveZone');
+moveZone.addEventListener('pointerdown',e=>{if(st.mobileEditing||!touchPrefs.floating||st.view!=='fps'||joyId!==null||st.phase!=='live')return;
+ e.preventDefault();e.stopPropagation();joyId=e.pointerId;joyOwner='zone';joy.classList.add('active');
+ setTouchPosition('joy',e.clientX,e.clientY,false);moveZone.setPointerCapture(e.pointerId);joyMove(e);
+});
+moveZone.addEventListener('pointermove',e=>{if(joyOwner==='zone'&&joyId===e.pointerId)joyMove(e)});
+for(const ev of ['pointerup','pointercancel','lostpointercapture'])moveZone.addEventListener(ev,joyRelease);
+window.addEventListener('resize',placeTouchControls);
+window.addEventListener('orientationchange',()=>{requestAnimationFrame(placeTouchControls)});
+// Fix multi-touch releases when the browser is backgrounded.
+window.addEventListener('pagehide',()=>{st.shoot=false;st.touch.x=st.touch.y=0;st.leanL=st.leanR=false;knob.style.transform='translate(0,0)'});
+placeTouchControls();
 function run(t){if(!st.last)st.last=t;let dt=Math.min(.045,(t-st.last)/1000);st.last=t;
 if(!st.paused)step(dt);
 if(!window.__speedballWebGLReady){ctx.save();ctx.setTransform(canvasRatio,0,0,canvasRatio,0,0);ctx.clearRect(0,0,W,H);if(st.view==='fps')drawFPS();else drawTopDown();ctx.restore();}
 if(st.frame%8===0)updateTelemetry();requestAnimationFrame(run)}
 // WebGL renderer observes the existing authoritative physics, AI, and career state.
-window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,selectPlayer,setView,feed,resetPoint,gameVersion:'0.3'};
+window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,selectPlayer,setView,feed,resetPoint,gameVersion:'0.4'};
 // Initial ready room.
 document.documentElement.classList.toggle('touchDevice',touchDevice);buildField();spawnPlayers();resize();renderSide();setView('tactical');syncUI();refreshStageActions();requestAnimationFrame(run);
 })();
+
 </script>
 <script type="module">
 /**
@@ -1334,7 +1580,7 @@ muzzleFlash.rotation.x=-halfPi;muzzleFlash.visible=false;
 const reticleRing=mesh(new THREE.RingGeometry(.004,.008,20),new THREE.MeshBasicMaterial({color:0xdcffa5,transparent:true,opacity:.8,depthTest:false}),cam,[0,0,-.36]);reticleRing.visible=false;
 
 // 3D inset overhead radar for FPS. Drawn only in this tiny UI canvas.
-const radar=document.createElement('canvas');radar.width=260;radar.height=208;
+const radar=document.createElement('canvas');radar.id='insetRadar';radar.width=260;radar.height=208;
 radar.style.cssText='position:absolute;z-index:3;right:13px;top:86px;width:148px;height:118px;pointer-events:none;opacity:.93;border:1px solid #b6e7d376;border-radius:8px;background:#0c211a';
 stage.appendChild(radar);
 const radarCtx=radar.getContext('2d');let radarFrame=0;
@@ -1392,7 +1638,7 @@ function updateCamera(dt,now){const mode=st.view;const p=st.people.find(p=>p.tea
   firstPersonRig.rotation.z=smooth(firstPersonRig.rotation.z,(p.lean||0)*.05+Math.sin(now*.002)*.004,dt*10);
   muzzleFlash.visible=!!(p.alive&&p.recoil>.62&&p.reload<=0);
   muzzleFlash.scale.setScalar(p.recoil||1);
-  radar.style.display=st.side||st.phase==='prep'?'none':'block';
+  radar.style.display=mobile||st.side||st.phase==='prep'?'none':'block';
   if(++radarFrame%7===0)drawRadar();
  }else{
   firstPersonRig.visible=false;reticleRing.visible=false;radar.style.display='none';
