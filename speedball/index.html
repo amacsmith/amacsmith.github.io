@@ -259,6 +259,96 @@ html,body,#stage{overscroll-behavior:none}
  #mobileStatus{max-width:122px}
 }
 
+
+/* v0.5: LARGE-TOUCH CONTROLLER. Minimum action face >=70px, with uncluttered two-thumb zones. */
+#touchControls{--tc-opacity:.96;--tc-scale:1}
+#touchControls .joy{width:156px;height:156px;border-width:3px;border-color:#eaffbaba;background:radial-gradient(circle at 45% 38%,#305b52af 0%,#09262cda 70%);box-shadow:0 0 0 8px #05131bb3,0 9px 35px #000a,inset 0 0 26px #91ffb42d}
+#touchControls .joyKnob{width:68px;height:68px;margin:-34px 0 0 -34px;background:linear-gradient(145deg,#f4ffca,#79dbc7);border-width:3px}
+#touchControls .joyCaption{font-size:12px;bottom:-27px;letter-spacing:.18em}
+#touchControls .touchRight{grid-template-columns:repeat(2,82px);grid-template-rows:repeat(2,78px);gap:10px}
+#touchControls .actBtn{width:82px;height:78px;min-height:0;min-width:0;border-radius:20px;border-width:2px;padding:6px 3px;gap:5px;background:linear-gradient(165deg,#12433dea,#092d36e9)}
+#touchControls .actBtn b{font-size:28px;line-height:1}
+#touchControls .actBtn small{font-size:10px;letter-spacing:.075em}
+#touchControls #touchSlide{background:linear-gradient(160deg,#32452bea,#22382bee);border-color:#d1f96eaf}
+#touchControls #touchSlide b{color:#eaff94}
+#touchControls #touchPeek{border-color:#94ddfba8}
+#touchControls .fire{width:138px;height:138px;border-width:4px;background:radial-gradient(circle at 30% 25%,#f8ffd3,#d6fc6a 55%,#8ebe2b);box-shadow:0 0 0 8px #07151a9c,0 0 0 11px #e6ff5452,0 8px 28px #000d}
+#touchControls .fire b{font-size:27px}
+#touchControls .fire small{font-size:10px;letter-spacing:.04em}
+#touchControls .fire.held{box-shadow:0 0 0 9px #9ccc2580,0 0 0 15px #d7ff66a0,0 0 40px #d9ff649c}
+#touchControls .touchTop{gap:7px}
+#touchControls .touchTop .topBtn{width:58px;height:51px;border-width:2px;min-width:0;min-height:0;border-radius:14px;padding:3px;gap:5px}
+#touchControls .touchTop .topBtn b{font-size:21px}
+#touchControls .touchTop .topBtn small{font-size:9px;letter-spacing:.025em}
+#mobileStatus{font-size:11px;padding:9px 12px;border-radius:11px}
+#touchAimHint{right:29%;top:36%;font-size:11px;white-space:nowrap}
+#touchEditor{max-height:min(284px,92%);width:min(475px,calc(100% - 20px));padding:15px;border-radius:17px}
+.editHeader strong{font-size:15px}
+.editHeader span{font-size:11px}
+.editDone{min-width:76px;height:44px;font-size:13px}
+.editRow label{font-size:12px;gap:8px}
+.editRow input{min-height:26px}
+.editActions button{font-size:12px;padding:10px;min-height:44px;border-radius:10px}
+.floatOption{font-size:11px}
+#touchControls .actBtn.just-tapped{border-color:#fff9a0;filter:brightness(1.4)}
+#touchControls .fire::after{content:'';position:absolute;inset:-13px;border-radius:50%;pointer-events:none;border:1px solid #eaff6d38}
+@media(pointer:coarse) and (orientation:landscape){
+ #touchControls .touchTop{top:6px}
+ #mobileStatus{top:7px}
+}
+@media(pointer:coarse) and (max-height:390px){
+ #touchControls .joy{width:140px;height:140px}
+ #touchControls .joyKnob{width:60px;height:60px;margin:-30px 0 0 -30px}
+ #touchControls .touchRight{grid-template-columns:repeat(2,74px);grid-template-rows:repeat(2,70px);gap:8px}
+ #touchControls .actBtn{width:74px;height:70px;border-radius:17px}
+ #touchControls .actBtn b{font-size:25px}
+ #touchControls .actBtn small{font-size:10px}
+ #touchControls .fire{width:126px;height:126px}
+ #touchControls .fire b{font-size:23px}
+ #touchControls .fire small{font-size:9px}
+ #touchControls .touchTop .topBtn{width:52px;height:46px}
+ #touchControls .touchTop .topBtn b{font-size:18px}
+ #touchControls .touchTop .topBtn small{font-size:8px}
+ #touchAimHint{display:none}
+ #mobileStatus{font-size:10px;padding:6px 10px}
+}
+@media(pointer:coarse) and (orientation:portrait){
+ #touchControls .touchTop{top:79px;gap:5px}
+ #touchControls .touchTop .topBtn{width:51px;height:50px;min-width:0;min-height:0}
+ #touchControls .touchTop .topBtn small{font-size:8px}
+ #mobileStatus{top:81px;font-size:10px;max-width:122px;padding:7px 10px}
+ #touchControls .joy{width:150px;height:150px}
+ #touchControls .fire{width:138px;height:138px}
+ #touchControls .touchRight{grid-template-columns:repeat(2,82px);grid-template-rows:repeat(2,78px);gap:10px}
+ #touchControls .actBtn{width:82px;height:78px}
+ #touchEditor{top:139px;max-height:55%;}
+ #touchAimHint{display:none}
+}
+
+
+/* Three thumb-size shortcuts, with large secondary actions one tap away. */
+#touchControls .touchTop .topBtn{width:67px;height:56px;border-width:2px;border-radius:15px;min-width:0;min-height:0}
+#touchControls .touchTop .topBtn b{font-size:24px}
+#touchControls .touchTop .topBtn small{font-size:10px}
+#touchQuickMenu{display:none;position:absolute;top:calc(100% + 10px);right:0;grid-template-columns:repeat(3,86px);gap:8px;padding:10px;background:#071f25f2;border:1px solid #9ecf9c99;border-radius:16px;box-shadow:0 15px 32px #000b;pointer-events:auto;z-index:9}
+#touchQuickMenu.open{display:grid}
+#touchControls #touchQuickMenu .touchBtn{pointer-events:auto;width:86px;height:65px;min-width:0;min-height:0;padding:4px;border-radius:13px;gap:4px}
+#touchControls #touchQuickMenu .touchBtn b{font-size:25px}
+#touchControls #touchQuickMenu .touchBtn small{font-size:10px}
+#touchControls #touchMore[aria-expanded=true]{background:#36563b;border-color:#d8ff64}
+@media(pointer:coarse) and (max-height:390px){
+ #touchControls .touchTop .topBtn{width:66px;height:49px}
+ #touchControls .touchTop .topBtn b{font-size:19px}
+ #touchControls .touchTop .topBtn small{font-size:9px}
+}
+@media(pointer:coarse) and (orientation:portrait){
+ #touchControls .touchTop .topBtn{width:63px;height:53px}
+ #touchControls .touchTop .topBtn b{font-size:21px}
+ #touchControls .touchTop .topBtn small{font-size:9px}
+ #touchQuickMenu{grid-template-columns:repeat(3,75px);gap:5px;padding:7px}
+ #touchControls #touchQuickMenu .touchBtn{width:75px;height:62px}
+}
+
 </style></head><body>
 <div id="app"><header id="header"><div class="brand"><div class="brandLogo">✕</div><div><div class="brandText">SPEEDBALL<span>:</span>ASCENT</div><div class="brandSub">PROFESSIONAL PAINTBALL SIMULATOR</div></div></div><div class="headDivider"></div><div class="headTag">TOUR STATUS<b id="headLeague">ROOKIE CIRCUIT</b></div><div class="headSpacer"></div><div class="statPill"><i>TEAM FUNDS</i><span id="headCash">$2,500</span></div><button class="headerBtn" id="headerTactics">TACTICS</button><button class="headerBtn" id="headerView">↗ FPS VIEW</button><button class="headerBtn" id="headerSwitch">⇄ PLAYER</button><button class="headerBtn" id="headerPause">Ⅱ</button></header>
 <div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="webglHost" aria-hidden="true"></div><div id="crosshair3d"></div><button id="gfxMode" title="Cycle rendering quality">GRAPHICS: AUTO</button><div id="gfxInfo"><span class="pip"></span><span id="fpsRead">WEBGL 3D</span></div><div id="fieldWatermark">AUTHENTIC FIELD SCALE &bull; LIVE BALLISTICS &bull; TEAM COMMAND</div><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls" aria-label="Mobile match controls">
@@ -271,28 +361,29 @@ html,body,#stage{overscroll-behavior:none}
   <div id="touchTop" class="touchTop" role="toolbar" aria-label="Match shortcuts">
     <button class="touchBtn topBtn" id="touchView" aria-label="Toggle tactical map"><b>&#9638;</b><small>MAP</small></button>
     <button class="touchBtn topBtn" id="touchSwitch" aria-label="Switch player"><b>&#8646;</b><small>NEXT</small></button>
-    <button class="touchBtn topBtn" id="touchPlan" aria-label="Open tactical coaching"><b>&#9818;</b><small>COACH</small></button>
-    <button class="touchBtn topBtn" id="touchEdit" aria-label="Customize touch controls"><b>&#9881;</b><small>HUD</small></button>
-    <button class="touchBtn topBtn" id="touchFull" aria-label="Enter or leave fullscreen"><b>&#9974;</b><small>FULL</small></button>
-  </div>
-  <div id="touchRight" class="touchRight controlUnit" data-move="actions" role="group" aria-label="Movement action buttons">
-    <button class="touchBtn actBtn leanBtn" id="touchLeft" aria-label="Hold to lean left"><b>&#8598;</b><small>LEFT</small></button>
-    <button class="touchBtn actBtn leanBtn" id="touchRightLean" aria-label="Hold to lean right"><b>&#8599;</b><small>RIGHT</small></button>
-    <button class="touchBtn actBtn" id="touchCrouch" aria-pressed="false" aria-label="Toggle crouch"><b>&#8595;</b><small id="crouchLabel">CROUCH</small></button>
-    <button class="touchBtn actBtn" id="touchSlide" aria-label="Slide while sprinting"><b>&#10148;</b><small>SLIDE</small></button>
-    <button class="touchBtn actBtn" id="touchDive" aria-label="Dive while sprinting"><b>&#8600;</b><small>DIVE</small></button>
-    <button class="touchBtn actBtn" id="touchReload" aria-label="Reload with a paint pod"><b>&#8635;</b><small id="reloadLabel">RELOAD</small></button>
-  </div>
-  <button id="touchFire" class="touchBtn fire controlUnit" data-move="fire" aria-label="Hold to fire; drag to aim" title="Hold to fire, drag to aim"><span class="fireRing" aria-hidden="true"></span><b>FIRE</b><small>HOLD + AIM</small></button>
-  <div id="touchAimHint" aria-hidden="true">SWIPE TO AIM</div>
-  <section id="touchEditor" aria-label="Customize mobile controls" role="dialog" aria-modal="false">
-    <div class="editHeader"><div><strong>YOUR CONTROLS</strong><span>Drag MOVE, ACTIONS, or FIRE to reposition</span></div><button id="touchDone" class="editDone">DONE</button></div>
-    <div class="editRow">
-      <label>SIZE <input id="touchSize" type="range" min="0.78" max="1.2" step="0.02" value="1" /></label>
-      <label>OPACITY <input id="touchOpacity" type="range" min="0.48" max="1" step="0.02" value="0.9" /></label>
-      <label>AIM <input id="touchSensitivity" type="range" min="0.55" max="1.8" step="0.05" value="1" /></label>
+    <button class="touchBtn topBtn" id="touchMore" aria-expanded="false" aria-label="More game options"><b>&#9776;</b><small>MORE</small></button>
+    <div id="touchQuickMenu" aria-label="More match actions">
+      <button class="touchBtn" id="touchPlan" aria-label="Open tactical coaching"><b>&#9818;</b><small>COACH</small></button>
+      <button class="touchBtn" id="touchEdit" aria-label="Customize touch controls"><b>&#9881;</b><small>HUD SIZE</small></button>
+      <button class="touchBtn" id="touchFull" aria-label="Enter or leave fullscreen"><b>&#9974;</b><small>FULL</small></button>
     </div>
-    <div class="editActions"><label class="floatOption"><input id="touchFloating" type="checkbox" checked /> Floating stick</label><button id="touchMirror">FLIP HANDS</button><button id="touchQuality">GRAPHICS</button><button id="touchReset">RESET</button></div>
+  </div>
+  <div id="touchRight" class="touchRight controlUnit" data-move="actions" role="group" aria-label="Movement and cover actions">
+    <button class="touchBtn actBtn majorAction" id="touchSlide" aria-label="Tap to slide; swipe down to dive"><b>&#10148;</b><small>SLIDE</small></button>
+    <button class="touchBtn actBtn" id="touchCrouch" aria-pressed="false" aria-label="Toggle crouch"><b>&#8595;</b><small id="crouchLabel">CROUCH</small></button>
+    <button class="touchBtn actBtn" id="touchPeek" aria-label="Hold to peek; swipe left or right to choose side"><b>&#8660;</b><small>PEEK</small></button>
+    <button class="touchBtn actBtn" id="touchReload" aria-label="Reload marker"><b>&#8635;</b><small id="reloadLabel">RELOAD</small></button>
+  </div>
+  <button id="touchFire" class="touchBtn fire controlUnit" data-move="fire" aria-label="Hold to fire; drag to aim" title="Hold to fire, drag to aim"><span class="fireRing" aria-hidden="true"></span><b>FIRE</b><small>DRAG TO AIM</small></button>
+  <div id="touchAimHint" aria-hidden="true">DRAG TO LOOK · FIRE TO SHOOT</div>
+  <section id="touchEditor" aria-label="Customize mobile controls" role="dialog" aria-modal="false">
+    <div class="editHeader"><div><strong>YOUR CONTROLS</strong><span>Drag groups · slide button: swipe down to dive · peek: swipe sideways</span></div><button id="touchDone" class="editDone">DONE</button></div>
+    <div class="editRow">
+      <label>SIZE <input id="touchSize" type="range" min="0.88" max="1.30" step="0.02" value="1" /></label>
+      <label>OPACITY <input id="touchOpacity" type="range" min="0.48" max="1" step="0.02" value="0.9" /></label>
+      <label>AIM <input id="touchSensitivity" type="range" min="0.55" max="2.5" step="0.05" value="1" /></label>
+    </div>
+    <div class="editActions"><label class="floatOption"><input id="touchFloating" type="checkbox" checked /> Floating stick</label><button id="touchMirror">FLIP HANDS</button><button id="touchQuality">GRAPHICS</button><button id="touchLarge">JUMBO</button><button id="touchReset">RESET</button></div>
   </section>
 </div><div id="pauseOverlay"><div class="pauseCard"><h3>PLAY PAUSED</h3><p class="minorNote">Study the field, change your view, then get back in the fight.</p><button id="resumeBtn" class="solidBtn">RESUME POINT</button><button id="pauseMenuBtn" class="outlineBtn">RETURN TO TEAM HQ</button></div></div></section><aside id="side"><div class="sidePad"><div class="sideHeader"><div><div class="sideEyebrow" id="sideEyebrow">COACH'S TABLE</div><div class="sideTitle" id="sideTitle">Breakout plan</div></div><button class="exitSide" id="closeSide">✕ CLOSE</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="tactics">TACTICS</button><button class="tab" data-tab="roster">SQUAD</button><button class="tab" data-tab="career">CAREER</button><button class="tab" data-tab="armory">ARMORY</button></div><div id="sideContent"></div></div></aside><div id="overlay"><div class="modal" id="modal"></div></div></div><footer id="footer"><span>ASCENT 3D // WEBGL REAL-TIME ENGINE</span><span>FIELD 150 × 120 FT &nbsp;•&nbsp; .68 CAL &nbsp;•&nbsp; 300 FPS / 10.5 BPS</span><span>LOCAL CAREER SAVE</span></footer></div>
 <script>
@@ -384,8 +475,8 @@ function spawnPlayers(){let m=st.mode;const xstarts=m===3?[-1.45,0,1.45]:[-2.12,
 }
 function resetPoint(){st.mobileEditing=false;el('touchControls')?.classList.remove('editing');spawnPlayers();st.balls=[];st.splats=[];st.particles=[];st.shotTimes=[];st.time=st.mode===3?180:300;st.phase='prep';st.coach=false;st.countdown=0;st.liveAge=0;st.paused=false;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.touch.x=st.touch.y=0;st.view='tactical';showSide(true);syncUI();renderSide();}
 function fullMatchReset(){st.coach=false;st.score=[0,0];st.point=1;st.earnings=0;st.spent=0;buildField();resetPoint()}
-function showSide(show){st.side=show;el('side').classList.toggle('hidden',!show);resize();refreshStageActions()}
-function setView(view){st.view=view;el('headerView').textContent=view==='fps'?'▧ MAP VIEW':'↗ FPS VIEW';el('viewChip').innerHTML='<span class="liveCircle"></span>'+(view==='fps'?'FIRST PERSON / '+roster[st.selected]:'TACTICAL / FIELD OVERVIEW');if(view==='fps'&&(st.phase==='live'||st.phase==='countdown')&&!touchDevice){el('controlTip').textContent='CLICK FIELD TO LOOK • WASD MOVE • FIRE • SHIFT SLIDE • F DIVE • C CROUCH • Q/E LEAN • TAB PLAYER • V VIEW'}else if(view==='fps'&&touchDevice){el('controlTip').textContent='DRAG OPEN FIELD TO LOOK • HOLD FIRE • DOUBLE-TAP SLIDE FOR DIVE • LEAN'}else if(view==='tactical'&&st.phase==='live'){el('controlTip').textContent='WASD MOVE • AIM & FIRE WITH MOUSE • SHIFT SLIDE • TAB PLAYER • V FIRST PERSON'}else{el('controlTip').textContent='SELECT PLAYER → CLICK DESTINATION • CHOOSE A BREAKOUT • START POINT'}resize();el('touchControls')?.classList.toggle('touch-fps',view==='fps')}
+function showSide(show){st.side=show;el('side').classList.toggle('hidden',!show);resize();refreshStageActions();placeTouchControls();}
+function setView(view){st.view=view;el('headerView').textContent=view==='fps'?'▧ MAP VIEW':'↗ FPS VIEW';el('viewChip').innerHTML='<span class="liveCircle"></span>'+(view==='fps'?'FIRST PERSON / '+roster[st.selected]:'TACTICAL / FIELD OVERVIEW');if(view==='fps'&&(st.phase==='live'||st.phase==='countdown')&&!touchDevice){el('controlTip').textContent='CLICK FIELD TO LOOK • WASD MOVE • FIRE • SHIFT SLIDE • F DIVE • C CROUCH • Q/E LEAN • TAB PLAYER • V VIEW'}else if(view==='fps'&&touchDevice){el('controlTip').textContent='DRAG OPEN FIELD TO LOOK • HOLD FIRE • DOUBLE-TAP SLIDE FOR DIVE • LEAN'}else if(view==='tactical'&&st.phase==='live'){el('controlTip').textContent='WASD MOVE • AIM & FIRE WITH MOUSE • SHIFT SLIDE • TAB PLAYER • V FIRST PERSON'}else{el('controlTip').textContent='SELECT PLAYER → CLICK DESTINATION • CHOOSE A BREAKOUT • START POINT'}resize();el('touchControls')?.classList.toggle('touch-fps',view==='fps');placeTouchControls();}
 function selectPlayer(i){let n=(i+st.mode)%st.mode;if(st.phase==='live'&&!st.people.some(p=>p.team===0&&p.index===n&&p.alive)){let available=st.people.find(p=>p.team===0&&p.alive);if(available)n=available.index;}st.selected=n;st.crouch=false;st.shoot=false;st.leanL=st.leanR=false;st.mouse.down=false;setView(st.view);renderSide();syncUI()}
 function feed(s,team=0){st.feed.unshift({text:s,team,t:performance.now()});st.feed.length=Math.min(st.feed.length,5);el('feed').innerHTML=st.feed.map(f=>'<div class="feedLine '+(f.team?'enemy':'')+'"><span>◆</span> '+f.text+'</div>').join('')}
 function syncUI(){el('headLeague').textContent=LEAGUES[career.league];el('headCash').textContent=money(career.cash);el('myScore').textContent=st.score[0];el('oppScore').textContent=st.score[1];el('timeLeft').textContent=fmtTime(st.time);el('scoreMode').textContent=st.mode+'v'+st.mode+' • POINT '+st.point;el('friendsAlive').textContent=st.people.filter(p=>p.team===0&&p.alive).length+' ACTIVE';el('enemiesAlive').textContent=st.people.filter(p=>p.team===1&&p.alive).length+' ACTIVE';setViewLabelOnly();}
@@ -510,28 +601,40 @@ function slidePlayer(p,dive=false){
  p.slideVX=u.x*initial;p.slideVY=u.y*initial;p.stamina-=dive?34:22;
  p.crouch=true;st.shake=dive?.29:.20;sound('slide');return true;
 }
-function humanInput(p,dt){if(!p.alive){st.shoot=false;return}
-let mx=(st.keys.KeyD?1:0)-(st.keys.KeyA?1:0)+st.touch.x,my=(st.keys.KeyS?1:0)-(st.keys.KeyW?1:0)+st.touch.y;
-let mag=Math.hypot(mx,my);if(mag>.16)p.manualOverride=true;
-if(mag>1){mx/=mag;my/=mag}
-let vx,vy;
-const autopilot=st.assist&&p.autoBreakout&&!p.manualOverride&&p.age<5.2;
-if(autopilot){
+function humanInput(p,dt){
+ if(!p.alive){st.shoot=false;return}
+ let mx=(st.keys.KeyD?1:0)-(st.keys.KeyA?1:0)+st.touch.x;
+ let my=(st.keys.KeyS?1:0)-(st.keys.KeyW?1:0)+st.touch.y;
+ let mag=Math.hypot(mx,my);
+ if(mag>.11)p.manualOverride=true;
+ if(mag>1){mx/=mag;my/=mag;mag=1}
+ p.crouch=st.crouch||!!st.keys.KeyC;
+ p.leanTarget=(st.leanR||st.keys.KeyE?1:0)-(st.leanL||st.keys.KeyQ?1:0);
+ let vx=0,vy=0;
+ const autopilot=st.assist&&p.autoBreakout&&!p.manualOverride&&p.age<5.2;
+ if(autopilot){
   if(!p.nav||!p.nav.length)setNav(p);
   let next=p.nav?.[p.navIndex]||p.goal;
   if(next&&dist(p.x,p.y,next.x,next.y)<.75&&p.navIndex<p.nav.length-1){p.navIndex++;next=p.nav[p.navIndex]}
-  if(next){let d=dist(p.x,p.y,next.x,next.y);if(d>.75){vx=(next.x-p.x)/d;vy=(next.y-p.y)/d;mag=1;}else{vx=vy=0;p.autoBreakout=false;p.crouch=true}}
-  else{vx=vy=0;p.autoBreakout=false;}
-}else if(st.view==='fps'){vx=mx*Math.cos(p.yaw)-my*Math.sin(p.yaw);vy=mx*Math.sin(p.yaw)+my*Math.cos(p.yaw)}else {vx=mx;vy=my}
-if(p.age>=5.2)p.autoBreakout=false;
-if(p.slide<=0){let max=(p.crouch&&!autopilot?2.4:autopilot?6.45:5.4+career.gear.boots*.23)*(p.stamina<20?.82:1);const len=Math.hypot(vx,vy),acc=13+career.gear.boots*1.8;const targetX=vx*max,targetY=vy*max;
-p.vx+=clamp(targetX-p.vx,-acc*dt,acc*dt);p.vy+=clamp(targetY-p.vy,-acc*dt,acc*dt);if(!len){p.vx*=Math.max(0,1-7*dt);p.vy*=Math.max(0,1-7*dt)}
-moveBody(p,p.vx,p.vy,dt)}
-if(st.keys.ShiftLeft||st.keys.ShiftRight){if(!p.slideKeyLatch){slidePlayer(p);p.slideKeyLatch=true}}else p.slideKeyLatch=false;
-p.crouch=st.crouch||!!st.keys.KeyC;
-p.leanTarget=(st.leanR||st.keys.KeyE?1:0)-(st.leanL||st.keys.KeyQ?1:0);
-if(st.shoot||st.mouse.down){shoot(p)}else p.fireHold=0;
-if(st.keys.KeyR)reload(p);
+  if(next){let d=dist(p.x,p.y,next.x,next.y);if(d>.75){vx=(next.x-p.x)/d;vy=(next.y-p.y)/d;mag=1;}else{p.autoBreakout=false;p.crouch=true}}
+  else p.autoBreakout=false;
+ }else if(st.view==='fps'){vx=mx*Math.cos(p.yaw)-my*Math.sin(p.yaw);vy=mx*Math.sin(p.yaw)+my*Math.cos(p.yaw)}
+ else{vx=mx;vy=my}
+ if(p.age>=5.2)p.autoBreakout=false;
+ if(p.slide<=0){
+  const max=(p.crouch&&!autopilot?2.7:autopilot?6.55:6.15+career.gear.boots*.21)*(p.stamina<20?.86:1);
+  const actualMag=Math.min(1,Math.hypot(vx,vy));
+  const response=actualMag>.02 ?(p.crouch?.108:.078):.102; // 63% acceleration in 78 ms, no per-axis jitter
+  const blend=1-Math.exp(-dt/response);
+  const targetX=vx*max,targetY=vy*max;
+  p.vx+= (targetX-p.vx)*blend;
+  p.vy+= (targetY-p.vy)*blend;
+  if(actualMag<.01&&Math.hypot(p.vx,p.vy)<.035){p.vx=0;p.vy=0}
+  moveBody(p,p.vx,p.vy,dt);
+ }
+ if(st.keys.ShiftLeft||st.keys.ShiftRight){if(!p.slideKeyLatch){slidePlayer(p);p.slideKeyLatch=true}}else p.slideKeyLatch=false;
+ if(st.shoot||st.mouse.down){shoot(p)}else p.fireHold=0;
+ if(st.keys.KeyR)reload(p);
 }
 function aiBrain(p,dt){
  if(!p.alive)return;
@@ -876,14 +979,14 @@ let players=st.people.filter(p=>p.team===0);let nearest=players.sort((a,b)=>dist
 let p=st.people.find(p=>p.team===0&&p.index===st.selected);if(p){p.goal=safeGoal(pos.x,pos.y);setNav(p);feed(p.name+' ROUTE → UPDATED')}return}
 if(st.phase==='live'){const p=st.people.find(p=>p.team===0&&p.index===st.selected);if(p){p.yaw=Math.atan2(pos.x-p.x,-(pos.y-p.y));p.pitch=.005+dist(pos.x,pos.y,p.x,p.y)*.0007;}}
 }
-function rotateFPS(dx,dy,isTouch=false){if(st.view!=='fps'||st.phase!=='live'||st.mobileEditing||st.paused)return;const p=st.people.find(p=>p.team===0&&p.index===st.selected);if(!p)return;const speed=isTouch?st.sensScale*1.40:1;p.yaw+=dx*st.sens*speed;p.pitch=clamp(p.pitch+dy*st.sens*speed,-.50,.44)}
+function rotateFPS(dx,dy,isTouch=false){if(st.view!=='fps'||st.phase!=='live'||st.mobileEditing||st.paused)return;const p=st.people.find(p=>p.team===0&&p.index===st.selected);if(!p)return;const magnitude=Math.hypot(dx,dy);const speed=isTouch?st.sensScale*(2.55+Math.min(.78,magnitude*.022)):1;p.yaw+=dx*st.sens*speed;p.pitch=clamp(p.pitch+dy*st.sens*speed,-.50,.44)}
 function pointOnCanvas(e){const r=cv.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
 cv.addEventListener('pointerdown',e=>{initAudio();if(st.side&&st.phase==='live')return;const v=pointOnCanvas(e);st.mouse.x=v.x;st.mouse.y=v.y;
 if(st.view==='tactical'){fieldPointer(v.x,v.y,true);if(st.phase==='live')st.mouse.down=true}
 else if(st.phase==='live'){if(e.pointerType==='mouse'&&document.pointerLockElement!==cv&&cv.requestPointerLock)cv.requestPointerLock().catch(()=>{});if(e.pointerType==='touch'){if(st.touch.lookId===null){st.touch.lookId=e.pointerId;st.touch.lastX=e.clientX;st.touch.lastY=e.clientY;try{cv.setPointerCapture(e.pointerId)}catch(err){}}}else{st.mouse.down=true;st.mouseId=e.pointerId;st.touch.lookId=e.pointerId;st.touch.lastX=e.clientX;st.touch.lastY=e.clientY}}});
 cv.addEventListener('pointermove',e=>{let v=pointOnCanvas(e);st.mouse.x=v.x;st.mouse.y=v.y;if(st.view==='tactical'){if(st.phase==='live')fieldPointer(v.x,v.y);return}
 if(st.view==='fps'&&st.phase==='live'&&(!st.paused)){if(document.pointerLockElement===cv){rotateFPS(e.movementX,-e.movementY)}else if(st.touch.lookId===e.pointerId){rotateFPS(e.clientX-st.touch.lastX,-(e.clientY-st.touch.lastY),e.pointerType==='touch');st.touch.lastX=e.clientX;st.touch.lastY=e.clientY}}});
-window.addEventListener('pointerup',e=>{if(st.touch.lookId===e.pointerId)st.touch.lookId=null;if(st.mouseId===e.pointerId){st.mouse.down=false;st.mouseId=null}});
+for(const ev of ['pointerup','pointercancel','lostpointercapture'])window.addEventListener(ev,e=>{if(st.touch.lookId===e.pointerId)st.touch.lookId=null;if(st.mouseId===e.pointerId){st.mouse.down=false;st.mouseId=null}});
 cv.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('keydown',e=>{if(['Tab','Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();if(e.repeat&&['Tab','KeyV','KeyP'].includes(e.code))return;
 st.keys[e.code]=true;
@@ -913,23 +1016,40 @@ el('modal').addEventListener('click',e=>{let b=e.target.closest('[data-modal]');
 // Touch-first match controller: independent pointers, custom locations and meaningful action keys.
 const ctl=el('touchControls'),stage=el('stage'),joy=el('joy'),knob=el('joyKnob');
 const touchNodes={joy,actions:el('touchRight'),fire:el('touchFire')};
-const touchDefaults={scale:1,opacity:.91,floating:true,mirror:false,positions:{}};
+const touchDefaults={scale:1,opacity:.97,floating:true,mirror:false,positions:{}};
 let touchPrefs={...touchDefaults,positions:{}};
-try{const v=JSON.parse(localStorage.getItem('ascent-touch-v4')||'null');if(v&&typeof v==='object')touchPrefs={...touchDefaults,...v,positions:v.positions||{}}}catch(e){}
-const touchSave=()=>{try{localStorage.setItem('ascent-touch-v4',JSON.stringify(touchPrefs))}catch(e){}};
+try{const v=JSON.parse(localStorage.getItem('ascent-touch-v5')||'null');if(v&&typeof v==='object')touchPrefs={...touchDefaults,...v,positions:v.positions||{}}}catch(e){}
+const touchSave=()=>{try{localStorage.setItem('ascent-touch-v5',JSON.stringify(touchPrefs))}catch(e){}};
 const touchMode=()=>stage.clientWidth<stage.clientHeight?'portrait':'landscape';
-function baseTouchPositions(){const w=stage.clientWidth,h=stage.clientHeight,portrait=w<h;
- if(portrait)return {joy:{x:.22,y:.725},fire:{x:Math.max(.72,1-72/w),y:.55},actions:{x:Math.max(.62,1-103/w),y:.81}};
- const fireX=1-Math.min(118,Math.max(73,w*.116))/w;
- return {joy:{x:Math.min(.185,Math.max(.13,96/w)),y:.62},fire:{x:fireX,y:.63},actions:{x:fireX-Math.min(154,Math.max(137,w*.215))/w,y:.61}};
+// Design from measured thumb reach rather than percentage offsets anchored to corners.
+function touchSizes(){const w=stage.clientWidth,h=stage.clientHeight,portrait=w<h,short=!portrait&&window.innerHeight<390;
+ return portrait?{joy:150,fire:138,actionsW:174,actionsH:166}:short?{joy:140,fire:126,actionsW:156,actionsH:148}:{joy:156,fire:138,actionsW:174,actionsH:166};
+}
+function baseTouchPositions(){
+ const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight),portrait=w<h,s=touchSizes(),scale=touchPrefs.scale;
+ let joyX,joyY,fireX,fireY,actionsX,actionsY;
+ if(portrait){
+  joyX=Math.max(s.joy*scale/2+9,w*.25);joyY=h*.74;
+  fireX=w-(s.fire*scale/2+18);fireY=h*.74;
+  actionsX=w-(s.actionsW*scale/2+16);actionsY=h*.49;
+ }else{
+  joyX=Math.max(s.joy*scale/2+12,w*.14);joyY=h*.63;
+  fireX=w-(s.fire*scale/2+16);fireY=h*.66;
+  actionsX=fireX-(s.fire+s.actionsW)*scale/2-12;actionsY=h*.64;
+ }
+ return {joy:{x:joyX/w,y:joyY/h},fire:{x:fireX/w,y:fireY/h},actions:{x:actionsX/w,y:actionsY/h}};
 }
 function touchPositions(){const mode=touchMode(),saved=touchPrefs.positions?.[mode]||{},defaults=baseTouchPositions();
- const copy={};for(const k of ['joy','actions','fire']){const p=saved[k]||defaults[k];copy[k]={x:Math.max(0,Math.min(1,p.x)),y:Math.max(0,Math.min(1,p.y))};if(!saved[k]&&touchPrefs.mirror)copy[k].x=1-copy[k].x}return copy;}
-function touchClamp(key,p){const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight);
- const scale=touchPrefs.scale;const width=(key==='joy'?120:key==='fire'?101:144)*scale,height=(key==='joy'?125:key==='fire'?101:178)*scale;
- const pxX=Math.min(w-width/2-7,Math.max(width/2+7,p.x*w));
- const pxY=Math.min(h-height/2-9,Math.max(height/2+9,p.y*h));
- return {x:pxX/w,y:pxY/h};}
+ const copy={};for(const k of ['joy','actions','fire']){const p=saved[k]||defaults[k];copy[k]={x:Math.max(0,Math.min(1,p.x)),y:Math.max(0,Math.min(1,p.y))};if(!saved[k]&&touchPrefs.mirror)copy[k].x=1-copy[k].x}return copy;
+}
+function touchClamp(key,p){const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight),s=touchSizes(),scale=touchPrefs.scale;
+ const width=(key==='joy'?s.joy:key==='fire'?s.fire:s.actionsW)*scale;
+ const height=(key==='joy'?s.joy:key==='fire'?s.fire:s.actionsH)*scale;
+ const margin=5;
+ const pxX=clamp(p.x*w,Math.min(w/2,width/2+margin),Math.max(w/2,w-width/2-margin));
+ const pxY=clamp(p.y*h,Math.min(h/2,height/2+margin),Math.max(h/2,h-height/2-margin));
+ return {x:pxX/w,y:pxY/h};
+}
 function placeTouchControls(){if(!ctl)return;const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;
  ctl.style.setProperty('--tc-scale',String(touchPrefs.scale));ctl.style.setProperty('--tc-opacity',String(touchPrefs.opacity));
  ctl.classList.toggle('floating',!!touchPrefs.floating);ctl.classList.toggle('touch-fps',st.view==='fps');
@@ -950,14 +1070,20 @@ function editor(open){if(!touchDevice&&!window.matchMedia('(max-width:780px)').m
  el('touchSize').value=String(touchPrefs.scale);el('touchOpacity').value=String(touchPrefs.opacity);el('touchSensitivity').value=String(st.sensScale);el('touchFloating').checked=!!touchPrefs.floating;
  updatePause();placeTouchControls();updateTelemetry();
 }
-for(const [id,fn] of [['touchView',()=>setView(st.view==='fps'?'tactical':'fps')],['touchSwitch',()=>selectPlayer(st.selected+1)],['touchPlan',()=>setTab('tactics')],['touchEdit',()=>editor(true)],['touchDone',()=>editor(false)]])simpleClick(id,()=>{if(st.mobileEditing&&id!=='touchDone')return;haptic(6);fn();placeTouchControls()});
+const quickMenu=el('touchQuickMenu');
+function closeQuickMenu(){quickMenu.classList.remove('open');el('touchMore').setAttribute('aria-expanded','false')}
+simpleClick('touchMore',()=>{if(st.mobileEditing)return;const open=!quickMenu.classList.contains('open');quickMenu.classList.toggle('open',open);el('touchMore').setAttribute('aria-expanded',String(open));haptic(8)});
+for(const [id,fn] of [['touchView',()=>setView(st.view==='fps'?'tactical':'fps')],['touchSwitch',()=>selectPlayer(st.selected+1)],['touchPlan',()=>setTab('tactics')],['touchEdit',()=>editor(true)],['touchDone',()=>editor(false)]])simpleClick(id,()=>{if(st.mobileEditing&&id!=='touchDone')return;haptic(6);closeQuickMenu();fn();placeTouchControls()});
+for(const id of ['touchPlan','touchEdit','touchFull'])el(id).addEventListener('click',closeQuickMenu);
+document.addEventListener('pointerdown',e=>{if(!el('touchTop').contains(e.target))closeQuickMenu()},true);
 for(const id of ['touchSize','touchOpacity','touchSensitivity'])el(id).addEventListener('input',e=>{let v=Number(e.target.value);
  if(id==='touchSize')touchPrefs.scale=v;else if(id==='touchOpacity')touchPrefs.opacity=v;else{st.sensScale=v;saveSettings();}
  placeTouchControls();touchSave();});
 el('touchFloating').addEventListener('change',e=>{touchPrefs.floating=e.target.checked;placeTouchControls();touchSave()});
 simpleClick('touchQuality',()=>{el('gfxMode')?.click();haptic();});
 simpleClick('touchMirror',()=>{touchPrefs.mirror=!touchPrefs.mirror;touchPrefs.positions={};touchSave();placeTouchControls();haptic()});
-simpleClick('touchReset',()=>{touchPrefs={...touchDefaults,positions:{}};st.sensScale=1;saveSettings();touchSave();el('touchSize').value=1;el('touchOpacity').value=.91;el('touchSensitivity').value=1;el('touchFloating').checked=true;placeTouchControls();haptic()});
+simpleClick('touchLarge',()=>{touchPrefs.scale=touchPrefs.scale>=1.23?1:1.24;touchPrefs.positions={};el('touchSize').value=touchPrefs.scale;touchSave();placeTouchControls();haptic(14)});
+simpleClick('touchReset',()=>{touchPrefs={...touchDefaults,positions:{}};st.sensScale=1;saveSettings();touchSave();el('touchSize').value=1;el('touchOpacity').value=.97;el('touchSensitivity').value=1;el('touchFloating').checked=true;placeTouchControls();haptic()});
 // In edit mode the entire control group becomes a drag handle, including its child buttons.
 for(const [key,node] of Object.entries(touchNodes)){
  let dragId=null,offX=0,offY=0;
@@ -981,16 +1107,45 @@ holdTouch('touchFire',e=>{st.touch.fireId=e.pointerId;st.shoot=true;fireXY={x:e.
  if(st.touch.lookId===null&&Math.abs(dx)+Math.abs(dy)>0)rotateFPS(dx,-dy,true);
 });
 let lastControlHint=-9999;function controlHint(msg){if(st.now-lastControlHint>1200){feed(msg);lastControlHint=st.now}}
-holdTouch('touchLeft',()=>{st.leanL=true},()=>{st.leanL=false});
-holdTouch('touchRightLean',()=>{st.leanR=true},()=>{st.leanR=false});
-holdTouch('touchSlide',()=>{const p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p&&p.alive&&!slidePlayer(p,false))controlHint('BUILD SPEED BEFORE SLIDING')});
-holdTouch('touchDive',()=>{const p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p&&p.alive&&!slidePlayer(p,true))controlHint('SPRINT BEFORE DIVING')});
+// SLIDE tap is instantaneous; swipe down or double-tap while sliding to launch into a dive.
+let slidePointer=null,lastSlideTouch=-1e4,convertedDive=false;
+function diveFromSlide(p){
+ if(!p||!p.alive)return false;
+ if(p.slide>0&&!p.dive&&p.stamina>=12){p.dive=true;p.slide=Math.max(p.slide,.94);p.slideVX*=1.08;p.slideVY*=1.08;p.stamina-=12;st.shake=.22;return true;}
+ return slidePlayer(p,true);
+}
+holdTouch('touchSlide',e=>{
+ slidePointer={x:e.clientX,y:e.clientY};convertedDive=false;
+ const p=st.people.find(q=>q.team===0&&q.index===st.selected);
+ const doubleTap=performance.now()-lastSlideTouch<315;
+ lastSlideTouch=performance.now();
+ if(doubleTap){convertedDive=diveFromSlide(p);if(convertedDive)controlHint('HEAD-FIRST DIVE');}
+ else if(p&&p.alive&&!slidePlayer(p,false))controlHint('RUN TO GAIN SLIDE SPEED');
+},()=>{slidePointer=null;},e=>{
+ if(!slidePointer||convertedDive)return;
+ if(e.clientY-slidePointer.y>23){
+  const p=st.people.find(q=>q.team===0&&q.index===st.selected);
+  convertedDive=diveFromSlide(p);if(convertedDive){controlHint('HEAD-FIRST DIVE');haptic(18)}
+ }
+});
+let peekStart=null,peekSide=1;
+function setPeek(dir){peekSide=dir>=0?1:-1;st.leanL=peekSide<0;st.leanR=peekSide>0;el('touchPeek').setAttribute('aria-label',peekSide<0?'Peeking left':'Peeking right')}
+holdTouch('touchPeek',e=>{
+ peekStart={x:e.clientX,y:e.clientY};
+ const p=st.people.find(q=>q.team===0&&q.index===st.selected);
+ // Alternate initial edge, with swipes for an immediate intentional side choice.
+ peekSide*=-1;
+ if(p&&p.alive)setPeek(peekSide);
+},()=>{st.leanL=false;st.leanR=false;peekStart=null;el('touchPeek').setAttribute('aria-label','Hold to peek; swipe left or right to choose side');},e=>{
+ if(!peekStart)return;
+ const dx=e.clientX-peekStart.x;if(Math.abs(dx)>14)setPeek(dx);
+});
 holdTouch('touchCrouch',()=>{st.crouch=!st.crouch;const b=el('touchCrouch');b.setAttribute('aria-pressed',String(st.crouch));el('crouchLabel').textContent=st.crouch?'STAND':'CROUCH'});
 holdTouch('touchReload',()=>{const p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p&&p.alive)reload(p)});
 let joyId=null,joyOwner=null;
 function joyMove(e){const r=joy.getBoundingClientRect(),rad=Math.min(r.width,r.height)/2;
  let x=e.clientX-(r.left+r.width/2),y=e.clientY-(r.top+r.height/2);const max=rad*.61,l=Math.hypot(x,y);if(l>max){x=x/l*max;y=y/l*max}
- const deadzone=.12;const strength=Math.hypot(x,y)/max;const output=strength<deadzone?0:(strength-deadzone)/(1-deadzone);const mul=strength>0?output/strength:0;
+ const deadzone=.085;const strength=Math.hypot(x,y)/max;const output=strength<deadzone?0:Math.min(1,(strength-deadzone)/(1-deadzone));const mul=strength>0?output/strength:0;
  st.touch.x=x/max*mul;st.touch.y=y/max*mul;knob.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;
  if(output>.14){const p=st.people.find(q=>q.team===0&&q.index===st.selected);if(p)p.manualOverride=true}
 }
@@ -1011,14 +1166,31 @@ for(const ev of ['pointerup','pointercancel','lostpointercapture'])moveZone.addE
 window.addEventListener('resize',placeTouchControls);
 window.addEventListener('orientationchange',()=>{requestAnimationFrame(placeTouchControls)});
 // Fix multi-touch releases when the browser is backgrounded.
-window.addEventListener('pagehide',()=>{st.shoot=false;st.touch.x=st.touch.y=0;st.leanL=st.leanR=false;knob.style.transform='translate(0,0)'});
+const cancelTouchInputs=()=>{st.shoot=false;st.touch.x=st.touch.y=0;st.leanL=st.leanR=false;joyId=null;joyOwner=null;joy.classList.remove('active');knob.style.transform='translate(0,0)';};
+window.addEventListener('pagehide',cancelTouchInputs);window.addEventListener('blur',cancelTouchInputs);
 placeTouchControls();
-function run(t){if(!st.last)st.last=t;let dt=Math.min(.045,(t-st.last)/1000);st.last=t;
-if(!st.paused)step(dt);
-if(!window.__speedballWebGLReady){ctx.save();ctx.setTransform(canvasRatio,0,0,canvasRatio,0,0);ctx.clearRect(0,0,W,H);if(st.view==='fps')drawFPS();else drawTopDown();ctx.restore();}
-if(st.frame%8===0)updateTelemetry();requestAnimationFrame(run)}
+// Authoritative 60Hz fixed-step update: touch responsiveness and marker timing no longer depend on frame jitter.
+const FIXED_DT=1/60;let frameAccumulator=0,uiAccumulator=0;
+function run(t){
+ if(!st.last)st.last=t;
+ const delta=clamp((t-st.last)/1000,0,.10);st.last=t;
+ if(!st.paused){
+  frameAccumulator+=delta;
+  let steps=0;
+  while(frameAccumulator>=FIXED_DT&&steps<6){step(FIXED_DT);frameAccumulator-=FIXED_DT;steps++;}
+  if(steps===6&&frameAccumulator>FIXED_DT)frameAccumulator=FIXED_DT;
+ }else frameAccumulator=0;
+ st.renderLead=frameAccumulator; // visual extrapolation only, never changes hit calculations
+ if(!window.__speedballWebGLReady){
+  ctx.save();ctx.setTransform(canvasRatio,0,0,canvasRatio,0,0);ctx.clearRect(0,0,W,H);
+  if(st.view==='fps')drawFPS();else drawTopDown();ctx.restore();
+ }
+ uiAccumulator+=delta;
+ if(uiAccumulator>=.10){uiAccumulator=0;updateTelemetry()}
+ requestAnimationFrame(run);
+}
 // WebGL renderer observes the existing authoritative physics, AI, and career state.
-window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,selectPlayer,setView,feed,resetPoint,gameVersion:'0.4'};
+window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,selectPlayer,setView,feed,resetPoint,gameVersion:'0.5'};
 // Initial ready room.
 document.documentElement.classList.toggle('touchDevice',touchDevice);buildField();spawnPlayers();resize();renderSide();setView('tactical');syncUI();refreshStageActions();requestAnimationFrame(run);
 })();
@@ -1421,9 +1593,10 @@ function syncAthletes(){if(st.people===peopleRef)return;
 function animateAthlete(a,dt,now){const p=a.p;
  const yaw=-p.yaw;
  if(!a.pivot.userData.init){a.pivot.position.set(p.x,0,p.y);a.pivot.rotation.y=yaw;a.pivot.userData.init=1;}
- const follow=clamp(dt*17,0,1);
- a.pivot.position.x=smooth(a.pivot.position.x,p.x,follow);
- a.pivot.position.z=smooth(a.pivot.position.z,p.y,follow);
+ const follow=1-Math.exp(-dt*30);
+ const renderLead=Math.min(.012,st.renderLead||0);
+ a.pivot.position.x=smooth(a.pivot.position.x,p.x+p.vx*renderLead,follow);
+ a.pivot.position.z=smooth(a.pivot.position.z,p.y+p.vy*renderLead,follow);
  const delta=Math.atan2(Math.sin(yaw-a.pivot.rotation.y),Math.cos(yaw-a.pivot.rotation.y));a.pivot.rotation.y+=delta*follow;
  const speed=Math.hypot(p.vx,p.vy),pace=clamp(speed/5.4,0,1);
  const sliding=p.slide>0,diving=sliding&&p.dive;
@@ -1454,31 +1627,59 @@ function animateAthlete(a,dt,now){const p=a.p;
  a.shadow.visible=alive&&!isFPS;
 }
 
-// Glass HUD labels, tactical plan and player selection are 3D overlays, not fake 2D sprites.
-const goalM=mat(0xcdf65d,.35,0,{emissive:0x9ba444,emissiveIntensity:.25});
-const waypointM=mat(0x5de6ea,.35,0,{emissive:0x174b5a,emissiveIntensity:.25});
-const lineMat = new THREE.LineDashedMaterial({color:0xe9ff72,dashSize:.45,gapSize:.27,transparent:true,opacity:.77,depthTest:false});
-const rosterLabels=new Map();let lastRouteSig='';
+// Persistent tactical overlays: update positions, NOT canvas textures/geometries every rendered frame.
+// v0.4 regenerated 3D labels and meshes at up to 120Hz while in the tactical view.
+const tacticalRingGeo=new THREE.RingGeometry(.43,.56,36);
+const tacticalGoalGeo=new THREE.RingGeometry(.43,.57,24);
+const lineMat=new THREE.LineDashedMaterial({color:0xe9ff72,dashSize:.45,gapSize:.27,transparent:true,opacity:.77,depthTest:false});
+const tacticalRoutes=new THREE.Group();tacticalLayer.add(tacticalRoutes);
+const tacticalActors=new Map();let tacticalRosterRef=null,lastRouteSig='';
 function nameSprite(txt,col){const c=document.createElement('canvas');c.width=256;c.height=64;const x=c.getContext('2d');
  x.fillStyle='#08141bde';x.fillRect(5,6,246,49);x.strokeStyle=col;x.lineWidth=3;x.strokeRect(6,7,244,47);
  x.font='900 29px Arial';x.fillStyle='#fff';x.textAlign='center';x.fillText(txt,128,40);
  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;
- const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthTest:false,depthWrite:false}));s.scale.set(2.7,.68,1);return s;
+ const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthTest:false,depthWrite:false}));sprite.scale.set(2.7,.68,1);return sprite;
 }
-function syncTactical(){tacticalLayer.visible=st.view==='tactical';if(!tacticalLayer.visible)return;
- const sig=st.people.map(p=>`${p.id}:${p.goal?.x?.toFixed(1)}:${p.goal?.y?.toFixed(1)}:${p.x.toFixed(1)}:${p.y.toFixed(1)}`).join('|')+'|'+st.selected+'|'+st.phase;
- if(sig===lastRouteSig&&st.phase!=='live')return;lastRouteSig=sig;
- tacticalLayer.clear();
- for(const p of st.people){if(!p.alive)continue;
-  // Selectable circles, and labeled athletes from above.
-  const c=p.team===0?(st.selected===p.index?0xecff73:0x71e4f0):0xff8a8a;
-  const ring=mesh(new THREE.RingGeometry(st.selected===p.index&&p.team===0?.63:.43,st.selected===p.index&&p.team===0?.78:.54,36),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide,transparent:true,opacity:p.team===0?.9:.5,depthWrite:false}),tacticalLayer,[p.x,.09,p.y]);ring.rotation.x=-halfPi;
-  if(p.team===0){const label=nameSprite(p.name,p.index===st.selected?'#d7f964':'#60d0db');label.position.set(p.x,2.75,p.y);tacticalLayer.add(label)}
-  if(p.team!==0||!(st.phase==='prep'||st.phase==='pointend'||st.paused))continue;
+function disposeTacticalRoutes(){for(const node of [...tacticalRoutes.children]){if(node.geometry&&node.geometry!==tacticalGoalGeo)node.geometry.dispose();node.material?.dispose();tacticalRoutes.remove(node)}}
+function syncTactical(){
+ tacticalLayer.visible=st.view==='tactical';if(!tacticalLayer.visible)return;
+ if(st.people!==tacticalRosterRef){
+  for(const obj of tacticalActors.values()){
+   obj.ring.material.dispose();tacticalLayer.remove(obj.ring);
+   if(obj.label){obj.label.material.map?.dispose();obj.label.material.dispose();tacticalLayer.remove(obj.label)}
+  }
+  tacticalActors.clear();disposeTacticalRoutes();lastRouteSig='';tacticalRosterRef=st.people;
+  for(const p of st.people){
+   const material=new THREE.MeshBasicMaterial({color:p.team===0?0x71e4f0:0xff8a8a,side:THREE.DoubleSide,transparent:true,opacity:p.team===0?.9:.6,depthWrite:false});
+   const ring=new THREE.Mesh(tacticalRingGeo,material);ring.rotation.x=-halfPi;tacticalLayer.add(ring);
+   const label=p.team===0?nameSprite(p.name,'#60d0db'):null;
+   if(label)tacticalLayer.add(label);
+   tacticalActors.set(p.id,{ring,label});
+  }
+ }
+ const lead=Math.min(.012,st.renderLead||0);
+ for(const p of st.people){
+  const a=tacticalActors.get(p.id);if(!a)continue;
+  a.ring.visible=p.alive;
+  a.ring.position.set(p.x+p.vx*lead,.12,p.y+p.vy*lead);
+  const selected=p.team===0&&p.index===st.selected;
+  a.ring.scale.setScalar(selected?1.36:1);
+  a.ring.material.color.setHex(p.team===1?0xff8a8a:selected?0xecff73:0x71e4f0);
+  if(a.label){a.label.visible=p.alive;a.label.position.set(p.x+p.vx*lead,2.75,p.y+p.vy*lead)}
+ }
+ const plan=st.phase==='prep'||st.phase==='pointend'||st.paused;
+ const sig=(plan?'plan':'live')+'|'+st.selected+'|'+st.people.filter(p=>p.team===0).map(p=>`${p.alive}:${p.goal?.x?.toFixed(2)}:${p.goal?.y?.toFixed(2)}`).join('|');
+ if(sig===lastRouteSig)return;lastRouteSig=sig;
+ disposeTacticalRoutes();if(!plan)return;
+ for(const p of st.people){if(p.team!==0||!p.alive)continue;
   const nodes=[[p.x,.18,p.y],...(p.nav||[]).map(t=>[t.x,.18,t.y]),[p.goal.x,.18,p.goal.y]];
-  if(nodes.length>1){const geometry=new THREE.BufferGeometry().setFromPoints(nodes.map(n=>new THREE.Vector3(...n)));
-   const l=new THREE.Line(geometry,lineMat.clone());l.computeLineDistances();l.material.color.setHex(p.index===st.selected?0xf0ff7a:0x6de8ea);tacticalLayer.add(l);}
-  const goal=mesh(new THREE.RingGeometry(.43,.57,24),new THREE.MeshBasicMaterial({color:p.index===st.selected?0xeafa57:0x79e0e6,side:THREE.DoubleSide,transparent:true,opacity:.9,depthWrite:false}),tacticalLayer,[p.goal.x,.20,p.goal.y]);goal.rotation.x=-halfPi;
+  if(nodes.length>1){
+   const geometry=new THREE.BufferGeometry().setFromPoints(nodes.map(n=>new THREE.Vector3(...n)));
+   const material=lineMat.clone();material.color.setHex(p.index===st.selected?0xf0ff7a:0x6de8ea);
+   const l=new THREE.Line(geometry,material);l.computeLineDistances();tacticalRoutes.add(l);
+  }
+  const material=new THREE.MeshBasicMaterial({color:p.index===st.selected?0xeafa57:0x79e0e6,side:THREE.DoubleSide,transparent:true,opacity:.9,depthWrite:false});
+  const goal=new THREE.Mesh(tacticalGoalGeo,material);goal.position.set(p.goal.x,.2,p.goal.y);goal.rotation.x=-halfPi;tacticalRoutes.add(goal);
  }
 }
 
@@ -1531,8 +1732,27 @@ function splatTexture(col){const c=document.createElement('canvas');c.width=c.he
 }
 const splatMats=[splatTexture('home'),splatTexture('away')].map(tex=>new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2}));
 const splatG=new THREE.PlaneGeometry(.33,.33);
-const splatLayer=new THREE.Group();effectsLayer.add(splatLayer);
-let splatRef=null,prevSplatCount=0;
+// Instanced paint decals: 2 GPU draw calls instead of up to 140 separate meshes.
+const splatMeshes=splatMats.map(m=>{
+ const im=new THREE.InstancedMesh(splatG,m,140);im.count=0;im.instanceMatrix.setUsage(THREE.DynamicDrawUsage);im.frustumCulled=false;effectsLayer.add(im);return im;
+});
+const splatDummy=new THREE.Object3D();let splatRef=null,lastSplat=null;
+function rebuildSplatInstances(){
+ const counts=[0,0];
+ for(const s of st.splats){
+  splatDummy.position.set(s.x,s.z,s.y);splatDummy.rotation.set(0,0,0);
+  if(s.bunker){const b=s.bunker,dx=s.x-b.x,dz=s.y-b.y;
+   if(Math.abs(dx)>Math.abs(dz)){splatDummy.rotation.y=dx>0?halfPi:-halfPi;splatDummy.position.x+=Math.sign(dx)*.032;}
+   else{splatDummy.rotation.y=dz>0?0:Math.PI;splatDummy.position.z+=Math.sign(dz)*.032;}
+  }else{splatDummy.rotation.x=-halfPi;splatDummy.position.y=.04;}
+  splatDummy.rotation.z=(Math.sin(s.x*25.1+s.y*7.6)*.4);
+  const size=.7+Math.abs(Math.sin(s.x*1.9+s.y*2.4))*.7;
+  splatDummy.scale.setScalar(size);splatDummy.updateMatrix();
+  const idx=s.team===0?0:1,k=counts[idx]++;
+  if(k<140)splatMeshes[idx].setMatrixAt(k,splatDummy.matrix);
+ }
+ splatMeshes.forEach((im,i)=>{im.count=Math.min(140,counts[i]);if(counts[i])im.instanceMatrix.needsUpdate=true;});
+}
 let confetti=[];const maxParticles=240;
 const px=new Float32Array(maxParticles*3),pc=new Float32Array(maxParticles*3);
 const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(px,3).setUsage(THREE.DynamicDrawUsage));pGeo.setAttribute('color',new THREE.BufferAttribute(pc,3).setUsage(THREE.DynamicDrawUsage));pGeo.setDrawRange(0,0);
@@ -1543,20 +1763,13 @@ function burst(x,y,z,team){if(mobile&&confetti.length>100)return;
  if(confetti.length>maxParticles)confetti.splice(0,confetti.length-maxParticles);
 }
 function updateSplatEffects(dt){
- if(st.splats!==splatRef){splatRef=st.splats;prevSplatCount=0;splatLayer.clear();confetti=[];}
- if(st.splats.length<prevSplatCount){prevSplatCount=0;splatLayer.clear();}
- for(let i=prevSplatCount;i<st.splats.length;i++){
-  const s=st.splats[i];const root=mesh(splatG,splatMats[s.team===0?0:1],splatLayer,[s.x,s.z,s.y]);
-  const size=rand(.52,1.46);root.scale.set(size,size,size);
-  if(s.bunker){const b=s.bunker,dx=s.x-b.x,dz=s.y-b.y;
-   // Keep splatter flush with nearest bunker face rather than floating in world space.
-   if(Math.abs(dx)>Math.abs(dz)){root.rotation.y=dx>0?halfPi:-halfPi;root.position.x+=Math.sign(dx)*.032;}
-   else {root.rotation.y=dz>0?0:Math.PI;root.position.z+=Math.sign(dz)*.032;}
-  }else{root.rotation.x=-halfPi;root.position.y=.04;}
-  root.rotation.z+=rand(-.4,.4);
-  burst(s.x,s.z,s.y,s.team);
+ const latest=st.splats[st.splats.length-1]||null;
+ const newPoint=st.splats!==splatRef;
+ if(newPoint){splatRef=st.splats;lastSplat=null;confetti=[];}
+ if(newPoint||latest!==lastSplat){
+  if(latest)burst(latest.x,latest.z,latest.y,latest.team);
+  lastSplat=latest;rebuildSplatInstances();
  }
- prevSplatCount=st.splats.length;
  confetti=confetti.filter(p=>p.life>0);
  for(let i=0;i<confetti.length;i++){
   const p=confetti[i];p.life-=dt;p.vy-=7.6*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.z+=p.vz*dt;if(p.y<.08){p.y=.08;p.vy=0;}
@@ -1601,7 +1814,7 @@ let quality=(localStorage.getItem('ascent-graphics-v3')||'AUTO').toUpperCase();
 const QUALS=['AUTO','PERFORMANCE','BALANCED','ULTRA'];if(!QUALS.includes(quality))quality='AUTO';
 let dpr=1,resizeStamp='';
 function chooseDPR(){const ratio=window.devicePixelRatio||1;
- const targets={AUTO:mobile?1.05:1.6,PERFORMANCE:mobile?.80:1.05,BALANCED:mobile?1.24:1.55,ULTRA:mobile?1.55:2};
+ const targets={AUTO:mobile?.91:1.6,PERFORMANCE:mobile?.68:1.05,BALANCED:mobile?1.1:1.55,ULTRA:mobile?1.43:2};
  dpr=Math.min(ratio,targets[quality]);renderer.setPixelRatio(dpr);
  const cast=(!mobile&&quality!=='PERFORMANCE');renderer.shadowMap.enabled=cast;
  sun.castShadow=cast;
@@ -1625,8 +1838,9 @@ function updateCamera(dt,now){const mode=st.view;const p=st.people.find(p=>p.tea
   const headY=p.slide>0?(p.dive?.36:.48):p.crouch?1.04:1.59;
   const speed=Math.hypot(p.vx,p.vy),bob=p.slide>0?0:Math.sin(now*.017)*Math.min(.018,speed*.003);
   const shake=(st.shake||0)*.006;
-  desiredCam.set(p.x+Math.cos(p.yaw)*p.lean*.35,headY+bob+Math.sin(now*.0017)*.005-shake,p.y+Math.sin(p.yaw)*p.lean*.35);
-  const factor=lastView===mode?clamp(dt*19,0,1):1;
+  const renderLead=Math.min(.012,st.renderLead||0);
+  desiredCam.set(p.x+p.vx*renderLead+Math.cos(p.yaw)*p.lean*.35,headY+bob+Math.sin(now*.0017)*.005-shake,p.y+p.vy*renderLead+Math.sin(p.yaw)*p.lean*.35);
+  const factor=1-Math.exp(-dt*49);
   cam.position.lerp(desiredCam,factor);
   cam.rotation.set((p.pitch||0)-(p.recoil||0)*.013,-p.yaw,-p.lean*.04,'YXZ');
   const targetFov=st.keys.ShiftLeft||st.keys.ShiftRight?79:mobile?79:76;
@@ -1654,8 +1868,8 @@ function tick(timestamp){const dt=Math.min(.05,Math.max(.001,(timestamp-prevT)/1
   if(!window.__speedballWebGLReady){window.__speedballWebGLReady=true;document.documentElement.classList.add('webgl-ready');}
   frameCount++;fpsAvg=smooth(fpsAvg,1/dt,dt*.23);
   if(frameCount%35===0)fpsRead.textContent=`WEBGL 3D  /  ${Math.round(fpsAvg)} FPS`;
-  if(quality==='AUTO'&&frameCount>250&&fpsAvg<27){slowSeconds+=dt;if(slowSeconds>.45&&dpr>.78){dpr=Math.max(.76,dpr-.13);renderer.setPixelRatio(dpr);resizeStamp='';slowSeconds=0;}}
-  else slowSeconds=Math.max(0,slowSeconds-dt);
+  if(quality==='AUTO'&&frameCount>75&&fpsAvg<(mobile?43:39)){slowSeconds+=dt;if(slowSeconds>.55&&dpr>.63){dpr=Math.max(.63,dpr-.10);renderer.setPixelRatio(dpr);resizeStamp='';slowSeconds=0;}}
+  else slowSeconds=Math.max(0,slowSeconds-dt*1.5);
   requestAnimationFrame(tick);
  }catch(err){window.__speedballWebGLReady=false;host.style.display='none';document.documentElement.classList.remove('webgl-ready');fpsRead.textContent='3D ERROR · 2D FALLBACK';console.error('3D render error',err);}
 }
