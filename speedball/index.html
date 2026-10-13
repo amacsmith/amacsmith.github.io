@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"/><meta name="theme-color" content="#070d11"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="mobile-web-app-capable" content="yes"/><title>SPEEDBALL: ASCENT — Tactical Paintball Simulator</title>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"/><meta name="theme-color" content="#070d11"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="mobile-web-app-capable" content="yes"/><title>SPEEDBALL: ASCENT — 3D Pro Paintball</title>
 <style>
 :root{--bg:#070d11;--panel:#0c151b;--panel2:#111e24;--line:#26373d;--lime:#d3ff50;--cyan:#71f3e9;--red:#ff796c;--muted:#87a0a5;--fg:#edf5ef}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}button,select{font:inherit}button{cursor:pointer;transition:transform .12s,background .16s,border-color .16s}button:active{transform:scale(.97)}button:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
@@ -28,9 +28,6 @@
 @media(max-height:580px) and (max-width:980px){#header{height:44px;min-height:44px}.brandSub{display:none}#footer{display:none}.viewChip{display:none}.touchTop{top:50px}#telemetry{top:80px;bottom:auto;width:180px}.teleGrid{grid-template-columns:repeat(3,1fr)}.joy{bottom:8px;left:15px;width:90px;height:90px}.joyKnob{left:30px;top:30px;width:26px;height:26px}.touchRight{bottom:8px}}
 
 /* V2 FIELD, START HORN AND TOUCH-FIRST LAYOUT */
-@media(max-height:570px){#app{min-height:0!important}}
-html.touchDevice #touchControls{display:block}
-html.touchDevice #controlTip{display:none}
 .layoutSelect{display:grid;gap:6px}
 .layoutBtn{border:1px solid #385358;border-radius:9px;padding:11px 12px;text-align:left;color:#e8f7ee;background:#15252a;min-height:53px}
 .layoutBtn b{display:block;font-size:12px;letter-spacing:.05em}
@@ -88,7 +85,7 @@ html.touchDevice #controlTip{display:none}
   #pointBanner strong.small{font-size:25px}
   .stageAction{bottom:18px}
 }
-@media (max-height:500px) and (pointer:coarse), (max-height:500px) and (max-width:1100px){
+@media (max-height:500px) and (pointer:coarse){
   .joy{width:98px;height:98px;bottom:8px;left:17px}
   .joyKnob{left:31px;top:31px;width:34px;height:34px}
   .touchRight{grid-template-columns:repeat(3,49px);grid-template-rows:repeat(2,49px);bottom:7px;right:9px;gap:5px}
@@ -121,9 +118,24 @@ html.touchDevice #controlTip{display:none}
   .liveFeed{top:219px;right:9px}
   .stageAction{bottom:calc(26px + env(safe-area-inset-bottom));font-size:12px;padding:14px 18px}
 }
+
+#webglHost{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;background:#6b989e;}
+#webglHost canvas{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;}
+#game{position:absolute;inset:0;z-index:0;}
+.webgl-ready #game{opacity:0}
+#gfxInfo{position:absolute;right:14px;bottom:12px;z-index:3;pointer-events:none;display:flex;align-items:center;gap:8px;font-weight:900;font-size:9px;letter-spacing:.14em;color:#ebf9e9;background:#0b1b1fd4;padding:7px 10px;border:1px solid #ffffff31;border-radius:5px}
+#gfxInfo .pip{width:7px;height:7px;background:#baf94b;border-radius:50%;box-shadow:0 0 9px #baff62}
+#gfxMode{position:absolute;right:14px;bottom:42px;z-index:5;border:1px solid #adcaba80;background:#0c191eeb;padding:7px 9px;color:#deeee9;border-radius:5px;font-size:9px;font-weight:900;letter-spacing:.12em}
+#crosshair3d{display:none;pointer-events:none;position:absolute;left:50%;top:50%;width:29px;height:29px;transform:translate(-50%,-50%);z-index:3}
+#crosshair3d:before,#crosshair3d:after{content:'';position:absolute;background:#ddfca6;box-shadow:0 0 5px #091a0bee;border-radius:2px}
+#crosshair3d:before{height:1px;width:29px;left:0;top:14px}#crosshair3d:after{height:29px;width:1px;left:14px;top:0}
+.webgl-fps #crosshair3d{display:block}
+#fieldWatermark{pointer-events:none;position:absolute;bottom:15px;left:50%;transform:translateX(-50%);z-index:3;color:#ffffffa2;text-shadow:0 2px 4px #000;font-size:9px;font-weight:950;letter-spacing:.22em}
+@media(pointer:coarse){#gfxMode{bottom:auto;top:51px;left:7px;right:auto;padding:6px 7px;font-size:8px;}#gfxInfo{bottom:4px;right:7px;padding:4px 6px;font-size:7px;opacity:.77}#fieldWatermark{display:none}.webgl-fps #crosshair3d{transform:translate(-50%,-50%) scale(.78)}}
+@media(max-width:900px){#gfxMode{display:none}#gfxInfo{display:none}}
 </style></head><body>
 <div id="app"><header id="header"><div class="brand"><div class="brandLogo">✕</div><div><div class="brandText">SPEEDBALL<span>:</span>ASCENT</div><div class="brandSub">PROFESSIONAL PAINTBALL SIMULATOR</div></div></div><div class="headDivider"></div><div class="headTag">TOUR STATUS<b id="headLeague">ROOKIE CIRCUIT</b></div><div class="headSpacer"></div><div class="statPill"><i>TEAM FUNDS</i><span id="headCash">$2,500</span></div><button class="headerBtn" id="headerTactics">TACTICS</button><button class="headerBtn" id="headerView">↗ FPS VIEW</button><button class="headerBtn" id="headerSwitch">⇄ PLAYER</button><button class="headerBtn" id="headerPause">Ⅱ</button></header>
-<div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls"><div class="joy" id="joy"><div class="joyKnob" id="joyKnob"></div></div><div class="touchTop"><button class="touchBtn" id="touchView">VIEW</button><button class="touchBtn" id="touchSwitch">PLAYER</button><button class="touchBtn" id="touchPlan">COACH</button><button class="touchBtn" id="touchFull" title="Fullscreen">⛶</button></div><div class="touchRight"><button class="touchBtn" id="touchLeft">◀ LEAN</button><button class="touchBtn" id="touchRightLean">LEAN ▶</button><button class="touchBtn" id="touchCrouch">CROUCH</button><button class="touchBtn" id="touchSlide">SLIDE</button><button class="touchBtn fire" id="touchFire">FIRE</button></div></div><div id="pauseOverlay"><div class="pauseCard"><h3>PLAY PAUSED</h3><p class="minorNote">Study the field, change your view, then get back in the fight.</p><button id="resumeBtn" class="solidBtn">RESUME POINT</button><button id="pauseMenuBtn" class="outlineBtn">RETURN TO TEAM HQ</button></div></div></section><aside id="side"><div class="sidePad"><div class="sideHeader"><div><div class="sideEyebrow" id="sideEyebrow">COACH'S TABLE</div><div class="sideTitle" id="sideTitle">Breakout plan</div></div><button class="exitSide" id="closeSide">✕ CLOSE</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="tactics">TACTICS</button><button class="tab" data-tab="roster">SQUAD</button><button class="tab" data-tab="career">CAREER</button><button class="tab" data-tab="armory">ARMORY</button></div><div id="sideContent"></div></div></aside><div id="overlay"><div class="modal" id="modal"></div></div></div><footer id="footer"><span>ASCENT ENGINE // v0.2 FAIR PLAY + TOUCH</span><span>FIELD 150 × 120 FT &nbsp;•&nbsp; .68 CAL &nbsp;•&nbsp; 300 FPS / 10.5 BPS</span><span>LOCAL CAREER SAVE</span></footer></div>
+<div id="main"><section id="stage"><canvas id="game" aria-label="Interactive speedball field"></canvas><div id="webglHost" aria-hidden="true"></div><div id="crosshair3d"></div><button id="gfxMode" title="Cycle rendering quality">GRAPHICS: AUTO</button><div id="gfxInfo"><span class="pip"></span><span id="fpsRead">WEBGL 3D</span></div><div id="fieldWatermark">AUTHENTIC FIELD SCALE &bull; LIVE BALLISTICS &bull; TEAM COMMAND</div><div id="pointBanner" aria-live="polite"></div><button id="stageAction" class="stageAction" style="display:none">▶ START POINT</button><div class="viewChip" id="viewChip"><span class="liveCircle"></span> TACTICAL / FIELD OVERVIEW</div><div id="windChip">↗ WIND 0.9 M/S · CROSS-FIELD</div><div id="hudTop"><div class="scoreTeam"><div><div class="teamLabel">YOUR TEAM</div><div class="teamAlive" id="friendsAlive">3 ACTIVE</div></div><div class="scoreN" id="myScore">0</div></div><div class="scoreCenter"><div class="scoreTime" id="timeLeft">3:00</div><div class="scoreMode" id="scoreMode">3v3 • POINT 1</div></div><div class="scoreTeam enemy"><div class="scoreN" id="oppScore">0</div><div><div class="teamLabel">OPPOSITION</div><div class="teamAlive" id="enemiesAlive">3 ACTIVE</div></div></div></div><div class="liveFeed" id="feed"></div><div id="telemetry"><div class="teleTitle" id="teleTitle">01 / AVERY — FIELD TELEMETRY</div><div class="teleGrid"><div><div class="teleNum" id="teleSpeed">0.0</div><div class="teleLbl">Speed m/s</div></div><div><div class="teleNum" id="telePaint">180</div><div class="teleLbl">Paint in loader</div></div><div><div class="teleNum" id="teleStance">STAND</div><div class="teleLbl">Stance</div></div><div><div class="teleNum" id="teleRange">—</div><div class="teleLbl">Target range</div></div><div><div class="teleNum" id="teleBPS">10.5</div><div class="teleLbl">BPS cap</div></div><div><div class="teleNum" id="teleCover">OPEN</div><div class="teleLbl">Position</div></div><div><div class="teleNum" id="teleChrono">290</div><div class="teleLbl">Marker FPS</div></div><div><div class="teleNum" id="teleWind">0.9</div><div class="teleLbl">Wind m/s</div></div><div><div class="teleNum" id="teleStamina">100%</div><div class="teleLbl">Stamina</div></div></div></div><div id="controlTip">WASD MOVE &nbsp;•&nbsp; MOUSE AIM & FIRE &nbsp;•&nbsp; SHIFT SLIDE &nbsp;•&nbsp; C CROUCH &nbsp;•&nbsp; Q / E LEAN &nbsp;•&nbsp; V VIEW &nbsp;•&nbsp; TAB PLAYER</div><div id="touchControls"><div class="joy" id="joy"><div class="joyKnob" id="joyKnob"></div></div><div class="touchTop"><button class="touchBtn" id="touchView">VIEW</button><button class="touchBtn" id="touchSwitch">PLAYER</button><button class="touchBtn" id="touchPlan">COACH</button><button class="touchBtn" id="touchFull" title="Fullscreen">⛶</button></div><div class="touchRight"><button class="touchBtn" id="touchLeft">◀ LEAN</button><button class="touchBtn" id="touchRightLean">LEAN ▶</button><button class="touchBtn" id="touchCrouch">CROUCH</button><button class="touchBtn" id="touchSlide">SLIDE</button><button class="touchBtn fire" id="touchFire">FIRE</button></div></div><div id="pauseOverlay"><div class="pauseCard"><h3>PLAY PAUSED</h3><p class="minorNote">Study the field, change your view, then get back in the fight.</p><button id="resumeBtn" class="solidBtn">RESUME POINT</button><button id="pauseMenuBtn" class="outlineBtn">RETURN TO TEAM HQ</button></div></div></section><aside id="side"><div class="sidePad"><div class="sideHeader"><div><div class="sideEyebrow" id="sideEyebrow">COACH'S TABLE</div><div class="sideTitle" id="sideTitle">Breakout plan</div></div><button class="exitSide" id="closeSide">✕ CLOSE</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="tactics">TACTICS</button><button class="tab" data-tab="roster">SQUAD</button><button class="tab" data-tab="career">CAREER</button><button class="tab" data-tab="armory">ARMORY</button></div><div id="sideContent"></div></div></aside><div id="overlay"><div class="modal" id="modal"></div></div></div><footer id="footer"><span>ASCENT 3D // WEBGL REAL-TIME ENGINE</span><span>FIELD 150 × 120 FT &nbsp;•&nbsp; .68 CAL &nbsp;•&nbsp; 300 FPS / 10.5 BPS</span><span>LOCAL CAREER SAVE</span></footer></div>
 <script>(()=>{'use strict';
 const $=s=>document.querySelector(s), el=(id)=>document.getElementById(id), cv=el('game'), ctx=cv.getContext('2d',{alpha:false});
 const touchDevice=window.matchMedia('(pointer:coarse)').matches||(typeof navigator!=='undefined'&&navigator.maxTouchPoints>0)||('ontouchstart' in window);
@@ -758,10 +770,653 @@ joy.addEventListener('pointermove',e=>{if(e.pointerId===joyId)joyMove(e)});
 for(const ev of ['pointerup','pointercancel','lostpointercapture'])joy.addEventListener(ev,e=>{if(e.pointerId===joyId){joyId=null;st.touch.x=0;st.touch.y=0;knob.style.transform='translate(0,0)'}});
 function run(t){if(!st.last)st.last=t;let dt=Math.min(.045,(t-st.last)/1000);st.last=t;
 if(!st.paused)step(dt);
-ctx.save();ctx.setTransform(canvasRatio,0,0,canvasRatio,0,0);ctx.clearRect(0,0,W,H);if(st.view==='fps')drawFPS();else drawTopDown();ctx.restore();
+if(!window.__speedballWebGLReady){ctx.save();ctx.setTransform(canvasRatio,0,0,canvasRatio,0,0);ctx.clearRect(0,0,W,H);if(st.view==='fps')drawFPS();else drawTopDown();ctx.restore();}
 if(st.frame%8===0)updateTelemetry();requestAnimationFrame(run)}
+// WebGL renderer observes the existing authoritative physics, AI, and career state.
+window.SpeedballCore={state:st,field:FIELD,career,layouts:LAYOUTS,selectPlayer,setView,feed,resetPoint,gameVersion:'0.3'};
 // Initial ready room.
 document.documentElement.classList.toggle('touchDevice',touchDevice);buildField();spawnPlayers();resize();renderSide();setView('tactical');syncUI();refreshStageActions();requestAnimationFrame(run);
 })();
+</script>
+<script type="module">
+/**
+ * SPEEDBALL: ASCENT // ASCENT 3D
+ * MIT licensed original realtime WebGL renderer for the speedball simulation.
+ * Uses three.js (MIT) as renderer/math. Physics, scoring and AI remain in game.js.
+ */
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js';
+
+const core = window.SpeedballCore;
+if (!core) throw new Error('Speedball simulation must load before WebGL');
+const st = core.state;
+const FIELD = core.field;
+const mobile = window.matchMedia('(pointer:coarse)').matches || navigator.maxTouchPoints > 0;
+const host = document.getElementById('webglHost');
+const stage = document.getElementById('stage');
+const gfxBtn = document.getElementById('gfxMode');
+const fpsRead = document.getElementById('fpsRead');
+const clamp = THREE.MathUtils.clamp;
+const rand = (a, b) => a + Math.random() * (b - a);
+const halfPi = Math.PI / 2;
+const smooth = (a,b,t)=>a+(b-a)*clamp(t,0,1);
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ alpha:false, antialias: !mobile, powerPreference: mobile?'low-power':'high-performance', stencil:false, depth:true });
+} catch(err) {
+  host.style.display = 'none';
+  document.getElementById('gfxInfo').textContent = '2D FALLBACK';
+  console.warn('WebGL unavailable; preserving existing game', err);
+  throw err;
+}
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.45;
+renderer.shadowMap.enabled = !mobile;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.setClearColor(0x7fa9b3,1);
+renderer.domElement.setAttribute('aria-label','Realtime 3D paintball match');
+renderer.domElement.style.touchAction = 'none';
+host.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x93b6c2);
+scene.fog = new THREE.FogExp2(0xacc2c0,0.0058);
+const cam = new THREE.PerspectiveCamera(76, 1, 0.045, 255);
+cam.rotation.order = 'YXZ';
+scene.add(cam);
+const mapCam = new THREE.OrthographicCamera(-28,28,23,-23,.1,300);
+mapCam.up.set(0,0,-1);
+mapCam.position.set(0,105,0);
+mapCam.lookAt(0,0,0);
+scene.add(mapCam);
+const world = new THREE.Group(); scene.add(world);
+const decor = new THREE.Group(); scene.add(decor);
+const bunkerLayer = new THREE.Group(); scene.add(bunkerLayer);
+const athleteLayer = new THREE.Group(); scene.add(athleteLayer);
+const tacticalLayer = new THREE.Group(); scene.add(tacticalLayer);
+const effectsLayer = new THREE.Group(); scene.add(effectsLayer);
+
+const amb = new THREE.HemisphereLight(0xecf5ff, 0x526e5b, 2.35); scene.add(amb);
+const sun = new THREE.DirectionalLight(0xfff3e3, 3.1);
+sun.position.set(-42,72,-31);
+sun.castShadow = !mobile;
+sun.shadow.mapSize.set(2048,2048);
+sun.shadow.camera.left=-58; sun.shadow.camera.right=58;
+sun.shadow.camera.top=47; sun.shadow.camera.bottom=-47;
+sun.shadow.camera.near=1; sun.shadow.camera.far=155;
+sun.shadow.bias=-.00035;
+sun.shadow.normalBias=.035;
+sun.target.position.set(0,0,0); scene.add(sun); scene.add(sun.target);
+const fill = new THREE.DirectionalLight(0x92d9ff,.55); fill.position.set(25,20,33); scene.add(fill);
+
+const mat = (col,rough=.62,metal=0,extra={}) => new THREE.MeshStandardMaterial({ color:col,roughness:rough,metalness:metal,...extra });
+const physical=(col,rough=.3,metal=0,extra={})=>new THREE.MeshPhysicalMaterial({color:col,roughness:rough,metalness:metal,clearcoat:.35,clearcoatRoughness:.24,...extra});
+const COLORS = {red:0xc52a36, blue:0x1282c2, trim:0x091519, white:0xf7f9f3, turf:0x345e43,
+  lime:0xd6fb63,cyan:0x65eff2,orange:0xff8660,dark:0x18272d};
+const blueVinyl = physical(COLORS.blue,.31,.02,{ clearcoat:.58,clearcoatRoughness:.2 });
+const redVinyl = physical(COLORS.red,.34,.025,{ clearcoat:.61,clearcoatRoughness:.23 });
+const blueEdge = physical(0x075082,.4,.01);
+const redEdge = physical(0x7c1d29,.42,.01);
+const seamMat = physical(0xc9d0cf,.72,.01);
+const black = mat(0x0d161a,.75,.1);
+const steel = mat(0x8899a1,.28,.75);
+const alloy = physical(0x2a3d46,.28,.58);
+const maskLens = physical(0x121f27,.1,.55,{clearcoat:1,clearcoatRoughness:.035});
+const maskBlue = physical(0x226da1,.08,.65,{clearcoat:1,clearcoatRoughness:.04});
+const limeMat = physical(0xdefe67,.42,.02);
+const markerColor = mat(0xe0ff86,.32,.11,{emissive:0x101607,emissiveIntensity:.2});
+const activeRingMat = new THREE.MeshBasicMaterial({color:COLORS.lime,transparent:true,opacity:.95,side:THREE.DoubleSide,depthWrite:false});
+const geo = {
+ sphere:new THREE.SphereGeometry(1,12,9),
+ sphereHi:new THREE.SphereGeometry(1,24,14),
+ cylinder:new THREE.CylinderGeometry(1,1,1,20,2),
+ tube:new THREE.CylinderGeometry(1,1,1,12,1),
+ box:new THREE.BoxGeometry(1,1,1),
+ plane:new THREE.PlaneGeometry(1,1),
+ torus:new THREE.TorusGeometry(1,.025,6,24),
+};
+const circleGeo=new THREE.CircleGeometry(1,26);
+function mesh(g,m,parent,pos,scale,cast=false,receive=false){const o = new THREE.Mesh(g,m);if(pos)o.position.set(...pos);if(scale)o.scale.set(...scale);o.castShadow=cast&&!mobile;o.receiveShadow=receive;parent.add(o);return o;}
+function ball(parent, radius, pos, material,scale){return mesh(geo.sphere,material,parent,pos,scale||[radius,radius,radius],true,false)}
+function box(parent,size,pos,material,cast=false){return mesh(geo.box,material,parent,pos,size,cast,true)}
+function cyl(parent,ra,rb,h,pos,m,segments=16){return mesh(new THREE.CylinderGeometry(ra,rb,h,segments,1),m,parent,pos,null,true,true)}
+function tubeBetween(parent,a,b,r,m,segments=9){const aa=new THREE.Vector3(...a),bb=new THREE.Vector3(...b),dif=bb.clone().sub(aa);
+ const o=mesh(new THREE.CylinderGeometry(r,r,Math.max(.00001,dif.length()),segments),m,parent,null,null,true,false);
+ o.position.copy(aa).add(bb).multiplyScalar(.5);o.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),dif.normalize());return o;}
+function ellipseShadow(parent,rX,rZ,opacity=.2){const shadow=mesh(circleGeo,new THREE.MeshBasicMaterial({color:0x020b10,transparent:true,opacity,depthWrite:false}),parent,[0,.012,0],[rX,rZ,1]);shadow.rotation.x=-halfPi;return shadow;}
+
+// Deterministic, photographic-style ground texture: short blades, paint stains, seam grain.
+function mulberry32(a){return function(){let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296;}}
+function makeTurfTexture(){const n=1024,c=document.createElement('canvas');c.width=c.height=n;const ctx=c.getContext('2d');let r=mulberry32(4244);
+ const data=ctx.createImageData(n,n);
+ for(let i=0;i<data.data.length;i+=4){const f=r(), v=(f-.5)*30;data.data[i]=Math.max(0,55+v);data.data[i+1]=Math.max(0,93+v*1.2);data.data[i+2]=Math.max(0,58+v*.8);data.data[i+3]=255;}ctx.putImageData(data,0,0);
+ for(let j=0;j<72000;j++){const x=r()*n,y=r()*n,l=.5+r()*3.6;ctx.strokeStyle=r()>.45?'rgba(158,180,112,.27)':'rgba(10,47,33,.41)';ctx.lineWidth=.45+r()*.7;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+(r()-.5)*2.2,y-l);ctx.stroke();}
+ const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(9,7);t.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);t.colorSpace=THREE.SRGBColorSpace;return t;}
+function fabricTexture(baseHex,accentHex){const c=document.createElement('canvas');c.width=256;c.height=256;const x=c.getContext('2d');x.fillStyle=baseHex;x.fillRect(0,0,256,256);
+ const seed=mulberry32(baseHex.length*927+111);for(let i=0;i<7000;i++){x.fillStyle=seed()>.53?'#ffffff0b':'#00000013';x.fillRect(seed()*256,seed()*256,seed()*2+.4,.65)}
+ x.strokeStyle=accentHex;x.lineWidth=12;x.moveTo(0,70);x.lineTo(256,110);x.stroke();x.lineWidth=4;x.strokeStyle='#ffffff66';x.moveTo(0,84);x.lineTo(256,124);x.stroke();
+ for(let j=0;j<5;j++){x.strokeStyle='#0000003b';x.lineWidth=2;x.beginPath();x.moveTo(0,j*53+7);x.lineTo(256,j*53+7);x.stroke()}
+ const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;}
+const homeJerseyTexture=fabricTexture('#166b84','#6fe3d5');
+const awayJerseyTexture=fabricTexture('#ae2438','#e5e4df');
+function signTex(text,subtitle='',tone='#d8ff72',wide=512){const c=document.createElement('canvas');c.width=wide;c.height=160;const x=c.getContext('2d');
+ x.clearRect(0,0,wide,160);x.fillStyle='#08191ddf';x.fillRect(0,0,wide,160);x.fillStyle=tone;x.fillRect(0,0,wide,9);x.fillRect(0,151,wide,9);x.fillStyle='#ffffff';x.textAlign='center';x.font='italic 900 66px system-ui';x.fillText(text,wide/2,90);x.font='800 18px system-ui';x.fillStyle=tone;x.letterSpacing='3px';x.fillText(subtitle,wide/2,126);
+ const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;}
+const sponsorTex=signTex('ASCENT','PRO SPEEDBALL LEAGUE');
+const sponsorTex2=signTex('VELOCITY','ELITE PAINTBALL', '#b8f9fa');
+const sponsorTex3=signTex('PRO CIRCUIT','LIVE TOURNAMENT', '#ffca8c');
+const bunkerLogo=signTex('ASCENT','','#ffefa5',320);
+
+// Stadium, exterior environment and boundary netting.
+function buildEnvironment(){world.clear();decor.clear();
+ const turf=makeTurfTexture();const ground=mesh(new THREE.PlaneGeometry(FIELD.w,FIELD.h),new THREE.MeshStandardMaterial({map:turf,roughness:1,metalness:0}),world,[0,0,0],null,false,true);ground.rotation.x=-halfPi;
+ // Darker runoff and matting around the playing boundaries.
+ const apron=mesh(new THREE.PlaneGeometry(FIELD.w+37,FIELD.h+34),mat(0x415649,1,0),world,[0,-.037,0],null,false,true);apron.rotation.x=-halfPi;
+ const outer=mesh(new THREE.PlaneGeometry(260,230),mat(0x6e8064,.96),world,[0,-.08,0],null,false,true);outer.rotation.x=-halfPi;
+ const stripe=mat(0xf3f3e1,.92);
+ function lineX(z,white=true,width=.055){box(world,[FIELD.w,width,white?.058:.025],[0,.018,z],white?stripe:mat(0xe3fa81,.95));}
+ function lineZ(x){box(world,[.058,.025,FIELD.h],[x,.019,0],stripe)}
+ for(let z of [-FIELD.h/2,0,FIELD.h/2])lineX(z,z!==0);
+ for(let x of [-FIELD.w/2,0,FIELD.w/2])lineZ(x);
+ for(let z=-FIELD.h/2+3.048;z<FIELD.h/2-3;z+=3.048){box(world,[FIELD.w,.018,.024],[0,.014,z],mat(0xbde6cf,.95,0,{transparent:true,opacity:.12}));}
+ for(let x=-FIELD.w/2+3.048;x<FIELD.w/2-3;x+=3.048){box(world,[.022,.016,FIELD.h],[x,.013,0],mat(0xd3ecd0,.95,0,{transparent:true,opacity:.095}));}
+ for(let x=-FIELD.w/2;x<FIELD.w/2;x+=9){box(world,[.02,.018,FIELD.h],[x,.013,0],mat(0xd7eac3,.98,0,{transparent:true,opacity:.035}));}
+ // Colored compressed finish zones and physical start-gate buzzer posts.
+ for(let team=0;team<=1;team++){
+  const z=team===0?FIELD.h/2+.9:-FIELD.h/2-.9;const color=team===0?0x5ce5cc:0xff7573;
+  const platform=box(world,[3.3,.11,.68],[0,.03,z],mat(0x0c171b,.78));
+  box(world,[2.85,.09,.19],[0,.14,z-.0],mat(color,.3,.12,{emissive:color,emissiveIntensity:.15}));
+  cyl(world,.14,.18,1.4,[0,.73,z],alloy);
+  ball(world,.26,[0,1.50,z],physical(color,.2,.12,{emissive:color,emissiveIntensity:.15}));
+ }
+ // Boundary poles and woven safety net. The entire arena feels enclosed.
+ const post=mat(0x242e2f,.43,.51), netmat=new THREE.MeshBasicMaterial({color:0x111e22,transparent:true,opacity:.31,side:THREE.DoubleSide,depthWrite:false});
+ for(let z of [-FIELD.h/2-2.7,FIELD.h/2+2.7]){
+  for(let x=-FIELD.w/2-3;x<=FIELD.w/2+3.3;x+=6.2){cyl(decor,.047,.065,6.6,[x,3.3,z],post,8)}
+  const pl=mesh(new THREE.PlaneGeometry(FIELD.w+6.8,6.65),netmat,decor,[0,3.31,z]);
+  pl.material=netmat;
+  const wire=mat(0x303d3d,.79);tubeBetween(decor,[-FIELD.w/2-3.2,6.6,z],[FIELD.w/2+3.2,6.6,z],.022,wire,6);
+ }
+ for(let x of [-FIELD.w/2-3.15,FIELD.w/2+3.15]){
+  for(let z=-FIELD.h/2-2.6;z<=FIELD.h/2+2.6;z+=6.1)cyl(decor,.045,.065,6.65,[x,3.325,z],post,8);
+  const pl=mesh(new THREE.PlaneGeometry(FIELD.h+5.6,6.65),netmat,decor,[x,3.31,0]);pl.rotation.y=halfPi;
+ }
+ // Actual mesh grid only on close side: subtle geometry rather than opaque planes.
+ const threads=mat(0x263d40,.89,0,{transparent:true,opacity:.22});
+ if(!mobile)for(let z of [-FIELD.h/2-2.7,FIELD.h/2+2.7])for(let yy=.5;yy<6.5;yy+=.37){tubeBetween(decor,[-FIELD.w/2-3,yy,z],[FIELD.w/2+3,yy,z],.004,threads,4)}
+ // Competition LED board, referee tower and several sponsor scrims.
+ const bannerMats=[sponsorTex,sponsorTex2,sponsorTex3].map(t=>new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide,transparent:true}));
+ for(let k=0;k<8;k++){
+  const x=-21+k*6.0;const z=-FIELD.h/2-3.02;
+  mesh(new THREE.PlaneGeometry(5.72,1.35),bannerMats[k%3],decor,[x,2.7,z]);
+ }
+ for(let k=0;k<8;k++){
+  const x=-21+k*6.0;const z=FIELD.h/2+3.02;
+  const banner=mesh(new THREE.PlaneGeometry(5.72,1.35),bannerMats[(k+1)%3],decor,[x,2.7,z]);banner.rotation.y=Math.PI;
+ }
+ const scoreBoard=new THREE.Group();decor.add(scoreBoard);scoreBoard.position.set(0,7.0,-FIELD.h/2-8);
+ box(scoreBoard,[13.5,3.3,.24],[0,0,0],mat(0x0b131a,.32,.45));
+ const led=mesh(new THREE.PlaneGeometry(12.7,2.8),new THREE.MeshBasicMaterial({map:signTex('SPEEDBALL','ASCENT WORLD TOUR','#bef55f'),toneMapped:false}),scoreBoard,[0,0,.14]);
+ for(const x of [-5.4,5.4])cyl(decor,.17,.22,7.2,[x,3.5,-FIELD.h/2-8],post);
+ // Spectator structures behind netting. Details softened by atmospheric fog.
+ const metalStand=mat(0x4b5b5b,.56,.45);
+ for(let side of [-1,1]){
+  const z=side*(FIELD.h/2+12);
+  for(let j=0;j<5;j++){
+   const yl=.2+j*.48; const dz=side*j*.83;
+   box(decor,[FIELD.w+4,.22,1.07],[0,yl,z+dz],mat(j%2?0x6b7774:0x79827b,.82));
+   box(decor,[FIELD.w+4,.11,.13],[0,yl+.28,z+dz+side*.48],metalStand);
+  }
+  if(!mobile){
+   const colors=[0x2f697c,0xb6c9c8,0x7a8a73,0xb35446,0x374d55,0x272d36];
+   const headGeo=new THREE.SphereGeometry(.16,6,5), torsoGeo=new THREE.BoxGeometry(.27,.40,.22);
+   const heads=new THREE.InstancedMesh(headGeo,mat(0x9d9d92,.9),140);
+   const torsos=new THREE.InstancedMesh(torsoGeo,mat(0xc7c7c1,.89),140);
+   const temp=new THREE.Object3D();const rr=mulberry32(1410+side);
+   for(let i=0;i<140;i++){const x=(rr()-.5)*(FIELD.w+1),j=Math.floor(rr()*5),dd=z+side*j*.83,h=.3+j*.48;
+    temp.position.set(x,h+.7,dd);temp.rotation.set(0,rr()*Math.PI*2,0);temp.scale.set(1,1,1);temp.updateMatrix();heads.setMatrixAt(i,temp.matrix);
+    temp.position.y=h+.42;temp.updateMatrix();torsos.setMatrixAt(i,temp.matrix);
+    torsos.setColorAt(i,new THREE.Color(colors[Math.floor(rr()*colors.length)]));
+    heads.setColorAt(i,new THREE.Color([0xd3b1a1,0xa77e69,0xf1d2a5][Math.floor(rr()*3)]));}
+   decor.add(heads,torsos);
+  }
+ }
+ // Four floodlight towers, with physical lamp fixtures.
+ const lampMat=mat(0xc4d7db,.3,.68);const lampEm=new THREE.MeshBasicMaterial({color:0xeafff8,toneMapped:false});
+ for(const x of [-FIELD.w/2-12,FIELD.w/2+12])for(const z of [-FIELD.h/2-10,FIELD.h/2+10]){
+  cyl(decor,.17,.31,16,[x,8,z],post,10);box(decor,[3.9,.31,.55],[x,15.3,z],post);
+  for(let k=-2;k<=2;k++){box(decor,[.62,.48,.16],[x+k*.68,15.4,z+.39],lampMat);box(decor,[.51,.34,.03],[x+k*.68,15.4,z+.49],lampEm);}
+ }
+ // Scenic trees just outside tournament grounds: softened in the fog.
+ const trunkMat=mat(0x555849,1);const leaf=[mat(0x3a634d,1),mat(0x577b57,1),mat(0x6d895d,1)];const rr=mulberry32(355);
+ for(let i=0;i<(mobile?24:62);i++){
+  const a=i/(mobile?24:62)*Math.PI*2+rndRand(rr,-.07,.07),r=68+rndRand(rr,0,16);
+  const x=Math.sin(a)*r,z=Math.cos(a)*r,h=6+rr()*6;
+  cyl(decor,.29,.44,h*.67,[x,h*.34,z],trunkMat,7);
+  for(let t=0;t<3;t++){ball(decor,1,[x+(rr()-.5)*1.8,h*.74+t*1.3,z+(rr()-.5)*1.9],leaf[Math.floor(rr()*3)],[2.5+t*.2,1.9+t*.2,2.25+t*.2]);}
+ }
+}
+function rndRand(r,a,b){return a+(b-a)*r()}
+
+// Real inflatable bunker geometry with stretched-vinyl speculars and welded seams.
+function roundedBrickGeometry(w,h,d){
+ const r=.19;const sh=new THREE.Shape();const x=-w/2,y=-h/2;
+ sh.moveTo(x+r,y);sh.lineTo(x+w-r,y);sh.quadraticCurveTo(x+w,y,x+w,y+r);
+ sh.lineTo(x+w,y+h-r);sh.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+ sh.lineTo(x+r,y+h);sh.quadraticCurveTo(x,y+h,x,y+h-r);
+ sh.lineTo(x,y+r);sh.quadraticCurveTo(x,y,x+r,y);
+ const out = new THREE.ExtrudeGeometry(sh,{steps:1,depth:d-.24,bevelEnabled:true,bevelThickness:.12,bevelSize:.12,bevelSegments:3,curveSegments:4});
+ out.computeVertexNormals();return out;
+}
+function doritoGeometry(r,h,d){
+ const w=r*1.03,deep=d*.75,bevel=.075;
+ const verts=[
+ [-w,0,-deep],[w,0,-deep],[0,h,-deep*.37],
+ [w,0,-deep],[w,0,deep],[0,h,-deep*.37],
+ [w,0,deep],[-w,0,deep],[0,h,deep*.37],
+ [-w,0,deep],[-w,0,-deep],[0,h,deep*.37],
+ [-w,0,-deep],[0,h,-deep*.37],[0,h,deep*.37],
+ [w,0,deep],[0,h,deep*.37],[0,h,-deep*.37],
+ [-w,0,-deep],[-w,0,deep],[w,0,deep],
+ [-w,0,-deep],[w,0,deep],[w,0,-deep]
+ ];
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(verts.flat(),3));g.computeVertexNormals();return g;
+}
+const bunkerModels=new Map();let bunkerRef=null;
+function makeBunker(b){const root = new THREE.Group();root.position.set(b.x,0,b.y);bunkerLayer.add(root);
+ const red = b.color === 'red', skin = red?redVinyl:blueVinyl, edge=red?redEdge:blueEdge;
+ const logoMat=new THREE.MeshBasicMaterial({map:bunkerLogo,side:THREE.DoubleSide,transparent:false,toneMapped:false});
+ const r=b.r, h=b.h;
+ if(b.type==='can'){
+  const radius=r*.94;
+  cyl(root,radius,radius,h-.35,[0,h*.5,0],skin,24);
+  ball(root,.1,[0,h-.15,0],skin,[radius,.21,radius]);
+  ball(root,.1,[0,.15,0],skin,[radius,.15,radius]);
+  for(const yy of [.21,h-.24]){
+    const seam = mesh(new THREE.TorusGeometry(radius,.024,8,44),edge,root,[0,yy,0]);seam.rotation.x=halfPi;
+  }
+  for(const signZ of [-1,1]){
+    const tag=mesh(new THREE.PlaneGeometry(radius*1.43,.48),logoMat,root,[0,h*.54,signZ*(radius+.006)]);
+    if(signZ===-1)tag.rotation.y=Math.PI;
+  }
+ }else if(b.type==='cake'){
+  const r2=r*1.20;
+  const dome=mesh(new THREE.SphereGeometry(1,24,14,0,Math.PI*2,0,Math.PI*.5),skin,root,[0,.045,0],[r2,h-.04,r2],true,true);
+  cyl(root,r2*.99,r2*.99,.09,[0,.055,0],edge,26);
+  const ring=mesh(new THREE.TorusGeometry(r2*.98,.026,6,44),edge,root,[0,.06,0]);ring.rotation.x=halfPi;
+ }else if(b.type==='snake'){
+  const rr=Math.max(.40,b.h*.52),w=b.w;
+  const main=cyl(root,rr,rr,w-.45,[0,rr,0],skin,24);main.rotation.z=halfPi;
+  const left=ball(root,rr,[-w*.5+.24,rr,0],skin,[.28,rr,rr]);
+  const right=ball(root,rr,[w*.5-.24,rr,0],skin,[.28,rr,rr]);
+  for(const x of [-w*.5+.29,w*.5-.29]){
+   const seam=mesh(new THREE.TorusGeometry(rr,.026,7,38),edge,root,[x,rr,0]);seam.rotation.y=halfPi;
+  }
+  const panel=mesh(new THREE.PlaneGeometry(Math.min(2.25,w*.47),.37),logoMat,root,[0,rr+.06,rr+.012]);
+ }else if(b.type==='brick'){
+  const g=roundedBrickGeometry(b.w,b.h,b.d);const main=mesh(g,skin,root,[0,b.h*.5,-b.d*.5+.12],null,true,true);
+  for(let iz of [-1,1]){
+    const logo=mesh(new THREE.PlaneGeometry(Math.min(b.w*.67,2.3),.50),logoMat,root,[0,b.h*.54,iz*(b.d*.5+.014)]);
+    if(iz===-1)logo.rotation.y=Math.PI;
+  }
+  // Reinforced outer edge strips, printed 'seam' between inflated panels.
+  for(let ix of [-b.w*.46,b.w*.46])tubeBetween(root,[ix,.23,b.d*.5+.018],[ix,b.h-.2,b.d*.5+.018],.017,edge,6);
+  const bottom=box(root,[b.w*.88,.05,b.d*.92],[0,.054,0],edge);
+ }else if(b.type==='dorito'){
+  const main=mesh(doritoGeometry(r,h,b.d*1.3),skin,root,null,null,true,true);
+  const d=b.d*1.3*.75;
+  for(const zz of [-1,1]){
+   tubeBetween(root,[-r,0,zz*d],[0,h,zz*d*.37],.025,edge,8);
+   tubeBetween(root,[r,0,zz*d],[0,h,zz*d*.37],.025,edge,8);
+  }
+  tubeBetween(root,[-r,.03,d],[r,.03,d],.026,edge,7);
+  tubeBetween(root,[0,h,-d*.37],[0,h,d*.37],.022,edge,8);
+  const l=mesh(new THREE.PlaneGeometry(.94,.26),logoMat,root,[0,h*.36,d*(1-h*.36/h)+.03]);
+  l.rotation.x=-.63;
+ }
+ ellipseShadow(root,b.type==='snake'?b.w*.5+.22:b.type==='brick'?b.w*.57:r*1.28,b.type==='snake'?1.25:b.type==='brick'?b.d*.7:r*1.15,.21);
+ bunkerModels.set(b.id,root);
+}
+function syncBunkers(){if(st.bunkers===bunkerRef)return;
+ bunkerRef=st.bunkers;bunkerModels.clear();bunkerLayer.clear();
+ for(const b of st.bunkers)makeBunker(b);
+}
+
+// Detailed, articulated tournament athletes in paintball masks and padded uniforms.
+// Each competitor owns hip, shoulder, knee and marker pivots for stride, sliding and leaning.
+const HOME={ jersey:mat(0xf7f9f1,.89),pattern:homeJerseyTexture,base:mat(0x1f5460,.95),pads:mat(0x13262b,.83), accent:mat(0x83f7de,.53),glass:maskBlue };
+const AWAY={ jersey:mat(0xe7d6cf,.84),pattern:awayJerseyTexture,base:mat(0x542330,.94),pads:mat(0x1c1921,.86),accent:mat(0xff9690,.56),glass:maskLens };
+const helmetMesh=new THREE.SphereGeometry(1,22,14);
+const gloveMat=mat(0x0a171b,.87);
+const headShape=new THREE.SphereGeometry(1,20,14);
+const pad = mat(0x161b23,.76);
+function buildMarker(parent,fp=false){
+ const g=new THREE.Group();parent.add(g);
+ // Compact tournament electro-pneumatic marker pointed down local -Z.
+ const anodized=physical(0x192b37,.23,.83,{clearcoat:.72});
+ const rails=physical(0x4a646e,.31,.72);
+ const grip=mat(0x10181b,.82,.12);
+ box(g,[.17,.15,.45],[0,0,-.18],anodized,true);
+ box(g,[.155,.041,.37],[0,.089,-.16],rails);
+ box(g,[.042,.23,.10],[0,-.15,-.03],grip);
+ box(g,[.11,.018,.10],[0,-.09,-.14],rails);
+ tubeBetween(g,[0,.015,-.34],[0,.015,-1.17],.037,grip,14);
+ tubeBetween(g,[0,.015,-.42],[0,.015,-1.15],.025,rails,14);
+ const muzzle=cyl(g,.057,.057,.092,[0,.015,-1.20],grip,16);muzzle.rotation.x=halfPi;
+ cyl(g,.06,.058,.09,[0,.015,-1.23],anodized,16).rotation.x=halfPi;
+ // Hopper and feedneck, above the bolt.
+ cyl(g,.029,.04,.15,[0,.16,-.10],grip,12);
+ ball(g,.22,[0,.355,-.09],physical(0x101c23,.22,.25,{clearcoat:.82}),[.24,.20,.28]);
+ box(g,[.41,.048,.24],[0,.47,-.08],grip);
+ // Air tank and regulator rearward.
+ tubeBetween(g,[0,-.03,.06],[0,-.05,.44],.093,physical(0x192b32,.25,.66),16);
+ tubeBetween(g,[0,-.045,.48],[0,-.045,.52],.066,rails,14);
+ // Eye-cover and anodized accent machining.
+ for(const x of [-.09,.09])box(g,[.014,.028,.23],[x,.012,-.17],fp?limeMat:rails);
+ const readout=box(g,[.085,.029,.008],[.07,.085,-.22],fp?limeMat:markerColor);
+ g.userData={muzzleOffset:new THREE.Vector3(0,.015,-1.24)};
+ return g;
+}
+function createAthlete(p){const side=p.team===0?HOME:AWAY;
+ const pivot=new THREE.Group();athleteLayer.add(pivot);
+ const body=new THREE.Group();pivot.add(body);
+ const jersey=mat(0xffffff,.85,0,{map:side.pattern});
+ const torso=ball(body,1,[0,1.24,0],jersey,[.34,.35,.215]);
+ ball(body,1,[0,1.06,.025],side.base,[.245,.145,.19]);
+ ball(body,1,[0,1.50,-.015],side.pads,[.25,.11,.16]);
+ const neck=cyl(body,.075,.08,.10,[0,1.53,0],side.pads,12);
+ const helmet=new THREE.Group();helmet.position.set(0,1.67,0);body.add(helmet);
+ ball(helmet,1,[0,0,.005],side.pads,[.246,.235,.23]);
+ // Lens is strongly reflective and wide, recognizably paintball-specific.
+ ball(helmet,1,[0,.012,-.19],side.glass,[.233,.107,.095]);
+ ball(helmet,1,[0,-.101,-.199],side.pads,[.221,.122,.078]);
+ box(helmet,[.42,.027,.04],[0,-.067,-.271],side.accent);
+ for(let i=-2;i<=2;i++)box(helmet,[.015,.034,.012],[i*.055,-.132,-.267],mat(0x687477,.38,.5));
+ const visor=box(helmet,[.47,.035,.18],[0,.145,-.197],side.pads);visor.rotation.x=-.20;
+ for(const x of [-.195,.195])ball(helmet,1,[x,-.045,-.142],side.pads,[.072,.11,.085]);
+ // Torso number decal as floating close-fit panel.
+ const logo=mesh(new THREE.PlaneGeometry(.28,.14),new THREE.MeshBasicMaterial({map:signTex(String(p.index+1).padStart(2,'0'),'','#eefebd',256),transparent:false}),body,[0,1.29,-.208]);
+ const belt=box(body,[.55,.11,.24],[0,.93,.055],side.pads);
+ // Pod harness on the lower back.
+ for(let i=-1;i<=1;i++){
+   const pod=cyl(body,.052,.061,.30,[i*.14,.95,.23],side.pads,10);pod.rotation.x=Math.PI*.15;
+   box(body,[.085,.055,.10],[i*.14,1.12,.24],side.accent);
+ }
+ const legs=[];
+ for(let sign of [-1,1]){
+  const hip=new THREE.Group();hip.position.set(sign*.155,.93,0);body.add(hip);
+  ball(hip,1,[0,-.22,.005],side.base,[.15,.27,.158]);
+  ball(hip,1,[0,-.395,-.05],side.pads,[.144,.09,.15]);
+  const shin=new THREE.Group();shin.position.set(0,-.39,-.045);hip.add(shin);
+  ball(shin,1,[0,-.18,0],side.base,[.114,.245,.115]);
+  ball(shin,1,[0,-.22,-.102],side.pads,[.128,.132,.073]);
+  const shoe=ball(shin,1,[0,-.387,-.088],side.pads,[.13,.09,.23]);
+  box(shin,[.15,.04,.22],[0,-.439,-.09],black);
+  legs.push({hip,shin});
+ }
+ const arms=[];
+ for(let sign of [-1,1]){
+  const shoulder=new THREE.Group();shoulder.position.set(sign*.30,1.42,-.025);body.add(shoulder);
+  ball(shoulder,1,[sign*.025,-.17,-.075],jersey,[.137,.215,.14]);
+  ball(shoulder,1,[sign*.03,-.277,-.135],side.pads,[.132,.118,.12]);
+  const elbow=new THREE.Group();elbow.position.set(sign*.04,-.29,-.17);shoulder.add(elbow);
+  ball(elbow,1,[sign*-.045,-.047,-.125],side.base,[.108,.12,.17]);
+  ball(elbow,1,[-sign*.09,-.075,-.24],gloveMat,[.09,.09,.08]);
+  arms.push({shoulder,elbow});
+ }
+ const gun=buildMarker(body,false);gun.position.set(0,1.31,-.39);gun.scale.setScalar(.44);
+ const shadow=ellipseShadow(pivot,.43,.3,.27);
+ return {p,pivot,body,torso,helmet,legs,arms,gun,shadow,sel:null,stamp:0};
+}
+const athletes=new Map();let peopleRef=null;
+function syncAthletes(){if(st.people===peopleRef)return;
+ peopleRef=st.people;athleteLayer.clear();athletes.clear();
+ for(const p of st.people)athletes.set(p.id,createAthlete(p));
+}
+function animateAthlete(a,dt,now){const p=a.p;
+ const yaw=-p.yaw;
+ if(!a.pivot.userData.init){a.pivot.position.set(p.x,0,p.y);a.pivot.rotation.y=yaw;a.pivot.userData.init=1;}
+ const follow=clamp(dt*17,0,1);
+ a.pivot.position.x=smooth(a.pivot.position.x,p.x,follow);
+ a.pivot.position.z=smooth(a.pivot.position.z,p.y,follow);
+ const delta=Math.atan2(Math.sin(yaw-a.pivot.rotation.y),Math.cos(yaw-a.pivot.rotation.y));a.pivot.rotation.y+=delta*follow;
+ const speed=Math.hypot(p.vx,p.vy),pace=clamp(speed/5.4,0,1);
+ const sliding=p.slide>0,diving=sliding&&p.dive;
+ const crouch=sliding?1:p.crouch?.64:0;
+ a.body.position.y=smooth(a.body.position.y,-crouch*.41,clamp(dt*13,0,1));
+ a.body.rotation.z=smooth(a.body.rotation.z,-p.lean*.34,dt*13);
+ a.body.rotation.x=smooth(a.body.rotation.x,sliding?(diving?-.75:-.42):-Math.min(.1,pace*.085),dt*10);
+ a.body.position.x=smooth(a.body.position.x,p.lean*.10,dt*13);
+ a.body.position.z=smooth(a.body.position.z,sliding?-.10:0,dt*10);
+ const stride=Math.sin(now*.012+((p.id%5)*.54)+p.x*.20)*pace;
+ a.legs.forEach(({hip,shin},i)=>{
+  const s=i===0?1:-1;
+  hip.rotation.x=smooth(hip.rotation.x,sliding?1.2:stride*s*.57+crouch*.22,dt*11);
+  shin.rotation.x=smooth(shin.rotation.x,sliding?-.96:-.22-Math.max(0,-stride*s)*.69-crouch*.45,dt*11);
+ });
+ a.arms.forEach(({shoulder,elbow},i)=>{
+  const s=i===0?1:-1;
+  shoulder.rotation.x=smooth(shoulder.rotation.x,sliding?-.6:-.2+pace*Math.sin(now*.012+i*Math.PI)*.1,dt*15);
+  shoulder.rotation.z=smooth(shoulder.rotation.z,s*(sliding?.55:.14),dt*12);
+  elbow.rotation.x=smooth(elbow.rotation.x,sliding?-.32:-.25,dt*10);
+ });
+ a.gun.rotation.x=smooth(a.gun.rotation.x,-p.pitch*.48-(p.recoil||0)*.08,dt*18);
+ a.helmet.rotation.y=Math.sin(now*.0006+p.id)*.018;
+ const alive=p.alive;
+ a.pivot.visible=alive;
+ const isFPS=st.view==='fps'&&p.team===0&&p.index===st.selected;
+ a.body.visible=!isFPS;
+ a.shadow.visible=alive&&!isFPS;
+}
+
+// Glass HUD labels, tactical plan and player selection are 3D overlays, not fake 2D sprites.
+const goalM=mat(0xcdf65d,.35,0,{emissive:0x9ba444,emissiveIntensity:.25});
+const waypointM=mat(0x5de6ea,.35,0,{emissive:0x174b5a,emissiveIntensity:.25});
+const lineMat = new THREE.LineDashedMaterial({color:0xe9ff72,dashSize:.45,gapSize:.27,transparent:true,opacity:.77,depthTest:false});
+const rosterLabels=new Map();let lastRouteSig='';
+function nameSprite(txt,col){const c=document.createElement('canvas');c.width=256;c.height=64;const x=c.getContext('2d');
+ x.fillStyle='#08141bde';x.fillRect(5,6,246,49);x.strokeStyle=col;x.lineWidth=3;x.strokeRect(6,7,244,47);
+ x.font='900 29px Arial';x.fillStyle='#fff';x.textAlign='center';x.fillText(txt,128,40);
+ const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;
+ const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthTest:false,depthWrite:false}));s.scale.set(2.7,.68,1);return s;
+}
+function syncTactical(){tacticalLayer.visible=st.view==='tactical';if(!tacticalLayer.visible)return;
+ const sig=st.people.map(p=>`${p.id}:${p.goal?.x?.toFixed(1)}:${p.goal?.y?.toFixed(1)}:${p.x.toFixed(1)}:${p.y.toFixed(1)}`).join('|')+'|'+st.selected+'|'+st.phase;
+ if(sig===lastRouteSig&&st.phase!=='live')return;lastRouteSig=sig;
+ tacticalLayer.clear();
+ for(const p of st.people){if(!p.alive)continue;
+  // Selectable circles, and labeled athletes from above.
+  const c=p.team===0?(st.selected===p.index?0xecff73:0x71e4f0):0xff8a8a;
+  const ring=mesh(new THREE.RingGeometry(st.selected===p.index&&p.team===0?.63:.43,st.selected===p.index&&p.team===0?.78:.54,36),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide,transparent:true,opacity:p.team===0?.9:.5,depthWrite:false}),tacticalLayer,[p.x,.09,p.y]);ring.rotation.x=-halfPi;
+  if(p.team===0){const label=nameSprite(p.name,p.index===st.selected?'#d7f964':'#60d0db');label.position.set(p.x,2.75,p.y);tacticalLayer.add(label)}
+  if(p.team!==0||!(st.phase==='prep'||st.phase==='pointend'||st.paused))continue;
+  const nodes=[[p.x,.18,p.y],...(p.nav||[]).map(t=>[t.x,.18,t.y]),[p.goal.x,.18,p.goal.y]];
+  if(nodes.length>1){const geometry=new THREE.BufferGeometry().setFromPoints(nodes.map(n=>new THREE.Vector3(...n)));
+   const l=new THREE.Line(geometry,lineMat.clone());l.computeLineDistances();l.material.color.setHex(p.index===st.selected?0xf0ff7a:0x6de8ea);tacticalLayer.add(l);}
+  const goal=mesh(new THREE.RingGeometry(.43,.57,24),new THREE.MeshBasicMaterial({color:p.index===st.selected?0xeafa57:0x79e0e6,side:THREE.DoubleSide,transparent:true,opacity:.9,depthWrite:false}),tacticalLayer,[p.goal.x,.20,p.goal.y]);goal.rotation.x=-halfPi;
+ }
+}
+
+// Lightweight sky-scattering approximation: gradient atmosphere and painted cloud strata.
+function makeSky(){
+ const c=document.createElement('canvas');c.width=2048;c.height=1024;
+ const x=c.getContext('2d');
+ const grad=x.createLinearGradient(0,0,0,1024);grad.addColorStop(0,'#3d6f99');grad.addColorStop(.26,'#76a7c4');grad.addColorStop(.50,'#acd3d3');grad.addColorStop(.68,'#cfe2db');grad.addColorStop(1,'#7895a3');x.fillStyle=grad;x.fillRect(0,0,2048,1024);
+ const r=mulberry32(8541);
+ for(let k=0;k<65;k++){
+  const px=r()*2400-200,py=140+r()*470,scale=40+r()*130;
+  const g=x.createRadialGradient(px,py,1,px,py,scale);g.addColorStop(0,'#ffffff4b');g.addColorStop(.45,'#f5ffff28');g.addColorStop(1,'#ffffff00');x.fillStyle=g;
+  x.save();x.translate(px,py);x.scale(2.3,.30);x.beginPath();x.arc(0,0,scale,0,Math.PI*2);x.fill();x.restore();
+ }
+ const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=THREE.RepeatWrapping;
+ const sky=new THREE.Mesh(new THREE.SphereGeometry(182,48,28),new THREE.MeshBasicMaterial({map:t,side:THREE.BackSide,depthWrite:false,fog:false,toneMapped:false}));
+ sky.position.set(0,25,0);scene.add(sky);
+ return sky;
+}
+const sky=makeSky();
+
+// GPU-instanced projectile balls and live tracer streaks (the simulation owns all trajectories).
+const shotBallGeometry=new THREE.SphereGeometry(.032,8,6);
+const shotsHome=new THREE.InstancedMesh(shotBallGeometry,new THREE.MeshBasicMaterial({color:0xdffc73}),180);
+const shotsAway=new THREE.InstancedMesh(shotBallGeometry,new THREE.MeshBasicMaterial({color:0xffb282}),180);
+shotsHome.frustumCulled=false;shotsAway.frustumCulled=false;
+effectsLayer.add(shotsHome,shotsAway);
+const tracePositions = new Float32Array(180*2*3);
+const traceGeo=new THREE.BufferGeometry();traceGeo.setAttribute('position',new THREE.BufferAttribute(tracePositions,3).setUsage(THREE.DynamicDrawUsage));
+traceGeo.setDrawRange(0,0);
+const traceLines=new THREE.LineSegments(traceGeo,new THREE.LineBasicMaterial({color:0xf4efb9,transparent:true,opacity:.69,depthWrite:false}));
+traceLines.frustumCulled=false;effectsLayer.add(traceLines);
+const shotDummy=new THREE.Object3D();
+function syncBalls(){let h=0,a=0,n=0;const bullets=st.balls;
+ for(let i=Math.max(0,bullets.length-180);i<bullets.length;i++){
+  const b=bullets[i];shotDummy.position.set(b.x,b.z,b.y);shotDummy.rotation.set(0,0,0);shotDummy.scale.setScalar(1);shotDummy.updateMatrix();
+  if(b.team===0){shotsHome.setMatrixAt(h,shotDummy.matrix);h++;}else{shotsAway.setMatrixAt(a,shotDummy.matrix);a++;}
+  const k=n*6;tracePositions[k]=b.px;tracePositions[k+1]=b.pz;tracePositions[k+2]=b.py;
+  tracePositions[k+3]=b.x;tracePositions[k+4]=b.z;tracePositions[k+5]=b.y;n++;
+ }
+ shotsHome.count=h;shotsAway.count=a;
+ if(h)shotsHome.instanceMatrix.needsUpdate=true;if(a)shotsAway.instanceMatrix.needsUpdate=true;
+ traceGeo.setDrawRange(0,n*2);traceGeo.attributes.position.needsUpdate=true;
+}
+function splatTexture(col){const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');const r=mulberry32(col==='home'?758:223);
+ x.clearRect(0,0,128,128);x.fillStyle=col==='home'?'#ddfa5e':'#ff8168';
+ x.beginPath();for(let i=0;i<28;i++){const ang=i/28*Math.PI*2,rad=(34+r()*19);if(i===0)x.moveTo(64+Math.cos(ang)*rad,64+Math.sin(ang)*rad);else x.lineTo(64+Math.cos(ang)*rad,64+Math.sin(ang)*rad);}x.closePath();x.fill();
+ for(let i=0;i<13;i++){x.beginPath();x.arc(64+(r()-.5)*112,64+(r()-.5)*112,1.3+r()*5.0,0,Math.PI*2);x.fill();}
+ const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;
+}
+const splatMats=[splatTexture('home'),splatTexture('away')].map(tex=>new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2}));
+const splatG=new THREE.PlaneGeometry(.33,.33);
+const splatLayer=new THREE.Group();effectsLayer.add(splatLayer);
+let splatRef=null,prevSplatCount=0;
+let confetti=[];const maxParticles=240;
+const px=new Float32Array(maxParticles*3),pc=new Float32Array(maxParticles*3);
+const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(px,3).setUsage(THREE.DynamicDrawUsage));pGeo.setAttribute('color',new THREE.BufferAttribute(pc,3).setUsage(THREE.DynamicDrawUsage));pGeo.setDrawRange(0,0);
+const points=new THREE.Points(pGeo,new THREE.PointsMaterial({size:.12,vertexColors:true,transparent:true,opacity:.92,depthWrite:false,sizeAttenuation:true}));points.frustumCulled=false;effectsLayer.add(points);
+function burst(x,y,z,team){if(mobile&&confetti.length>100)return;
+ const color=new THREE.Color(team===0?0xc9ff55:0xff8062);
+ for(let i=0;i<9;i++){const ang=rand(0,Math.PI*2),v=rand(.7,3.4);confetti.push({x,y,z,vx:Math.cos(ang)*v,vy:rand(.3,3.4),vz:Math.sin(ang)*v,life:rand(.23,.53),color});}
+ if(confetti.length>maxParticles)confetti.splice(0,confetti.length-maxParticles);
+}
+function updateSplatEffects(dt){
+ if(st.splats!==splatRef){splatRef=st.splats;prevSplatCount=0;splatLayer.clear();confetti=[];}
+ if(st.splats.length<prevSplatCount){prevSplatCount=0;splatLayer.clear();}
+ for(let i=prevSplatCount;i<st.splats.length;i++){
+  const s=st.splats[i];const root=mesh(splatG,splatMats[s.team===0?0:1],splatLayer,[s.x,s.z,s.y]);
+  const size=rand(.52,1.46);root.scale.set(size,size,size);
+  if(s.bunker){const b=s.bunker,dx=s.x-b.x,dz=s.y-b.y;
+   // Keep splatter flush with nearest bunker face rather than floating in world space.
+   if(Math.abs(dx)>Math.abs(dz)){root.rotation.y=dx>0?halfPi:-halfPi;root.position.x+=Math.sign(dx)*.032;}
+   else {root.rotation.y=dz>0?0:Math.PI;root.position.z+=Math.sign(dz)*.032;}
+  }else{root.rotation.x=-halfPi;root.position.y=.04;}
+  root.rotation.z+=rand(-.4,.4);
+  burst(s.x,s.z,s.y,s.team);
+ }
+ prevSplatCount=st.splats.length;
+ confetti=confetti.filter(p=>p.life>0);
+ for(let i=0;i<confetti.length;i++){
+  const p=confetti[i];p.life-=dt;p.vy-=7.6*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.z+=p.vz*dt;if(p.y<.08){p.y=.08;p.vy=0;}
+  px[i*3]=p.x;px[i*3+1]=p.y;px[i*3+2]=p.z;
+  pc[i*3]=p.color.r;pc[i*3+1]=p.color.g;pc[i*3+2]=p.color.b;
+ }
+ pGeo.setDrawRange(0,confetti.length);pGeo.attributes.position.needsUpdate=true;pGeo.attributes.color.needsUpdate=true;
+}
+
+// Real first-person weapon in local camera space. All geometry is rendered by the same PBR engine.
+const firstPersonRig=new THREE.Group();firstPersonRig.position.set(.36,-.45,-.72);cam.add(firstPersonRig);
+const fpGun=buildMarker(firstPersonRig,true);fpGun.position.set(0,.04,0);fpGun.scale.setScalar(.78);
+const sleeveMat=mat(0x1f6f80,.9);const armGlove=mat(0x22292d,.8);
+// Hands and forearms holding the marker, with textured tournament sleeves.
+tubeBetween(firstPersonRig,[.51,-.60,.54],[.20,-.14,-.03],.112,sleeveMat,14);
+ball(firstPersonRig,1,[.20,-.14,-.03],armGlove,[.12,.10,.15]);
+tubeBetween(firstPersonRig,[-.44,-.58,.43],[-.20,-.14,-.31],.098,sleeveMat,14);
+ball(firstPersonRig,1,[-.20,-.14,-.31],armGlove,[.12,.09,.16]);
+const muzzleFlash=mesh(new THREE.ConeGeometry(.115,.42,9),new THREE.MeshBasicMaterial({color:0xe6ffba,transparent:true,opacity:.85,depthWrite:false}),fpGun,[0,.015,-1.44]);
+muzzleFlash.rotation.x=-halfPi;muzzleFlash.visible=false;
+const reticleRing=mesh(new THREE.RingGeometry(.004,.008,20),new THREE.MeshBasicMaterial({color:0xdcffa5,transparent:true,opacity:.8,depthTest:false}),cam,[0,0,-.36]);reticleRing.visible=false;
+
+// 3D inset overhead radar for FPS. Drawn only in this tiny UI canvas.
+const radar=document.createElement('canvas');radar.width=260;radar.height=208;
+radar.style.cssText='position:absolute;z-index:3;right:13px;top:86px;width:148px;height:118px;pointer-events:none;opacity:.93;border:1px solid #b6e7d376;border-radius:8px;background:#0c211a';
+stage.appendChild(radar);
+const radarCtx=radar.getContext('2d');let radarFrame=0;
+function drawRadar(){const a=radarCtx,w=260,h=208;a.clearRect(0,0,w,h);a.fillStyle='#163d2e';a.fillRect(0,0,w,h);
+ const tx=x=>(x+FIELD.x)/FIELD.w*w,ty=y=>(y+FIELD.y)/FIELD.h*h;
+ a.strokeStyle='#ffffff6e';a.strokeRect(2,2,w-4,h-4);a.strokeStyle='#ffffff30';a.beginPath();a.moveTo(0,h/2);a.lineTo(w,h/2);a.moveTo(w/2,0);a.lineTo(w/2,h);a.stroke();
+ for(const b of st.bunkers){a.fillStyle=b.color==='red'?'#ea6566':'#56bde0';const wi=b.type==='brick'||b.type==='snake'?b.w:2*b.r;
+ a.fillRect(tx(b.x)-wi*1.5,ty(b.y)-b.d*1.4,wi*3,b.d*2.8)}
+ for(const p of st.people){if(!p.alive||(p.team===1&&p.spottedUntil<st.now))continue;
+  a.fillStyle=p.team?'#ff8c81':'#cdf975';const x=tx(p.x),y=ty(p.y);a.beginPath();a.arc(x,y,p.team?4:5,0,Math.PI*2);a.fill();if(p.team===0&&p.index===st.selected){a.strokeStyle='#fff';a.lineWidth=2;a.beginPath();a.arc(x,y,9,0,Math.PI*2);a.stroke();
+   a.strokeStyle='#d4ff90';a.beginPath();a.moveTo(x,y);a.lineTo(x+Math.sin(p.yaw)*19,y-Math.cos(p.yaw)*19);a.stroke();}}
+ a.font='bold 12px Arial';a.fillStyle='#e3f3e1';a.fillText('TACTICAL RADAR',8,17);
+}
+
+let lastView=null;
+let frameCount=0,fpsAvg=60,slowSeconds=0,prevT=performance.now();
+let quality=(localStorage.getItem('ascent-graphics-v3')||'AUTO').toUpperCase();
+const QUALS=['AUTO','PERFORMANCE','BALANCED','ULTRA'];if(!QUALS.includes(quality))quality='AUTO';
+let dpr=1,resizeStamp='';
+function chooseDPR(){const ratio=window.devicePixelRatio||1;
+ const targets={AUTO:mobile?1.05:1.6,PERFORMANCE:mobile?.80:1.05,BALANCED:mobile?1.24:1.55,ULTRA:mobile?1.55:2};
+ dpr=Math.min(ratio,targets[quality]);renderer.setPixelRatio(dpr);
+ const cast=(!mobile&&quality!=='PERFORMANCE');renderer.shadowMap.enabled=cast;
+ sun.castShadow=cast;
+ if(cast){const ss=quality==='ULTRA'?2048:1024;sun.shadow.mapSize.set(ss,ss);sun.shadow.map?.dispose();sun.shadow.map=null;}
+ gfxBtn.textContent='GRAPHICS: '+quality;}
+chooseDPR();
+gfxBtn.addEventListener('click',()=>{quality=QUALS[(QUALS.indexOf(quality)+1)%QUALS.length];localStorage.setItem('ascent-graphics-v3',quality);chooseDPR();resizeStamp='';});
+window.addEventListener('keydown',e=>{if(e.code==='KeyG'&&!e.repeat)gfxBtn.click()});
+function resize3D(){const w=Math.max(2,stage.clientWidth),h=Math.max(2,stage.clientHeight);
+ const sig=`${w}:${h}:${dpr}`;if(sig===resizeStamp)return;resizeStamp=sig;
+ renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();
+ const s=Math.max(.05,Math.min((w-56)/FIELD.w,(h-56)/FIELD.h));
+ mapCam.left=-w/(2*s);mapCam.right=w/(2*s);mapCam.top=h/(2*s);mapCam.bottom=-h/(2*s);mapCam.updateProjectionMatrix();
+ // The old tactical pointer mapping uses st.map.s; keep pixel and 3D coordinates identical.
+ st.map={s,left:w/2-FIELD.x*s,right:w/2+FIELD.x*s,top:h/2-FIELD.y*s,bottom:h/2+FIELD.y*s};
+}
+const faceDir=new THREE.Vector3(),desiredCam=new THREE.Vector3();
+function updateCamera(dt,now){const mode=st.view;const p=st.people.find(p=>p.team===0&&p.index===st.selected);
+ if(mode!==lastView){lastView=mode;document.documentElement.classList.toggle('webgl-fps',mode==='fps');}
+ if(mode==='fps'&&p){
+  const headY=p.slide>0?(p.dive?.36:.48):p.crouch?1.04:1.59;
+  const speed=Math.hypot(p.vx,p.vy),bob=p.slide>0?0:Math.sin(now*.017)*Math.min(.018,speed*.003);
+  const shake=(st.shake||0)*.006;
+  desiredCam.set(p.x+Math.cos(p.yaw)*p.lean*.35,headY+bob+Math.sin(now*.0017)*.005-shake,p.y+Math.sin(p.yaw)*p.lean*.35);
+  const factor=lastView===mode?clamp(dt*19,0,1):1;
+  cam.position.lerp(desiredCam,factor);
+  cam.rotation.set((p.pitch||0)-(p.recoil||0)*.013,-p.yaw,-p.lean*.04,'YXZ');
+  const targetFov=st.keys.ShiftLeft||st.keys.ShiftRight?79:mobile?79:76;
+  cam.fov=smooth(cam.fov,targetFov,dt*6);cam.updateProjectionMatrix();
+  firstPersonRig.visible=p.alive;
+  firstPersonRig.position.x=smooth(firstPersonRig.position.x,.37+p.lean*.045,dt*14);
+  firstPersonRig.position.y=smooth(firstPersonRig.position.y,-.46-(p.recoil||0)*.038-(p.slide>0?.09:0),dt*15);
+  firstPersonRig.rotation.x=smooth(firstPersonRig.rotation.x,-(p.recoil||0)*.062,dt*20);
+  firstPersonRig.rotation.z=smooth(firstPersonRig.rotation.z,(p.lean||0)*.05+Math.sin(now*.002)*.004,dt*10);
+  muzzleFlash.visible=!!(p.alive&&p.recoil>.62&&p.reload<=0);
+  muzzleFlash.scale.setScalar(p.recoil||1);
+  radar.style.display=st.side||st.phase==='prep'?'none':'block';
+  if(++radarFrame%7===0)drawRadar();
+ }else{
+  firstPersonRig.visible=false;reticleRing.visible=false;radar.style.display='none';
+ }
+}
+function tick(timestamp){const dt=Math.min(.05,Math.max(.001,(timestamp-prevT)/1000));prevT=timestamp;
+ try{
+  resize3D();syncBunkers();syncAthletes();
+  const now=st.now;
+  for(const a of athletes.values())animateAthlete(a,dt,now);
+  syncTactical();syncBalls();updateSplatEffects(st.paused?0:dt);updateCamera(dt,now);
+  renderer.render(scene,st.view==='fps'?cam:mapCam);
+  if(!window.__speedballWebGLReady){window.__speedballWebGLReady=true;document.documentElement.classList.add('webgl-ready');}
+  frameCount++;fpsAvg=smooth(fpsAvg,1/dt,dt*.23);
+  if(frameCount%35===0)fpsRead.textContent=`WEBGL 3D  /  ${Math.round(fpsAvg)} FPS`;
+  if(quality==='AUTO'&&frameCount>250&&fpsAvg<27){slowSeconds+=dt;if(slowSeconds>.45&&dpr>.78){dpr=Math.max(.76,dpr-.13);renderer.setPixelRatio(dpr);resizeStamp='';slowSeconds=0;}}
+  else slowSeconds=Math.max(0,slowSeconds-dt);
+  requestAnimationFrame(tick);
+ }catch(err){window.__speedballWebGLReady=false;host.style.display='none';document.documentElement.classList.remove('webgl-ready');fpsRead.textContent='3D ERROR · 2D FALLBACK';console.error('3D render error',err);}
+}
+window.addEventListener('webglcontextlost',()=>{window.__speedballWebGLReady=false;document.documentElement.classList.remove('webgl-ready')});
+window.addEventListener('orientationchange',()=>{resizeStamp=''});
+try{buildEnvironment();syncBunkers();syncAthletes();requestAnimationFrame(tick);}
+catch(e){host.style.display='none';console.error('3D initialization failed; using 2D fallback',e);}
+
 </script>
 </body></html>
